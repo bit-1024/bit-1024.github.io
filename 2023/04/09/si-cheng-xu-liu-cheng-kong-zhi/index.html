@@ -1,0 +1,3056 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <!-- shw2018 洪卫  modify 2019.08.15-->
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="四:程序流程控制, UESTC CV DeepLearning MachineLearning 宏忠 LHZ 计算机 软件">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
+    <meta name="description" content="01、 程序流程控概述流程控制语句是用来控制程序中各语句执行顺序的语句，可以把语句组合成能完成一定功能的小逻辑模块。
+其流程控制方式采用结构化程序设计中规定的三种基本流程结构，即：
+
+顺序结构
+分支结构
+循环结构
+
+
+1、顺序结构
+
+程序从">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>四:程序流程控制 | 毛毛驿站</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+            
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">毛毛驿站</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">毛毛驿站</div>
+        <div class="logo-desc">
+            
+            南昌航空大学 | 通信工程 | 计算机
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<!-- <ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言板
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友情链接
+                    </a>
+              
+            </li>
+        
+
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul> -->
+
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bit-1024/bit-1024.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        四:程序流程控制
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-09
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        宏忠
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        6.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        30 分
+                    </div>
+                    
+                
+                
+                
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv" ></span>
+    
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="01、-程序流程控概述"><a href="#01、-程序流程控概述" class="headerlink" title="01、 程序流程控概述"></a>01、 程序流程控概述</h2><p>流程控制语句是用来控制程序中各语句执行顺序的语句，可以把语句组合成能完成一定功能的小逻辑模块。</p>
+<p>其流程控制方式采用结构化程序设计中规定的三种基本流程结构，即：</p>
+<ul>
+<li>顺序结构</li>
+<li>分支结构</li>
+<li>循环结构</li>
+</ul>
+<blockquote>
+<p>1、顺序结构</p>
+</blockquote>
+<p>程序从上到下逐行地执行，中间没有任何判断和跳转。</p>
+<blockquote>
+<p>2、分支结构</p>
+</blockquote>
+<ul>
+<li>根据条件，选择性地执行某段代码。</li>
+<li>有<code>if…else</code>和<code>switch-case</code>两种分支语句。</li>
+</ul>
+<blockquote>
+<p>3、循环结构</p>
+</blockquote>
+<ul>
+<li>根据循环条件，重复性的执行某段代码。</li>
+<li>有<code>while、do…while、for</code>三种循环语句。</li>
+<li>注：JDK1.5提供了<code>foreach</code>循环，方便的遍历集合、数组元素。</li>
+</ul>
+<h2 id="02、-顺序结构"><a href="#02、-顺序结构" class="headerlink" title="02、 顺序结构"></a>02、 顺序结构</h2><p>Java中定义成员变量时采用合法的前向引用。如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/a8d98801448dd4e103449c9a21bc17e2.png" alt=""></p>
+<h2 id="03、分支语句"><a href="#03、分支语句" class="headerlink" title="03、分支语句"></a>03、分支语句</h2><h2 id="2-1、分支语句1：if-else结构"><a href="#2-1、分支语句1：if-else结构" class="headerlink" title="2.1、分支语句1：if-else结构"></a>2.1、分支语句1：if-else结构</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/98582479c99fc827cd6bcffcf9c2519b.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/fa96e57b19acf19576a892ed142df686.png" alt=""></p>
+<blockquote>
+<p>1、if-else使用说明：</p>
+</blockquote>
+<ul>
+<li>条件表达式必须是布尔表达式（关系表达式或逻辑表达式）、布尔变量；</li>
+<li>语句块只有一条执行语句时，一对{}可以省略，但建议保留；</li>
+<li>if-else语句结构，根据需要可以嵌套使用；</li>
+<li>当if-else结构是“多选一”时，最后的else是可选的，根据需要可以省略；</li>
+<li>当多个条件是“互斥”关系时，条件判断语句及执行语句间顺序无所谓当多个条件是“包含”关系时，“小上大下/ 子上父下”。</li>
+</ul>
+<blockquote>
+<p>2、练习</p>
+</blockquote>
+<pre><code>/*
+分支结构中的if-else（条件判断结构）
+一、三种结构
+第一种：
+if(条件表达式){
+执行表达式
+}
+第二种：
+if(条件表达式){
+执行表达式1
+}else{
+执行表达式2
+}
+第三种：
+if(条件表达式){
+执行表达式1
+}else if{
+执行表达式2
+}else if(条件表达式){
+执行表达式3
+}
+...
+else{
+执行表达式n
+}
+
+*/
+class IfTest{
+public static void main(String[] args){
+//举例1
+int heartBeats = 75;
+if(heartBeats &lt; 60 || heartBeats &gt; 100){
+System.out.println("需要进一步做检查");
+}
+System.out.println("检查结束");
+
+//举例2
+int age = 23;
+if(age &lt; 18){
+System.out.println("你还可以看动画片");
+}else{
+System.out.println("你可以看科技电影了");
+}
+
+//举例3
+if(age &lt; 0){
+System.out.println("你输入的数据不合适");
+}else if(age &lt; 18){
+System.out.println("你还是个青少年");
+}else if(age &lt; 35){
+System.out.println("你还是个青壮年");
+}else if(age &lt; 60){
+System.out.println("你还是个中年");
+}else if(age &lt; 120){
+System.out.println("你进入老年了");
+}else{
+System.out.println("你成仙了");
+}
+}
+}</code></pre><h3 id="2-1-1、输入语句"><a href="#2-1-1、输入语句" class="headerlink" title="2.1.1、输入语句"></a>2.1.1、输入语句</h3><pre><code>/*
+如何从键盘获取不同类型的变量，需要使用Scanner类
+
+具体步骤：
+1.导包：import java.util.Scanner;
+2.Scanner的实例化;
+3.调用Scanner类的相关方法，来获取指定的变量。
+*/
+import java.util.Scanner;
+
+class IFTest{
+public static void main(String[] args){
+//声明一个Scanner
+Scanner scan = new Scanner(System.in);
+
+int num = scan.nextInt();
+
+System.out.println(num);
+}
+}</code></pre><pre><code>/*
+如何从键盘获取不同类型的变量，需要使用Scanner类
+
+具体步骤：
+1.导包：import java.util.Scanner;
+2.Scanner的实例化;
+3.调用Scanner类的相关方法，来获取指定的变量。
+*/
+import java.util.Scanner;
+
+class IFTest{
+public static void main(String[] args){
+//Scanner实例化
+Scanner scan = new Scanner(System.in);
+
+System.out.println("请输入你的姓名：");
+String name = scan.next();
+System.out.println(name);
+
+System.out.println("请输入你的年龄：");
+int age = scan.nextInt();
+System.out.println(age);
+
+System.out.println("请输入你的体重：");
+double weight = scan.nextDouble();
+System.out.println(weight);
+
+System.out.println("你是否单身？(true/false)");
+boolean isLive = scan.nextBoolean();
+System.out.println(isLive);
+
+//char型的获取，Scanner没有提供相关方法，只能获取一个字符串
+System.out.println("请输入你的性别：(男/女)");
+String TF = scan.next();
+char TFChar = TF.charAt(0);
+System.out.println(TFChar);
+}
+}</code></pre><blockquote>
+<p>1、练习1</p>
+</blockquote>
+<pre><code>/*
+岳小鹏参加Java考试，他和父亲岳不群达成承诺：
+如果：成绩为100分时，奖励一辆BMW；
+成绩为(80，99]时，奖励一台iphone xs max；
+当成绩为[60,80]时，奖励一个iPad；
+其它时，什么奖励也没有。
+请从键盘输入岳小鹏的期末成绩，并加以判断
+
+说明：
+1.else结构是可选的。
+2.针对于条件表达式：
+① 如果多个条件表达式之间的关系是“互斥”关系(或没有交集的关系),哪个判断和执行语句声明在上面还是下面，无所谓；
+② 如果多个条件表达式之间是有交集的关系，需要根据实际情况，需要考虑实际情况，考虑清楚应该将哪个结构声明在上面。
+③ 如果多个条件表达式之间有包含的关系，通常情况下，需要将范围小的声明在范围大的上面。否则，范围小的就没机会运行。
+*/
+import java.util.Scanner;
+class IFTest02{
+public static void main(String[] args){
+Scanner scan = new Scanner(System.in);
+System.out.println("请输入岳小鹏的成绩：");
+int score = scan.nextInt();
+
+if(score == 100){
+System.out.println("奖励一辆BMW");
+}else if(score &gt;80 &amp;&amp; score &lt;=99){
+System.out.println("奖励一台iphone xs max");
+}else if(score &gt;= 60 &amp;&amp; score &lt;= 80){
+System.out.println("奖励一个iPad");
+}else{
+System.out.println("奖励？学习去！！！");
+}
+}
+}</code></pre><blockquote>
+<p>2、练习2</p>
+</blockquote>
+<pre><code>/*
+编写程序：由键盘输入三个整数分别存入变量num1、num2、num3，
+对它们进行排序(使用if-else if-else),并且从小到大输出。
+
+*/
+import java.util.Scanner;
+
+class Sorting{
+public static void main(String[] args){
+//Scanner实例化
+Scanner scan = new Scanner(System.in);
+System.out.println("请输入第一个整数：");
+int num1 = scan.nextInt();
+System.out.println("请输入第二个整数：");
+int num2 = scan.nextInt();
+System.out.println("请输入第三个整数：");
+int num3 = scan.nextInt();
+
+int MaxNumber = 0;
+if(num1 &gt;= num2 ){
+if(num3 &gt;= num1){
+System.out.println(num2 + "," + num1 + "," + num3);
+}else if(num3 &lt;= num2){
+System.out.println(num3 + "," + num2 + "," + num1);
+}else{
+System.out.println(num2 + "," + num3 + "," + num1);
+}
+}else{
+if(num3 &gt;= num2){
+System.out.println(num1 + "," + num2 + "," + num3);
+}else if(num3 &lt;= num1){
+System.out.println(num3 + "," + num1 + "," + num2);
+}else{
+System.out.println(num1 + "," + num3 + "," + num2);
+}
+}
+}
+}</code></pre><blockquote>
+<p>3、练习3</p>
+</blockquote>
+<pre><code>/*
+我家的狗5岁了，5岁的狗相当于人类多大呢？
+其实，狗的前两年每一年相当于人类的10.5岁，之后每增加一年就增加四岁。
+那么5岁的狗相当于人类多少年龄呢？应该是：10.5 + 10.5 + 4 + 4 + 4 = 33岁。
+如果用户输入负数，请显示一个提示信息。
+
+*/
+import java.util.Scanner;
+
+class DogYear{
+public static void main(String[] args) {
+Scanner scan = new Scanner(System.in);
+System.out.println("请输入狗的年龄：");
+double Dyear = scan.nextDouble();
+if(Dyear &lt;= 2 &amp;&amp;  Dyear &gt; 0){
+System.out.println("狗的年龄等同于人的：" + Dyear * 10.5);
+}else if(Dyear &lt;= 0){
+System.out.println("你输入的不正确。");
+}else{
+double number = 2 * 10.5 + (Dyear - 2) * 4;
+System.out.println("狗的年龄等同于人的：" + number);
+}
+}
+}</code></pre><blockquote>
+<p>4、练习4</p>
+</blockquote>
+<pre><code>/*
+假设你想开发一个玩彩票的游戏，程序随机地产生一个两位数的彩票，
+提示用户输入一个两位数，然后按照下面的规则判定用户是否能赢。
+1)如果用户输入的数匹配彩票的实际顺序，奖金10 000美元。
+2)如果用户输入的所有数字匹配彩票的所有数字，但顺序不一致，奖金3 000美元。
+3)如果用户输入的一个数字仅满足顺序情况下匹配彩票的一个数字，奖金1 000美元。
+4)如果用户输入的一个数字仅满足非顺序情况下匹配彩票的一个数字，奖金500美元。
+5)如果用户输入的数字没有匹配任何一个数字，则彩票作废。
+提示：使用(int)(Math.random() * 90  + 10)产生随机数。
+Math.random() : [0,1)  * 90 [0,90) + 10 [10,100)[10,99]
+
+*/
+import java.util.Scanner;
+
+class CaiTest{
+public static void main(String[] args){
+//1、随机产生一个两位数
+//System.out.println(Math.random());//产生[0,1)
+int number = (int)(Math.random()*90 + 10);//得到[10,99]，即[10,100)
+//System.out.println(number);
+
+int numberShi = number/10;
+int numberGe = number%10;
+
+//2、用户输入一个两位数
+Scanner input = new Scanner(System.in);
+System.out.print("请输入一个两位数：");
+int guess = input.nextInt();
+
+int guessShi = guess/10;
+int guessGe = guess%10;
+
+if(number == guess){
+System.out.println("奖金10 000美元");
+}else if(numberShi == guessGe &amp;&amp; numberGe == guessShi){
+System.out.println("奖金3 000美元");
+}else if(numberShi==guessShi || numberGe == guessGe){
+System.out.println("奖金1 000美元");
+}else if(numberShi==guessGe || numberGe == guessShi){
+System.out.println("奖金500美元");
+}else{
+System.out.println("没中奖");
+}
+
+System.out.println("中奖号码是：" + number);
+}
+}</code></pre><blockquote>
+<p>6、练习5</p>
+</blockquote>
+<pre><code>/*
+大家都知道，男大当婚，女大当嫁。
+那么女方家长要嫁女儿，当然要提出一定的条件：高：180cm以上；
+富：财富1千万以上；帅：是。如果这三个条件同时满足，则：“我一定要嫁给他!!!”
+如果三个条件有为真的情况，则：“嫁吧，比上不足，比下有余。”
+如果三个条件都不满足，则：“不嫁！”
+
+*/
+import java.util.Scanner;
+
+class GaoFuTest{
+public static void main(String[] args){
+Scanner scan = new Scanner(System.in);
+
+System.out.println("请输入你的身高：(cm)");
+int height = scan.nextInt();
+System.out.println("请输入你的财富：(千万)");
+double weight = scan.nextDouble();
+//System.out.println("请输入你是否帅：(true/false)");
+//boolean isHandSome = scan.nextBoolean();
+
+//if(height &gt;= 180 &amp;&amp; weight &gt;= 1 &amp;&amp; isHandSome){
+//System.out.println("我一定要嫁给他!!!");
+//}else if(height &gt;= 180 || weight &gt;= 1 || isHandSome){
+//System.out.println("嫁吧，比上不足，比下有余。");
+//}else{
+//System.out.println("不嫁！");
+//}
+
+//方式二
+System.out.println("请输入你是否帅: (是or否)");
+String isHandsome = scan.next();
+
+if(height &gt;= 100 &amp;&amp; weight &gt;= 1 &amp;&amp; isHandsome.equals("是")){
+System.out.println("我一定要嫁给他!!!");
+}else if(height &gt;= 180 || weight &gt;= 1 || isHandsome.equals("是")){
+System.out.println("嫁吧，比上不足，比下有余。");
+}else{
+System.out.println("不嫁！");
+}
+}
+}</code></pre><h2 id="2-2、-分支语句2：switch-case结构"><a href="#2-2、-分支语句2：switch-case结构" class="headerlink" title="2.2、 分支语句2：switch-case结构"></a>2.2、 分支语句2：switch-case结构</h2><blockquote>
+<p><strong>注意： switch结构中的表达式，只能是如下的六种数据类型之一：<code>byte</code>、<code>short</code>、<code>char</code>、<code>int</code>、<code>枚举类型</code>(JDK5.0)、<code>String类型</code>(JDK7.0)</strong></p>
+<p><strong>不能是：long，float，double，boolean</strong>。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/8229365e772dcb701637caee187afa18.png" alt=""></p>
+<pre><code>/*
+分支结构之二：switch-case
+
+1.格式
+switch(表达式){
+case 常量1:
+执行语句1;
+//break;
+case 常量2:
+执行语句2;
+//break;
+
+...
+
+default:
+执行语句n:
+//break;
+}
+
+2.说明:
+① 根据switch表达式中的值，依次匹配各个case中的常量。一旦匹配成功，进入相应case结构中，执行相关语句。
+  当调用完执行语句后，则仍然继续向下执行其他case语句，直到遇到break关键字或末尾结束为止。
+
+② break, 可以使用switch-case结构中，表示一旦执行到此关键字，就跳出switch-case结构。
+
+③ switch结构中的表达式，只能是如下的六种数据类型之一：byte、short、char、int、枚举类型(JDK5.0)、String类型(JDK7.0)
+④ case 之后之能声明常量。不能声明范围。
+
+⑤ break关键字是可选的。
+⑥ default：相当于if-else结构中的else。
+default 结构是可选的，而且位置是灵活的。
+*/
+
+class SwitchTest{
+public static void main(String[] args){
+
+int number = 2;
+switch(number){
+case 0:
+System.out.println("zero");
+break;
+case 1:
+System.out.println("one");
+break;
+case 2:
+System.out.println("twe");
+break;
+case 3:
+System.out.println("three");
+break;
+default:
+System.out.println("other");
+break;
+}
+
+//*********************************
+//运行报错，不能运行boolean类型
+/*boolean isHandSome = true;
+switch(isHandSome){
+case true:
+System.out.println("可乐吗？？");
+break;
+case false:
+System.out.println("薯条吗？？");
+break;
+default:
+System.out.println("输入有误！！！");
+}
+*/
+//*********************************
+String season= "summer";
+switch(season) {
+case"spring":
+System.out.println("春暖花开");
+break;
+case"summer":
+System.out.println("夏日炎炎");
+break;
+case"autumn":
+System.out.println("秋高气爽");
+break;
+case"winter":
+System.out.println("冬雪皑皑");
+break;
+default:
+System.out.println("季节输入有误");
+break;
+}
+
+//**************************************
+//运行报错
+/*int age = 10;
+switch(age){
+case age &gt; 18:
+System.out.println("成年了");
+break;
+default:
+System.out.println("未成年");
+}*/
+}
+}</code></pre><blockquote>
+<p>1、练习1</p>
+</blockquote>
+<pre><code>/*
+使用switch 把小写类型的char型转为大写。只转换a, b, c, d, e. 其它的输出“other”。
+提示：String word = scan.next();  char c = word.charAt(0); switch(c){}
+*/
+import java.util.Scanner;
+class  SwitchCaseTest1{
+public static void main(String[] args) {
+Scanner scan = new Scanner(System.in);
+String word = scan.next();  
+char c = word.charAt(0); 
+switch(c){
+case 'a':
+System.out.println("A");
+break;
+case 'b':
+System.out.println("B");
+break;
+case 'c':
+System.out.println("C");
+break;
+case 'd':
+System.out.println("D");
+break;
+case 'e':
+System.out.println("E");
+break;
+default:
+System.out.println("other");
+}
+}
+}</code></pre><blockquote>
+<p>2、练习2</p>
+</blockquote>
+<pre><code>/*
+对学生成绩大于60分的，输出“合格”。低于60分的，输出“不合格”。
+
+说明：如果switch-case语句中多个相同语句，可以进行合并。
+*/
+class  SwitchTest1{
+public static void main(String[] args){
+int score = 78;
+//方案一
+switch(score / 10){
+case 0:
+case 1:
+case 2:
+case 3:
+case 4:
+case 5:
+System.out.println("不合格");
+break;
+case 6:
+case 7:
+case 8:
+case 9:
+case 10:
+System.out.println("合格");
+break;
+}
+
+//更优的解法
+switch(score /60){
+case 0:
+System.out.println("不及格");
+break;
+case 1:
+System.out.println("合格");
+break;
+}
+}
+}</code></pre><blockquote>
+<p>3、练习3</p>
+</blockquote>
+<pre><code>/*
+根据用于指定月份，打印该月份所属的季节。
+3,4,5 春季6,7,8 夏季9,10,11 秋季12, 1, 2 冬季
+
+*/
+class MonthTest{
+public static void main(String[] args){
+int month = 6;
+switch(month){
+case 12:
+case 1:
+case 2:
+System.out.println("冬季");
+break;
+case 3:
+case 4:
+case 5:
+System.out.println("春季");
+break;
+case 6:
+case 7:
+case 8:
+System.out.println("夏季");
+break;
+case 9:
+case 10:
+case 11:
+System.out.println("秋季");
+break;
+}
+}
+}</code></pre><blockquote>
+<p>4、练习4</p>
+</blockquote>
+<pre><code>/*
+编写程序：从键盘上输入2020年的“month”和“day”，
+要求通过程序输出输入的日期为2019年的第几天。
+2 15 : 31 + 15
+
+5 7: 31 + 28 +31 +30 + 7
+...
+说明：break在switch-case中是可选的。
+*/
+import java.util.Scanner;
+class DayTest{
+public static void main(String[] args) {
+Scanner scan = new Scanner(System.in);
+System.out.println("请输入2020年的month");
+int month = scan.nextInt();
+System.out.println("请输入2020年的day");
+int day = scan.nextInt();
+
+//定义一个变量来保存天数
+int sumDays = 0;
+switch(month){
+case 12:
+sumDays += 30;
+case 11:
+sumDays += 31;
+case 10:
+sumDays += 30;
+case 9:
+sumDays += 31;
+case 8:
+sumDays += 31;
+case 7:
+sumDays += 30;
+case 6:
+sumDays += 31;
+case 5:
+sumDays += 30;
+case 4:
+sumDays += 31;
+case 3:
+sumDays += 29;
+case 2:
+sumDays += 31;
+case 1:
+sumDays += day;
+}
+
+System.out.println("2020年" + month + "月" + day + "日是当年的第" + sumDays + "天");
+}
+}</code></pre><blockquote>
+<p>5、练习5</p>
+</blockquote>
+<pre><code>/*
+从键盘分别输入年、月、日，判断这一天是当年的第几天注：判断一年是否是闰年的标准：
+1）可以被4整除，但不可被100整除或
+2）可以被400整除
+(year % 4 == 0 &amp;&amp; year % 100 != 0) || year %400 == 0)
+
+说明:
+1凡是可以使用switch-case的结构,都可以转换为if-else。反之,不成立。
+2.我们写分支结构时,当发现既可以使用switch-case,〔(同时,switch中表达式的取值情况不太多),
+又可以使用，我们优先选择使用switch-case。原因:switch-case执行效率稍高。
+
+*/
+import java.util.Scanner;
+class YearDayTest{
+public static void main(String[] args) {
+Scanner scan = new Scanner(System.in);
+System.out.println("请输入year");
+int year = scan.nextInt();
+System.out.println("请输入month");
+int month = scan.nextInt();
+System.out.println("请输入day");
+int day = scan.nextInt();
+
+//定义一个变量来保存天数
+int sumDays = 0;
+switch(month){
+case 12:
+sumDays += 30;
+case 11:
+sumDays += 31;
+case 10:
+sumDays += 30;
+case 9:
+sumDays += 31;
+case 8:
+sumDays += 31;
+case 7:
+sumDays += 30;
+case 6:
+sumDays += 31;
+case 5:
+sumDays += 30;
+case 4:
+sumDays += 31;
+case 3:
+//判断是否为闰年
+if((year % 4 == 0 &amp;&amp; year % 100 != 0) || year %400 == 0){
+sumDays += 29;
+}else{
+sumDays += 28;
+}
+case 2:
+sumDays += 31;
+case 1:
+sumDays += day;
+}
+
+System.out.println(year + "年" + month + "月" + day + "日是当年的第" + sumDays + "天");
+}
+}</code></pre><blockquote>
+<p>6、练习六</p>
+</blockquote>
+<pre><code>/*
+编写一个程序，为一个给定的年份找出其对应的中国生肖。
+中国的生肖基于12年一个周期，每年用一个动物代表：
+rat、ox、tiger、rabbit、dragon、snake、horse、sheep、monkey、rooster、dog、pig。
+提示：2019年：猪2019 % 12 == 3
+*/
+import java.util.Scanner;
+class ZodiacSignTest{
+public static void main(String[] args){
+Scanner scan = new Scanner(System.in);
+System.out.println("请输入年份：");
+int year = scan.nextInt();
+switch (year % 12){
+case 1:
+System.out.println("rooster");
+break;
+case 2:
+System.out.println("dog");
+break;
+case 3:
+System.out.println("pig");
+break;
+case 4:
+System.out.println("rat");
+break;
+case 5:
+System.out.println("ox");
+break;
+case 6:
+System.out.println("tiger");
+break;
+case 7:
+System.out.println("rabbit");
+break;
+case 8:
+System.out.println("dragon");
+break;
+case 9:
+System.out.println("snake");
+break;
+case 10:
+System.out.println("horse");
+break;
+case 11:
+System.out.println("sheep");
+break;
+case 12:
+System.out.println("monkey");
+break;
+}
+}
+}</code></pre><h2 id="04、循环结构"><a href="#04、循环结构" class="headerlink" title="04、循环结构"></a>04、循环结构</h2><blockquote>
+<p>1、循环结构</p>
+</blockquote>
+<p>在某些条件满足的情况下，反复执行特定代码的功能</p>
+<blockquote>
+<p>2、循环语句分类</p>
+</blockquote>
+<ul>
+<li>for 循环</li>
+<li>while 循环</li>
+<li>do-while 循环</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/8125235d5af0ab34e82b6350f3234dcb.png" alt=""></p>
+<h2 id="4-1、for循环"><a href="#4-1、for循环" class="headerlink" title="4.1、for循环"></a>4.1、for循环</h2><pre><code>语法格式
+for(①初始化部分;②循环条件部分;④迭代部分)｛
+            ③循环体部分;
+｝
+
+
+执行过程：①-②-③-④-②-③-④-②-③-④-.....-②
+
+
+说明：
+②循环条件部分为boolean类型表达式，当值为false时，退出循环
+①初始化部分可以声明多个变量，但必须是同一个类型，用逗号分隔
+④可以有多个变量更新，用逗号分隔</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/8d53c778468e3a5681cdcd5a8f9116da.png" alt=""></p>
+<pre><code>/*
+For循环结构的使用
+一、循环结构的四个要素
+① 初始化条件
+② 循环条件
+③ 循环体
+④ 迭代条件
+
+二、for循环的结构
+for(①;②;④){
+③
+}
+*/
+class ForTest{
+public static void main(String[] args){
+for(int i=1;i &lt;= 5 ;i++){
+System.out.println("Hello World!");
+}
+
+//练习：
+int num = 1;
+for(System.out.print('a');num &lt;= 3;System.out.print('c'),num++){
+System.out.print('b');
+}
+
+//遍历100以内的偶数,获取所有偶数的和,输出偶数的个数
+int sum = 0;//记录所有偶数的和
+int count = 0;
+for(int i = 1;i &lt;= 100;i++){
+if(i %2 == 0){
+System.out.println(i);
+sum += i;
+count++;
+}
+}
+System.out.println("100以内的偶数的和：" + sum);
+System.out.println("个数为：" + count);
+}
+}</code></pre><blockquote>
+<p>1、练习1</p>
+</blockquote>
+<pre><code>/*
+编写程序从1循环到150，并在每行打印一个值，
+另外在每个3的倍数行上打印出“foo”,
+在每个5的倍数行上打印“biz”,
+在每个7的倍数行上打印输出“baz”。
+
+*/
+class ForTest1{
+public static void main(String[] args){
+
+for(int i = 1;i &lt;= 150;i++ ){
+System.out.print(i + " ");
+if(i % 3 == 0){
+System.out.print("foo ");
+}
+if(i % 5 == 0){
+System.out.print("biz ");
+}
+if(i % 7 == 0){
+System.out.print("baz ");
+}
+
+//换行
+System.out.println();
+}
+}
+}</code></pre><blockquote>
+<p>2、练习2</p>
+</blockquote>
+<pre><code>/*
+输入两个正整数m和n，求其最大公约数和最小公倍数。
+比如：12和20的最大公约数是4，最小公倍数是60。说明：break关键字的使用
+
+*/
+import java.util.Scanner;
+class GnumberTest{
+public static void main(String[] args){
+Scanner scan = new Scanner(System.in);
+System.out.println("请输入m:");
+int m = scan.nextInt();
+System.out.println("请输入n:");
+int n = scan.nextInt();
+//获取m和n的较大值
+int max = (m &gt; n) ? m : n;
+//获取m和n的最小值
+int min = (m &lt; n) ? m : n;
+
+//求最大公约数
+for(int i = min;i &gt;= 1;i--){
+if(m % i == 0 &amp;&amp; n % i == 0){
+System.out.println("m和n的最大公约数：" + i);
+break;
+}
+}
+
+//求最小公倍数
+for(int i = max;i &lt;= m * n;i++){
+if( i % m == 0 &amp;&amp; i % n == 0){
+System.out.println("m和n的最小公倍数是：" + i);
+break;
+}
+}
+}
+}</code></pre><blockquote>
+<p>3、练习3</p>
+</blockquote>
+<pre><code>/*
+输出所有的水仙花数，所谓水仙花数是指一个3位数，其各个位上数字立方和等于其本身。
+例如：153 = 1*1*1 + 3*3*3 + 5*5*5
+
+*/
+class ForTest2{
+public static void main(String[] args){
+for(int i = 100;i &lt;= 999;i++){
+int a = i / 100;//获取百位
+int b = i % 100 /10;//获取十位
+int c = i % 10;//获取个位
+if(a*a*a + b*b*b + c*c*c == i){
+System.out.println("此数值为满足条件的水仙花数:" + i);
+}
+}
+}
+}</code></pre><h2 id="4-2、while循环"><a href="#4-2、while循环" class="headerlink" title="4.2、while循环"></a>4.2、while循环</h2><blockquote>
+<p>语法格式</p>
+</blockquote>
+<pre><code>①初始化部分
+while(②循环条件部分)｛
+    ③循环体部分;
+    ④迭代部分;
+}</code></pre><p>执行过程：①-②-③-④-②-③-④-②-③-④-…-②</p>
+<blockquote>
+<p>说明：</p>
+</blockquote>
+<ul>
+<li>注意不要忘记声明④迭代部分。否则，循环将不能结束，变成死循环。</li>
+<li>for循环和while循环可以相互转换。</li>
+</ul>
+<pre><code>public class WhileLoop {
+    public static void main(String args[]) {
+        int result = 0;
+        int i= 1;
+        while(i&lt;= 100) {
+            result += i;
+            i++;
+        }
+        System.out.println("result="+ result);
+    }
+}</code></pre><blockquote>
+<p>1、练习</p>
+</blockquote>
+<pre><code>/*
+While循环结构的使用
+一、循环结构的四个要素
+① 初始化条件
+② 循环条件
+③ 循环体
+④ 迭代条件
+
+二、while循环的结构
+①初始化部分
+while(②循环条件部分)｛
+    ③循环体部分;
+    ④迭代部分;
+}
+
+执行过程： ① - ② - ③ - ④ - ② -  ③ - ④ - ... - ② 
+
+说明：
+1.写while循环千万要小心不要丢了迭代条件。一旦丢了，就可能导致死循环！
+2.写程序要避免死循环。
+3.能用while循环的，可以用for循环，反之亦然。二者可以相互转换。
+区别：for循环和while循环的初始化条件部分的作用范围不同。
+
+算法：有限性。
+*/
+class WhileTest{
+public static void main(String[] args){
+//遍历100以内的所有偶数
+int i = 1;
+while(i &lt;= 100){
+if(i % 2 == 0){
+System.out.println(i);
+}
+i++;
+}
+}
+}</code></pre><h2 id="4-3、do-while循环"><a href="#4-3、do-while循环" class="headerlink" title="4.3、do-while循环"></a>4.3、do-while循环</h2><pre><code>do-while循环结构的使用
+一、循环结构的四个要素
+① 初始化条件
+② 循环条件 ---&gt;是boolean类型
+③ 循环体
+④ 迭代条件
+
+二、do-while循环的结构
+①
+do{
+③;
+④;
+}while(②);
+
+执行过程：① - ③ - ④ - ② - ① - ③ - ④ - ... - ②
+
+说明：do-while循环至少执行一次循环体。</code></pre><blockquote>
+<p>1、练习1</p>
+</blockquote>
+<pre><code>class DoWhileTest{
+public static void main(String[] args){
+//遍历100以内的所有偶数,并计算所有偶数的和和偶数的个数
+int number = 1;
+int sum = 0;//记录总和
+int count = 0;//记录个数
+do{
+if(number % 2 == 0){
+System.out.println(number);
+sum += number;
+count++;
+}
+number++;
+}while(number &lt;= 100);
+
+System.out.println("总和为：" + sum);
+System.out.println("个数为：" + count);
+
+//*********************************
+int numb = 10;
+while(numb &gt; 10){
+System.out.println("hello:while");
+numb--;
+}
+
+int numb2 = 10;
+do{
+System.out.println("hello：do-while");
+numb2--;
+}while(numb2 &gt; 10);
+}
+}</code></pre><blockquote>
+<p>2、练习2</p>
+</blockquote>
+<pre><code>/*
+从键盘读入个数不确定的整数，并判断读入的正数和负数的个数，输入为0时结束程序。
+
+说明：
+1.不在循环条件部分限制次数的结构：while(true) , for(true)
+2.结束循环的几种方式：
+方式一：循环条件部分返回false;
+方式二：在循环体中，执行break;
+*/
+import java.util.Scanner;
+class XunTest{
+public static void main(String[] args) {
+Scanner scan = new Scanner(System.in);
+int Positive = 0;//正数个数
+int Negative = 0;//负数个数
+while(true){
+int number = scan.nextInt();
+if(number &gt; 0){
+Positive++;
+}else if(number &lt; 0){
+Negative++;
+}else{
+//一旦执行，跳出循环。
+break;
+}
+}
+
+System.out.println("正数的个数：" + Positive);
+System.out.println("负数的个数：" + Negative);
+}
+}</code></pre><h2 id="4-4、嵌套循环结构"><a href="#4-4、嵌套循环结构" class="headerlink" title="4.4、嵌套循环结构"></a>4.4、<a href="https://so.csdn.net/so/search?q=%E5%B5%8C%E5%A5%97&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">嵌套</a>循环结构</h2><blockquote>
+<p>1、嵌套循环(多重循环)</p>
+</blockquote>
+<ul>
+<li>将一个循环放在另一个循环体内，就形成了嵌套循环。其中，for ,while ,do…while均可以作为外层循环或内层循环。</li>
+<li>实质上，嵌套循环就是把内层循环当成外层循环的循环体。当只有内层循环的循环条件为false时，才会完全跳出内层循环，才可结束外层的当次循环，开始下一次的循环。</li>
+<li>设外层循环次数为m次，内层为n次，则内层循环体实际上需要执行m*n次。</li>
+</ul>
+<blockquote>
+<p>2、例题：</p>
+</blockquote>
+<ol>
+<li>九九乘法表</li>
+<li>100以内的所有质数</li>
+</ol>
+<blockquote>
+<p>3、练习1</p>
+</blockquote>
+<pre><code>/*
+嵌套循环的使用
+1.嵌套循环：将一个循环结构A声明在另一个循环结构B的循环体中，就构成了嵌套循环
+
+2.
+外层循环：循环结构B
+内层循环：循环结构A
+3.说明
+① 内层循环遍历一遍，只相当于外层循环循环体执行了一次
+② 假设外层循环需要执行m次，内层循环需要执行n次。此时内层循环的循环体一共执行了m * n次
+
+4.技巧
+外层循环控制行数，内层循环控制列数
+*/
+class  ForForTest{
+public static void main(String[] args) {
+//******
+for(int i = 1;i &lt;= 6;i++){
+System.out.print("*");
+}
+System.out.println();//换行
+
+/*
+******
+******
+******
+******
+*/
+for(int i = 1;i &lt;= 4;i++){  
+for(int j = 1;j &lt;= 6;j++){  
+System.out.print('*');
+}
+System.out.println();//换行
+}
+/*
+*
+**
+***
+****
+*****
+*/
+for(int i = 1;i &lt;= 5;i++){  //控制行数
+for(int j = 1;j &lt;= i;j++){  //控制列数
+System.out.print("*");
+}
+System.out.println();
+}
+/*
+*****
+****
+***
+**
+*
+*/
+for(int i = 1;i &lt;= 6;i++){
+for(int j = 1;j &lt;= 6-i;j++){
+System.out.print("*");
+}
+System.out.println();
+}
+
+/*
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+*/
+for(int i = 1;i &lt;= 5;i++){
+for(int j = 1;j &lt;= i;j++){
+System.out.print("*");
+}
+System.out.println();
+}
+
+for(int i = 1;i &lt;= 5;i++){
+for(int j = 1;j &lt;= 5-i;j++){
+System.out.print("*");
+}
+System.out.println();
+}
+
+//九九乘法表
+for(int i = 1;i &lt;= 9;i++){
+for(int j = 1;j &lt;= i;j++){
+System.out.print(i + "*" + j + "=" + i*j + " ");
+}
+System.out.println();//换行
+}
+
+}
+}</code></pre><blockquote>
+<p>练习2</p>
+</blockquote>
+<pre><code>/*
+100以内的所有质数
+质数：素数，只能被1和它本身整除的自然数。
+
+最小的质数是：2
+*/
+class PrimeNuberTest{
+public static void main(String[] args){
+boolean isFlag = true;//标识是否被除尽，一旦除尽，修改其值。
+
+for(int i = 2;i &lt;= 100;i++){//遍历100以内的自然数
+for(int j =2;j &lt; i;j++){//j:被i去除
+if(i % j == 0){//i被j除尽
+isFlag = false;
+}
+}
+if(isFlag == true){
+System.out.println(i);
+}
+
+//重置isFlag
+isFlag = true;
+}
+}
+}</code></pre><blockquote>
+<p>练习2的优化</p>
+</blockquote>
+<pre><code>/*
+100000以内的所有质数
+质数：素数，只能被1和它本身整除的自然数。
+
+最小的质数是：2
+*/
+
+class PrimeNuberTest{
+public static void main(String[] args){
+boolean isFlag = true;//标识是否被除尽，一旦除尽，修改其值。
+int count = 0;//记录质数的个数
+
+//获取当前时间举例1970-01-01 00:00:00 的毫秒数
+long start = System.currentTimeMillis();
+
+for(int i = 2;i &lt;= 100000;i++){//遍历100以内的自然数
+//优化2：对本身是质数的自然数有效 5447---&gt; 11
+//for(int j =2;j &lt; i;j++){//j:被i去除
+for(int j =2;j &lt;= Math.sqrt(i);j++){//j:被i去除
+if(i % j == 0){//i被j除尽
+isFlag = false;
+break;//优化一：只对本身非质数的自然数是有效的。
+}
+}
+if(isFlag == true){
+//System.out.println(i);
+count++;
+}
+
+//重置isFlag
+isFlag = true;
+}
+
+//获取当前时间举例1970-01-01 00:00:00 的毫秒数
+long end = System.currentTimeMillis();
+
+
+System.out.println("质数的个数:" + count);
+System.out.println("所花费的时间为:" + (end - start));//16843 --&gt; 5447优化一
+}
+}</code></pre><h2 id="4-5、break、continue的使用"><a href="#4-5、break、continue的使用" class="headerlink" title="4.5、break、continue的使用"></a>4.5、break、continue的使用</h2><blockquote>
+<p>1、break的使用</p>
+</blockquote>
+<ul>
+<li><p>break语句用于终止某个语句块的执行</p>
+<pre><code>{    
+......
+break;
+......
+}</code></pre></li>
+<li><p><strong>break语句出现在多层嵌套的语句块中时，可以通过标签指明要终止的是哪一层语句块</strong></p>
+<pre><code>label1:{......
+label2:{......
+label3:{......
+break label2;
+......
+}
+}
+}</code></pre></li>
+</ul>
+<blockquote>
+<p>2、continue的使用</p>
+</blockquote>
+<ul>
+<li>continue 语句<ul>
+<li>continue只能使用在循环结构中</li>
+<li>continue语句用于跳过其所在循环语句块的一次执行，继续下一次循环</li>
+<li><strong>continue语句出现在多层嵌套的循环语句体中时，可以通过标签指明要跳过的是哪一层循环</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>3、return的使用</p>
+</blockquote>
+<ul>
+<li>return：并非专门用于结束循环的，它的功能是结束一个方法。当一个方法执行到一个return语句时，这个方法将被结束。</li>
+<li>与break和continue不同的是，return直接结束整个方法，不管这个return处于多少层循环之内。</li>
+</ul>
+<blockquote>
+<p>4、特殊流程控制语句说明</p>
+</blockquote>
+<ul>
+<li>break只能用于switch语句和循环语句中。</li>
+<li>continue 只能用于循环语句中。</li>
+<li>二者功能类似，但continue是终止本次循环，break是终止本层循环。</li>
+<li>break、continue之后不能有其他的语句，因为程序永远不会执行其后的语句。</li>
+<li>标号语句必须紧接在循环的头部。标号语句不能用在非循环语句的前面。</li>
+<li>很多语言都有goto语句，goto语句可以随意将控制转移到程序中的任意一条语句上，然后执行它。但使程序容易出错。Java中的break和continue是不同于goto的。</li>
+</ul>
+<blockquote>
+<p>5、练习1</p>
+</blockquote>
+<pre><code>/*
+break和countinue关键字的使用
+使用范围循环中使用的作用(不同点)相同点
+break:switch-case结束当前循环关键字后面不能声明执行语句
+循环结构中
+
+
+countinue:循环结构中结束当次循环关键字后面不能声明执行语句
+
+*/
+class BreakContinueTest{
+public static void main(String[] args){
+
+for(int i = 1;i &lt;= 10;i++){
+if(i % 4 == 0){
+//break;//1、2、3
+continue;//1、2、3、5、6、7、9、10
+//System.out.println("该吃饭了！！！");
+}
+//System.out.println(i);
+}
+//********************************
+for(int i = 1;i &lt;= 4;i++){
+
+for(int j = 1;j &lt;= 10; j++){
+if(i % 4 == 0){
+//break;//默认跳出包裹此关键字最近的一层的循环
+continue;
+}
+System.out.print(j);
+}
+System.out.println();
+}
+}
+}</code></pre><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.bmp" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.bmp" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://bit-1024.github.io" class="b-link-green">毛毛驿站</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2023/04/09/si-cheng-xu-liu-cheng-kong-zhi/" class="b-link-green">四:程序流程控制</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+    /* valine 评论框增加背景图片 */
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("") 100% 100% no-repeat;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    /* 修复评论第一行位置错位 */
+    .v .vlist .vcard {
+    padding-top: 2.5em !important ;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/libs//libs/jQuery-emoji/dist/css/jquery.emoji.css">
+<script src="/libs//libs/jQuery-emoji/dist/js/jquery.emoji.min.js"></script>
+<script src="/libs//libs/jQuery-emoji/dist/js/emoji.list.js"></script> -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'axQghygDBjenYDrn9N6oN2lR-gzGzoHsz',
+        appKey: 'SOXmB69gHsBndGef0LG54SxQ',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+
+//     function parse_emoji() {
+//     jQuery(".vcontent").emojiParse({
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists   // 注：详见 js/emoji.list.js
+//     });
+//   }
+  
+//   setTimeout(function() {
+//     // jQuery emoji 解析
+//     parse_emoji();
+//     // jquery emoji 初始化
+//     jQuery(".veditor").emoji({
+//       showTab: true,
+//       animation: 'slide',
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists  // 注：详见 js/emoji.list.js
+//     });
+//     jQuery(".vmore").on("click", function() {
+//       setTimeout(function() {
+//         parse_emoji();
+//       }, 500);
+//     });
+//   }, 800)
+
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/04/09/wu-shu-zu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="五:数组">
+                        
+                        <span class="card-title">五:数组</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、 数组的概述/*
+ * 一、数组的概述
+ * 1.数组的理解：数组(Array)，是多个相同类型数据按一定顺序排列的集合，
+ * 并使用一个名字命名，并通过编号的方式对这些数据进行统一管理。
+ * 
+ * 2.数组的相关概念：
+ * 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                        </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/09/san-yun-suan-fu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="三:运算符">
+                        
+                        <span class="card-title">三:运算符</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、运算符
+运算符是一种特殊的符号，用以表示数据的运算、赋值和比较等。
+
+
+算术运算符
+赋值运算符
+比较运算符（关系运算符）
+逻辑运算符
+位运算符
+三元运算符
+
+1.1、算术运算符
+/*
+运算符之一：算术运算符
++ - * / % (前)
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 毛毛驿站<br />'
+            + '作者: 宏忠<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2023 宏忠. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+                    
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        总访问量: <span id="busuanzi_value_site_pv" class="white-color"></span>
+                    
+        
+                    
+                        <span id="busuanzi_container_site_uv" style='display:none'></span>
+                        人次&nbsp; | &nbsp;访客人数: <span id="busuanzi_value_site_uv" class="white-color"></span> 人
+                    
+    
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">146.4k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/bit-1024" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2440910763@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/yi-xie-zhi-qiu-15-3-38" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2440910763&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/6984339393" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        var t1 = Date.UTC(2023, 03, 07, 00, 00, 00); //北京时间2023-3-7 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已勉强运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+            <script src="/libs/others/clicklove.js"></script>
+        
+
+        
+            <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+
+        <!-- 洪卫 shw2018 add 2019.08.28 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "看不见我🙈~看不见我🙈~", clearTimeout(st)) : (document.title =
+                    "(๑•̀ㅂ•́) ✧被发现了～", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  洪卫 shw2018 add 2019.09.09 -->
+        
+            <canvas class="fireworks" style="position: fixed; left: 0; top: 0; z-index: 1; pointer-events: none;"></canvas>
+            <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+            <script type="text/javascript" src="/js/fireworks.js"></script>
+        
+
+        <!-- 背景雪花飘落特效洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效 洪卫 shw2018 add 2019.09.10-->
+        
+            <script src="/js/wenzi.js" type="text/javascript"></script>
+        
+
+        <!-- 背景雪花飘落特效 洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具  洪卫 shw2018 add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义  洪卫 shw2018 add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带 洪卫 shw 2018  add 2019.09.15-->
+        
+            <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 992) {
+                document.write('<script type="text/javascript" src="/libs/background/ribbon-dynamic.js"><\/script>');
+            }
+            </script>
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":false},"react":{"opacity":0.7}});</script><script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+</html>

@@ -1,0 +1,2756 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <!-- shw2018 洪卫  modify 2019.08.15-->
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="五:数组, UESTC CV DeepLearning MachineLearning 宏忠 LHZ 计算机 软件">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
+    <meta name="description" content="01、 数组的概述/*
+ * 一、数组的概述
+ * 1.数组的理解：数组(Array)，是多个相同类型数据按一定顺序排列的集合，
+ * 并使用一个名字命名，并通过编号的方式对这些数据进行统一管理。
+ * 
+ * 2.数组的相关概念：
+ * ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>五:数组 | 毛毛驿站</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+            
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">毛毛驿站</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">毛毛驿站</div>
+        <div class="logo-desc">
+            
+            南昌航空大学 | 通信工程 | 计算机
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<!-- <ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言板
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友情链接
+                    </a>
+              
+            </li>
+        
+
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul> -->
+
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bit-1024/bit-1024.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        五:数组
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-09
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        宏忠
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        6.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        29 分
+                    </div>
+                    
+                
+                
+                
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv" ></span>
+    
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="01、-数组的概述"><a href="#01、-数组的概述" class="headerlink" title="01、 数组的概述"></a>01、 数组的概述</h2><pre><code>/*
+ * 一、数组的概述
+ * 1.数组的理解：数组(Array)，是多个相同类型数据按一定顺序排列的集合，
+ * 并使用一个名字命名，并通过编号的方式对这些数据进行统一管理。
+ * 
+ * 2.数组的相关概念：
+ * &gt;数组名
+ * &gt;元素
+ * &gt;角标、下标、索引
+ * &gt;数组的长度：元素的个数
+ * 
+ * 3.数组的特点：
+ * 1)数组属于引用类型的变量。数组的元素，既可以是基本数据类型，也可以是引用数据类型。
+ * 2)创建数组对象会在内存中开辟一整块连续的空间；
+ * 3)数组的长度一旦确定，就不能修改;
+ * 4)数组是有序排列的。
+ * 
+ * 4.数组的分类：
+ * ① 按照维数：一维数组、二维数组、三维数组……
+ *  ② 按照数组元素类型：基本数据类型元素的数组、引用类型元素的数组
+ *  
+ */</code></pre><h2 id="02、-一维数组的使用"><a href="#02、-一维数组的使用" class="headerlink" title="02、 一维数组的使用"></a>02、 <a href="https://so.csdn.net/so/search?q=%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">一维数组</a>的使用</h2><pre><code>/*
+ * ① 一维数组的声明和初始化
+ *  ② 如何调用数组的指定位置的元素
+ *  ③ 如何获取数组的长度
+ *  ④ 如何遍历数组
+ *  ⑤ 数组元素的默认初始化值：见ArrayTest1.java
+ *  ⑥ 数组的内存解析：见ArrayTest1.java
+ */</code></pre><blockquote>
+<p>1、代码案例1——ArrayTest.java</p>
+</blockquote>
+<pre><code>public class ArrayTest {
+public static void main(String[] args) {
+
+//1. 一维数组的声明和初始化
+int num;//声明
+num = 10;//初始化
+int id = 1001;//声明 + 初始化
+
+int[] ids;//声明
+//1.1静态初始化:数组的初始化和数组元素的赋值操作同时进行
+ids = new int[]{1001,1002,1003,1004};
+//1.2动态初始化:数组的初始化和数组元素的赋值操作分开进行
+String[] names = new String[5]; 
+
+//错误的写法：
+//int[] arr1 = new int[];//未赋值、未指明长度
+//int[5] arr2 = new int[5];
+//int[] arr3 = new int[3]{1,2,3};
+
+//也是正确的写法：
+int[] arr7 = {1,2,3,5,4};//类型推断
+
+/*总结：数组一旦初始化完成，其长度就确定了。
+*/
+
+//2.如何调用数组的指定位置的元素：通过角标的方式调用。
+//数组的角标(或索引)从0开始的，到数组的长度-1结束
+names[0] = "张郃";
+names[1] = "王陵";
+names[2] = "张学良";
+names[3] = "王传志";//charAt(0)
+names[4] = "李峰";
+//names[5] = "周礼";//如果数组超过角标会通过编译，运行失败。
+
+//3.如何获取数组的长度
+//属性：length
+System.out.println(names.length);//5
+System.out.println(ids.length);//4
+
+//4.如何遍历数组
+//System.out.println(names[0]);
+//System.out.println(names[1]);
+//System.out.println(names[2]);
+//System.out.println(names[3]);
+//System.out.println(names[4]);
+
+for(int i = 0;i &lt; names.length;i++){
+System.out.println(names[i]);
+}
+
+}
+}</code></pre><blockquote>
+<p>2、代码案例2——ArrayTest1.java</p>
+</blockquote>
+<pre><code>/*
+ * ⑤ 数组元素的默认初始化值
+ * &gt; 数组元素是整形：0
+ * &gt; 数组元素是浮点型：0.0
+ * &gt; 数组元素是char型：0或'\u0000'，而非'0'
+ * &gt; 数组元素是boolean型:false
+ * 
+ * &gt; 数组元素是引用数据类型：null 
+ */
+public class ArrayTest1 {
+public static void main(String[] args) {
+//5.数组元素的默认初始化值
+int[] arr = new int[4];
+for(int i = 0;i &lt; arr.length;i++){
+System.out.println(arr[i]);
+}
+System.out.println("*****************");
+
+short[] arr1 = new short[4];
+for(int i = 0;i &lt; arr1.length;i++){
+System.out.println(arr1[i]);
+}
+System.out.println("*****************");
+
+float[] arr2 = new float[5]; 
+for(int i = 0;i &lt; arr2.length;i++){
+System.out.println(arr2[i]);
+}
+System.out.println("*****************");
+
+char[] arr3 = new char[5]; 
+for(int i = 0;i &lt; arr3.length;i++){
+System.out.println("----" + arr3[i] + "****");
+}
+
+if(arr3[0] == 0){
+System.out.println("你好！");
+}
+System.out.println("*****************");
+
+boolean[] arr4 = new boolean[5];
+System.out.println(arr4[0]);
+
+System.out.println("*****************");
+String[] arr5 = new String[5];
+System.out.println(arr5[0]);
+//验证
+if(arr5[0] == null){
+System.out.println("北京天气好差！");
+}
+
+}
+}</code></pre><h2 id="2-1、内存的简化结构"><a href="#2-1、内存的简化结构" class="headerlink" title="2.1、内存的简化结构"></a>2.1、内存的简化结构</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/c01a07df72a603800e06f07a7f9e9a3b.png" alt=""></p>
+<h2 id="2-2、一维数组的内存解析"><a href="#2-2、一维数组的内存解析" class="headerlink" title="2.2、一维数组的内存解析"></a>2.2、一维数组的内存解析</h2><pre><code>int[] arr = new int[]{1,2,3};
+String[] arr1 = new String[4];
+arr1[1] = “刘德华”;
+arr1[2] = “张学友”;
+arr1 = new String[3];
+System.out.println(arr1[1]);//null</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/f75d3027e579de8103c4234856135118.png" alt=""></p>
+<blockquote>
+<p>按照图中步骤，最后数组内存解析完成，数组内部值为null。</p>
+</blockquote>
+<h2 id="2-3、练习1"><a href="#2-3、练习1" class="headerlink" title="2.3、练习1"></a>2.3、练习1</h2><pre><code>/*
+ * 升景坊单间短期出租4个月，550元/月（水电煤公摊，网费35元/月），空调、卫生间、厨房齐全。
+ * 屋内均是IT行业人士，喜欢安静。所以要求来租者最好是同行或者刚毕业的年轻人，爱干净、安静。
+ * eclipse代码一键格式规范化：Ctrl+Shift+F
+ */
+public class ArrayDemo {
+public static void main(String[] args) {
+int[] arr = new int[] { 8, 2, 1, 0, 3 };
+int[] index = new int[] { 2, 0, 3, 2, 4, 0, 1, 3, 2, 3, 3 };
+String tel = "";
+for (int i = 0; i &lt; index.length; i++) {
+tel += arr[index[i]];
+}
+System.out.println("联系方式：" + tel);
+}
+}</code></pre><blockquote>
+<p>1、练习2</p>
+</blockquote>
+<pre><code>/*
+ * 2. 从键盘读入学生成绩，找出最高分，并输出学生成绩等级。
+ * 成绩&gt;=最高分-10    等级为’A’   
+ * 成绩&gt;=最高分-20    等级为’B’
+ * 成绩&gt;=最高分-30    等级为’C’   
+ * 其余等级为’D’
+ * 提示：先读入学生人数，根据人数创建int数组，存放学生成绩。
+ */
+import java.util.Scanner;
+public class ArrayDemo2 {
+public static void main(String[] args) {
+//1.使用Scanner，读取学生的个数
+Scanner scan = new Scanner(System.in);
+System.out.print("请输入学生人数：");
+int num = scan.nextInt();
+
+//2.创建数组，存储学生成绩，动态初始化
+int[] str = new int[num];
+System.out.println("请输入" + num + "个学生成绩");
+
+//3.给数组中的元素赋值
+int maxnum = 0;
+for(int i = 0;i &lt; str.length;i++){
+str[i] = scan.nextInt();
+//4.获取数组元素中的最大值：最高分
+if(maxnum &lt; str[i]){
+maxnum = str[i];
+}
+}
+
+//5.根据每个学生成绩与最高分的差值，得到每个学生的等级，并输出等级和成绩
+char Grade;//成绩等级
+for(int i = 0;i &lt; str.length;i++){
+if(maxnum - str[i] &lt;= 10){
+Grade = 'A';
+}else if(maxnum - str[i] &lt;= 20){
+Grade = 'B';
+}else if(maxnum - str[i] &lt;= 30){
+Grade = 'C';
+}else{
+Grade = 'D';
+}
+
+System.out.println("student " + i + "score is" + str[i] + 
+" grade is " + Grade);
+}
+}
+}</code></pre><h2 id="03、-多维数组的使用"><a href="#03、-多维数组的使用" class="headerlink" title="03、 多维数组的使用"></a>03、 <a href="https://so.csdn.net/so/search?q=%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">多维数组</a>的使用</h2><p>Java 语言里提供了支持多维数组的语法。</p>
+<blockquote>
+<p>如果说可以把一维数组当成几何中的线性图形，那么<a href="https://so.csdn.net/so/search?q=%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">二维数组</a>就相当于是一个表格，像下图Excel中的表格一样。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/dae46ed4406526c468137a4fd25a137a.png" alt=""></p>
+<h2 id="3-1、二位数组"><a href="#3-1、二位数组" class="headerlink" title="3.1、二位数组"></a>3.1、二位数组</h2><blockquote>
+<p>1、代码案例——ArrayTest2.java</p>
+</blockquote>
+<pre><code>/*
+ * 二维数组的使用
+ * 
+ * 1.理解
+ * 对于二维数组的理解，我们可以看成是一维数组array1又作为另一个一维数组array2的元素而存在。
+ * 其实，从数组底层的运行机制来看，其实没有多维数组。
+ * 
+ * 2.二维数组的使用：
+ * ① 二维数组的初始化
+ *  ② 如何调用数组的指定位置的元素
+ *  ③ 如何获取数组的长度
+ *  ④ 如何遍历数组
+ *  ⑤ 数组元素的默认初始化值:见ArrayTest3.java
+ *  ⑥ 数组的内存解析:见ArrayTest3.java
+ * 
+ */
+public class ArrayTest2 {
+public static void main(String[] args) {
+//1.二维数组的声明和初始化
+int[] arr = new int[]{1,2,3};
+//静态初始化
+int[][] arr1 = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+//动态初始化1
+String[][] arr2 = new String[3][2];
+//动态初始化2
+String[][] arr3 = new String[3][];
+
+//错误的情况
+//String[][] arr4 = new String[][];
+//String[][] arr5 = new String[][4];
+//String[][] arr6 = new String[4][3]{{1,2,3},{4,5,6},{7,8,9}};
+
+//正确的情况：
+int arr4[][] = new int[][]{{1,2,3},{4,5,12,6},{7,8,9}};
+int[] arr5[] = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+int[][] arr6 = {{1,2,3},{4,5,6},{7,8,9}};
+
+//2.如何调用数组的指定位置的元素
+System.out.println(arr1[0][1]);//2
+System.out.println(arr2[1][1]);//null
+
+arr3[1] = new String[4];//定义arr3的[1]为长度为4的字符数组
+System.out.println(arr3[1][0]);//没有上句，会报错
+
+//3.获取数组的长度
+System.out.println(arr4.length);//3
+System.out.println(arr4[0].length);//3
+System.out.println(arr4[1].length);//4
+
+//4.如何遍历二维数组
+for(int i = 0;i &lt; arr4.length;i++){
+for(int j = 0;j &lt; arr4[i].length;j++){
+System.out.print(arr4[i][j] + " ");
+}
+System.out.println();
+}
+}
+}</code></pre><blockquote>
+<p>2、代码案例——ArrayTest3.java</p>
+</blockquote>
+<pre><code>/*
+ * 二维数组的使用：
+ * 规定：二维数组分为外层数组的元素，内层数组的元素
+ * int[][] arr = new int[4][3]; 
+ *  外层元素:arr[0],arr[1]等
+ *  内层元素:arr[0][0],arr[1][2]等
+ *  
+ * ⑤ 数组元素的默认初始化值
+ * 针对于初始化方式一：比如：int[][] arr = new int[4][3];
+ * 外层元素的初始化值为：地址值
+ * 内层元素的初始化值为：与一维数组初始化情况相同
+ * 
+ * 针对于初始化方式而：比如：int[][] arr = new int[4][];
+ * 外层元素的初始化值为：null
+ * 内层元素的初始化值为：不能调用，否则报错。
+ * 
+ * ⑥ 数组的内存解析
+ */
+public class ArrayTest3 {
+public static void main(String[] args) {
+
+int[][] arr = new int[4][3];
+System.out.println(arr[0]);//[I@15db9742
+System.out.println(arr[0][0]);//0
+
+//System.out.println(arr);//ArrayTest3.java
+
+System.out.println("***********************");
+float[][] arr1 = new float[4][3];
+System.out.println(arr1[0]);//地址值
+System.out.println(arr1[0][0]);//0.0
+
+System.out.println("***********************");
+
+String[][] arr2 = new String[4][2];
+System.out.println(arr2[1]);//地址值
+System.out.println(arr2[1][1]);//null
+
+System.out.println("*********************");
+double[][] arr3 = new double[4][];
+System.out.println(arr3[1]);//null
+//System.out.println(arr3[1][0]);//报错
+}
+}</code></pre><h2 id="3-2、二维数组的内存解析"><a href="#3-2、二维数组的内存解析" class="headerlink" title="3.2、二维数组的内存解析"></a>3.2、二维数组的内存解析</h2><blockquote>
+<p>1、案例1</p>
+</blockquote>
+<pre><code>int[][] arr1 = new int[4][];
+arr1[1] = new int[]{1,2,3};
+arr1[2] = new int[4];
+arr1[2][1] = 30;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/d4a8ec46ba57eb97884d158f6ea2f53b.png" alt=""></p>
+<blockquote>
+<p>2、案例2</p>
+</blockquote>
+<pre><code>int[][] arr4= newint[3][];
+System.out.println(arr4[0]);//null
+System.out.println(arr4[0][0]);//报错
+arr4[0] = new int[3];
+arr4[0][1] = 5;
+arr4[1] = new int[]{1,2};</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/b1176f460c5c189ca4e7f11d2b75860b.png" alt=""></p>
+<blockquote>
+<p>3、案例3</p>
+</blockquote>
+<pre><code>int[][] arr = new int[3][];
+arr[1] = new int[]{1,2,3};
+arr[2] = new int[3];
+System.out.println(arr[0]);//null
+System.out.println(arr[0][0]);//报异常</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/1444b286c98519f9fb912d5f262438a4.png" alt=""></p>
+<blockquote>
+<p>4、案例4</p>
+</blockquote>
+<pre><code>int[][] arr1= newint[4][];
+arr1[0] = new int[3];
+arr1[1] = new int[]{1,2,3};
+arr1[0][2] = 5;
+arr1 = new int[2][];</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/cfa92cb4f1db599276d44bc79b0472aa.png" alt=""></p>
+<h2 id="3-3、练习"><a href="#3-3、练习" class="headerlink" title="3.3、练习"></a>3.3、练习</h2><blockquote>
+<p>1、练习1</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/f8b4118d2a4743ffc344874fd823048c.png" alt=""></p>
+<pre><code>public class ArrayEver1 {
+public static void main(String[] args) {
+int[][] arr = new int[][]{{3,5,8},{12,9},{7,0,6,4}};
+int sum = 0;//记录总和
+for(int i = 0;i &lt; arr.length;i++){
+for(int j = 0;j &lt; arr[i].length;j++){
+sum += arr[i][j];
+}
+}
+System.out.println(sum);
+}
+}</code></pre><blockquote>
+<p>2、练习 2</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/07c284ce1d9f3944040e0f97953bae77.png" alt=""></p>
+<blockquote>
+<p>3、练习 3</p>
+</blockquote>
+<p>使用二维数组打印一个 10 行杨辉三角。</p>
+<pre><code>/*
+ * 【提示】
+ * 1. 第一行有 1 个元素, 第 n 行有 n 个元素
+ * 2. 每一行的第一个元素和最后一个元素都是 1
+ * 3. 从第三行开始, 对于非第一个元素和最后一个元素的元素。
+ * 即：yanghui[i][j] = yanghui[i-1][j-1] + yanghui[i-1][j];
+ */
+public class ArrayEver2 {
+public static void main(String[] args) {
+//1.声明并初始化二维数组
+int[][] arr = new int[10][];
+
+//2.给数组的元素赋值，遍历二维数组
+for(int i = 0;i &lt; arr.length;i++){
+arr[i] = new int[i+1];
+
+//2.1 给首末元素赋值
+arr[i][0]=arr[i][i]=1;
+//2.2 给每行的非首末元素赋值
+//if(i &gt; 1){
+for(int j = 1;j &lt; arr[i].length-1;j++){
+arr[i][j] = arr[i-1][j-1] + arr[i-1][j];
+}
+//}
+
+}
+
+//3.遍历数组
+for(int i = 0;i &lt; arr.length;i++){
+for(int j = 0;j &lt;arr[i].length;j++){
+System.out.print(arr[i][j] + " ");
+}
+System.out.println();
+}
+
+}
+}</code></pre><h2 id="3-4、面试题目"><a href="#3-4、面试题目" class="headerlink" title="3.4、面试题目"></a>3.4、面试题目</h2><blockquote>
+<p>1、创建一个长度为 6 的 int 型数组，要求取值为 1-30，同时元素值各不相同</p>
+</blockquote>
+<pre><code>//此题只做了解，初学不必精通。
+public class ArrayEver3 {
+public static void main(String[] args) {
+// 方式一：
+//int[] arr = new int[6];
+//for (int i = 0; i &lt; arr.length; i++) {// [0,1) [0,30) [1,31)
+//arr[i] = (int) (Math.random() * 30) + 1;
+//
+//boolean flag = false;
+//while (true) {
+//for (int j = 0; j &lt; i; j++) {
+//if (arr[i] == arr[j]) {
+//flag = true;
+//break;
+//}
+//}
+//if (flag) {
+//arr[i] = (int) (Math.random() * 30) + 1;
+//flag = false;
+//continue;
+//}
+//break;
+//}
+//}
+//
+//for (int i = 0; i &lt; arr.length; i++) {
+//System.out.println(arr[i]);
+//}
+// 方式二：
+int[] arr2 = new int[6];
+for (int i = 0; i &lt; arr2.length; i++) {// [0,1) [0,30) [1,31)
+arr2[i] = (int) (Math.random() * 30) + 1;
+
+for (int j = 0; j &lt; i; j++) {
+if (arr2[i] == arr2[j]) {
+i--;
+break;
+}
+}
+}
+
+for (int i = 0; i &lt; arr2.length; i++) {
+System.out.println(arr2[i]);
+}
+}
+}    </code></pre><h2 id="04、-数组中涉及到的常见算法"><a href="#04、-数组中涉及到的常见算法" class="headerlink" title="04、 数组中涉及到的常见算法"></a>04、 数组中涉及到的常见算法</h2><ol>
+<li>数组元素的赋值(杨辉三角、回形数等)</li>
+<li>求数值型数组中元素的最大值、最小值、平均数、总和等</li>
+<li>数组的复制、反转、查找(线性查找、二分法查找)</li>
+<li>数组元素的排序算法</li>
+</ol>
+<h2 id="4-1、数组元素的赋值"><a href="#4-1、数组元素的赋值" class="headerlink" title="4.1、数组元素的赋值"></a>4.1、<a href="https://so.csdn.net/so/search?q=%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">数组元素</a>的赋值</h2><pre><code>import java.util.Scanner;
+/*
+ * 此题了解！！！
+ * 
+ * 回形数格式方阵的实现
+ * 从键盘输入一个整数（1~20） 
+ * 则以该数字为矩阵的大小，把 1,2,3…n*n 的数字按照顺时针螺旋的形式填入其中。例如： 输入数字2，则程序输出： 1 2 
+ * 4 3 
+ * 输入数字 3，则程序输出：1 2 3 
+ * 8 9 4 
+ * 7 6 5 
+ * 输入数字 4， 则程序输出： 
+ * 1   2   3   4
+ * 12  13  14  5 
+ * 11  16  15  6 
+ * 10  9   8   7
+ */
+public class ArrayTest {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+System.out.println("输入一个数字:");
+int len = scanner.nextInt();
+int[][] arr = new int[len][len];
+int s = len * len;
+/*
+ * k = 1:向右 k = 2:向下 k = 3:向左 k = 4:向上
+ */
+int k = 1;
+int i = 0, j = 0;
+for (int m = 1; m &lt;= s; m++) {
+if (k == 1) {
+if (j &lt; len &amp;&amp; arr[i][j] == 0) {
+arr[i][j++] = m;
+} else {
+k = 2;
+i++;
+j--;
+m--;
+}
+} else if (k == 2) {
+if (i &lt; len &amp;&amp; arr[i][j] == 0) {
+arr[i++][j] = m;
+} else {
+k = 3;
+i--;
+j--;
+m--;
+}
+} else if (k == 3) {
+if (j &gt;= 0 &amp;&amp; arr[i][j] == 0) {
+arr[i][j--] = m;
+} else {
+k = 4;
+i--;
+j++;
+m--;
+}
+} else if (k == 4) {
+if (i &gt;= 0 &amp;&amp; arr[i][j] == 0) {
+arr[i--][j] = m;
+} else {
+k = 1;
+i++;
+j++;
+m--;
+}
+}
+}
+// 遍历
+for (int m = 0; m &lt; arr.length; m++) {
+for (int n = 0; n &lt; arr[m].length; n++) {
+System.out.print(arr[m][n] + "\t");
+}
+System.out.println();
+}
+}
+}</code></pre><h2 id="4-2、数组元素的基本操作"><a href="#4-2、数组元素的基本操作" class="headerlink" title="4.2、数组元素的基本操作"></a>4.2、数组元素的基本操作</h2><pre><code>/*
+ * 算法的考察：求数值型数组中元素的最大值、最小值、平均数、总和等
+ * 
+ * 定义一个 int 型的一维数组，包含 10 个元素，分别赋一些随机整数，
+ * 然后求出所有元素的最大值，最小值，和值，平均值，并输出出来。
+ * 要求：所有随机数都是两位数。
+ * 
+ * [10,99]
+ * 公式：(int)(Math.random() * (99 - 10 + 1) + 10)
+ */
+public class ArrayTest1 {
+public static void main(String[] args) {
+int[] arr = new int[10];
+//数组赋值
+for(int i = 0;i &lt;arr.length;i++){
+arr[i] = (int)(Math.random() * (99 - 10 + 1) + 10);
+}
+
+//遍历
+for(int i =0;i &lt; arr.length;i++){
+System.out.print(arr[i] + " ");
+}
+System.out.println();
+
+//求数组元素的最大值
+int maxValue = arr[0];
+for(int i = 1;i &lt;arr.length;i++){
+if(maxValue &lt; arr[i]){
+maxValue = arr[i];
+}
+}
+System.out.println("最大值：" + maxValue);
+
+//求数组元素的最小值
+int minValue = arr[0];
+for(int i = 1;i &lt;arr.length;i++){
+if(minValue &gt; arr[i]){
+minValue = arr[i];
+}
+}
+System.out.println("最小值：" + minValue);
+
+//求数组元素的总和
+int sum = 0;
+for(int i = 1;i &lt;arr.length;i++){
+sum += arr[i];
+}
+System.out.println("总和：" + sum);
+
+//求数组元素的平均数
+double avgVales = sum / arr.length;
+System.out.println("平均数：" + avgVales);
+}
+}</code></pre><h2 id="4-3、数组元素的基本操作-2"><a href="#4-3、数组元素的基本操作-2" class="headerlink" title="4.3、数组元素的基本操作 2"></a>4.3、数组元素的基本操作 2</h2><pre><code>/*
+ * 使用简单数组
+ * (1)创建一个名为 ArrayTest 的类，在 main()方法中声明 array1 和 array2 两个变量，他们是 int[]类型的数组。
+ * (2)使用大括号{}，把 array1 初始化为 8 个素数：2,3,5,7,11,13,17,19。
+ * (3)显示 array1 的内容。
+ * (4)赋值 array2 变量等于 array1，修改 array2 中的偶索引元素，使其等于索引值(如 array[0]=0,array[2]=2)。打印出 array1。
+ */
+public class ArrayTest2 {
+public static void main(String[] args) {
+//声明 array1 和 array2 两个 int[]变量
+int[] array1,array2;
+//array1 初始化
+array1 = new int[]{2,3,5,7,11,13,17,19};
+
+//显示 array1 的内容==遍历。
+for(int i = 0;i &lt; array1.length;i++){
+System.out.print(array1[i] + "\t");
+}
+
+//赋值 array2 变量等于 array1
+        //不能称作数组的复制。
+array2 = array1;
+
+//修改 array2 中的偶索引元素，使其等于索引值(如 array[0]=0,array[2]=2)。
+for(int i = 0;i &lt; array2.length;i++){
+if(i % 2 == 0){
+array2[i] = i;
+}
+}
+System.out.println();
+
+//打印出 array1。
+for(int i = 0;i &lt; array1.length;i++){
+System.out.print(array1[i] + "\t");
+}
+}
+}</code></pre><blockquote>
+<p>1、思考：上述 array1 和 array2 是什么关系？</p>
+</blockquote>
+<pre><code>//array1 和 array2 地址值相同，都指向了堆空间的唯一的一个数组实体。
+int[] array1,array2;
+array1 = new int[]{2,3,5,7,11,13,17,19};
+array2 = array1;
+for(int i = 0;i &lt; array2.length;i++){
+if(i % 2 == 0){
+array2[i] = i;
+}
+}</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/1dbdd407ab4eab6dd35163ef5a7b0378.png" alt=""></p>
+<blockquote>
+<p>2、拓展：修改题目，实现 array2 对 array1 数组的复制</p>
+</blockquote>
+<pre><code>int[] array1,array2;
+array1 = new int[]{2,3,5,7,11,13,17,19};
+//数组的复制
+array2 = new int[array1.length];
+for(int i = 0;i &lt; array2.length;i++){
+array2[i] = array1[i];
+}</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/51135a7e4392b848f47caed509ac902f.png" alt=""></p>
+<h2 id="4-4、数组的复制、反转、查找"><a href="#4-4、数组的复制、反转、查找" class="headerlink" title="4.4、数组的复制、反转、查找"></a>4.4、数组的复制、反转、查找</h2><blockquote>
+<p>1、复制、反转</p>
+</blockquote>
+<pre><code>/*
+ * 算法的考察：数组的复制、反转、查找(线性查找、二分法查找)
+ */
+public class ArrayTest3 {
+public static void main(String[] args) {
+
+String[] arr = new String[]{"SS","QQ","YY","XX","TT","KK","EE","GG"};
+
+//数组的复制
+String[] arr1 = new String[arr.length];
+for(int i = 0;i &lt; arr1.length;i++){
+arr1[i] = arr[i];
+}
+
+//数组的反转
+//方法一：
+//for(int i = 0;i &lt; arr.length / 2;i++){
+//String temp = arr[i];
+//arr[i] = arr[arr.length - i - 1];
+//arr[arr.length - i - 1] = temp;
+//}
+
+//方法二：
+for(int i = 0,j = arr.length - 1;i &lt; j;i++,j--){
+String temp = arr[i];
+arr[i] = arr[j];
+arr[j] = temp;
+}
+
+//遍历
+for(int i = 0;i &lt; arr.length;i++){
+System.out.print(arr[i] + "\t");
+}
+System.out.println();
+
+//查找（或搜索）
+//线性查找
+String dest = "BB";//要查找的元素
+dest = "CC";
+
+boolean isFlag = true;
+
+for(int i = 0;i &lt; arr.length;i++){
+if(dest.equals(arr[i])){
+System.out.println("找到了指定元素，位置为：" + i);
+isFlag = false;
+break;
+}
+}
+if(isFlag){
+System.out.println("很遗憾，没找到！");
+}
+
+//二分法查找：
+
+}
+}</code></pre><blockquote>
+<p>2、二分法查找算法</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/147a3feee59657d16accdc055c658df3.png" alt=""></p>
+<pre><code>public class ArrayTest3 {
+public static void main(String[] args) {
+//二分法查找：
+//前提：所要查找的数组必须有序
+int[] arr2 = new int[]{-98,-34,2,34,54,66,79,105,210,333};
+
+int dest1 = -34;
+int head = 0;//初始的首索引
+int end = arr2.length - 1;//初始的末索引
+boolean isFlag1 = true;
+while(head &lt;= end){
+int middle = (head + end)/2;
+
+if(dest1 == arr2[middle]){
+System.out.println("找到了指定元素，位置为：" + middle);
+isFlag1 = false;
+break;
+}else if(arr2[middle] &gt; dest1){
+end = middle - 1;
+}else{//arr2[middle] &lt; dest1
+head = middle + 1;
+}
+}
+
+if(isFlag1){
+System.out.println("很遗憾，没找到！");
+}
+}
+}</code></pre><h2 id="4-5、数组元素的排序算法"><a href="#4-5、数组元素的排序算法" class="headerlink" title="4.5、数组元素的排序算法"></a>4.5、数组元素的排序算法</h2><ul>
+<li>排序：假设含有 n 个记录的序列为{R1，R2，…,Rn},其相应的关键字序列为{K1，K2，…,Kn}。将这些记录重新排序为{Ri1,Ri2,…,Rin},使得相应的关键字值满足条 Ki1&lt;=Ki2&lt;=…&lt;=Kin,这样的一种操作称为排序。<ul>
+<li>通常来说，排序的目的是快速查找。</li>
+</ul>
+</li>
+<li>衡量排序算法的优劣：<ol>
+<li><strong>时间复杂度</strong>：分析关键字的比较次数和记录的移动次数</li>
+<li>空间复杂度：分析排序算法中需要多少辅助内存</li>
+<li><strong>稳定性</strong>：若两个记录 A 和 B 的关键字值相等，但排序后 A、B 的先后次序保持不变，则称这种排序算法是稳定的。</li>
+</ol>
+</li>
+<li>排序算法分类：<strong>内部排序</strong>和<strong>外部排序</strong>。<ul>
+<li>内部排序：整个排序过程不需要借助于外部存储器（如磁盘等），所有排序操作都在内存中完成。</li>
+<li>外部排序：参与排序的数据非常多，数据量非常大，计算机无法把整个排序过程放在内存中完成，必须借助于外部存储器（如磁盘）。外部排序最常见的是多路归并排序。可以认为外部排序是由多次内部排序组成。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-6、十大内部排序算法"><a href="#4-6、十大内部排序算法" class="headerlink" title="4.6、十大内部排序算法"></a>4.6、十大内部排序算法</h2><ul>
+<li>选择排序<ul>
+<li>直接选择排序、堆排序</li>
+</ul>
+</li>
+<li>交换排序<ul>
+<li><strong>冒泡排序、快速排序</strong></li>
+</ul>
+</li>
+<li>插入排序<ul>
+<li>直接插入排序、折半插入排序、Shell 排序</li>
+</ul>
+</li>
+<li>归并排序</li>
+<li>桶式排序</li>
+<li>基数排序</li>
+</ul>
+<ol>
+<li>详细操作，见《附录》<br><a href="https://shimo.im/docs/TcdrXydwCTHY866T" target="_blank" rel="noopener">附录：尚硅谷_宋红康_排序算法.pdf</a></li>
+</ol>
+<h2 id="4-7、算法的-5-大特征"><a href="#4-7、算法的-5-大特征" class="headerlink" title="4.7、算法的 5 大特征"></a>4.7、算法的 5 大特征</h2><table>
+<thead>
+<tr>
+<th>输入（Input）</th>
+<th>有 0 个或多个输入数据，这些输入必须有清楚的描述和定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输出（Output）</td>
+<td>至少有 1 个或多个输出结果，不可以没有输出结果</td>
+</tr>
+<tr>
+<td>有穷性（有限性，Finiteness）</td>
+<td>算法在有限的步骤之后会自动结束而不会无限循环，并且每一个步骤可以在可接受的时间内完成</td>
+</tr>
+<tr>
+<td>确定性（明确性，Definiteness）</td>
+<td>算法中的每一步都有确定的含义，不会出现二义性</td>
+</tr>
+<tr>
+<td>可行性（有效性，Effectiveness）</td>
+<td>算法的每一步都是清楚且可行的，能让用户用纸笔计算而求出答案</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>说明：满足确定性的算法也称为：确定性算法。现在人们也关注更广泛的概念，例如考虑各种非确定性的算法，如并行算法、概率算法等。另外，人们也关注并不要求终止的计算描述，这种描述有时被称为过程（procedure）。</p>
+</blockquote>
+<h2 id="4-8、冒泡排序-重要"><a href="#4-8、冒泡排序-重要" class="headerlink" title="4.8、冒泡排序(重要)"></a>4.8、<a href="https://so.csdn.net/so/search?q=%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">冒泡排序</a>(重要)</h2><p>冒泡排序的基本思想：通过对待排序序列从前向后，依次比较相邻元素的排序码，若发现逆序则交换，使排序码较大的元素逐渐从前部移向后部。</p>
+<p>因为排序的过程中，各元素不断接近自己的位置，如果一趟比较下来没有进行过交换，就说明序列有序， 因此要在排序过程中设置一个标志swap判断元素是否进行过交换。从而减少不必要的比较。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/1652ba31ff3ee377506665fa442de80d.png" alt=""></p>
+<pre><code>/*
+ * 数组的冒泡排序的实现
+ * 
+ */
+public class BubbleSortTest {
+public static void main(String[] args) {
+
+int[] arr = new int[]{43,32,76,92,-65,85,71,-42};
+
+//冒泡排序
+for(int i = 0;i &lt; arr.length - 1;i++){
+
+for(int j = 0;j &lt; arr.length - 1 - i;j++){
+
+if(arr[j] &gt; arr[j+1]){
+int temp = arr[j];
+arr[j] = arr[j+1];
+arr[j+1] = temp;
+}
+}
+}
+
+for(int i = 0;i &lt; arr.length;i++){
+System.out.print(arr[i] + "\t");
+}
+}
+}</code></pre><h2 id="4-9、快速排序-初学Java，仅作了解"><a href="#4-9、快速排序-初学Java，仅作了解" class="headerlink" title="4.9、快速排序(初学Java，仅作了解)"></a>4.9、快速排序(初学Java，仅作了解)</h2><blockquote>
+<p>快速排序（Quick Sort）由图灵奖获得者Tony Hoare发明，被列为20世纪十大算法之一，是迄今为止所有内排序算法中速度最快的一种。冒泡排序的升级版，交换排序的一种。快速排序的时间复杂度为O(nlog(n))。</p>
+</blockquote>
+<p><strong>排序思想：</strong></p>
+<ol>
+<li>从数列中挑出一个元素，称为”基准”（pivot），</li>
+<li>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区结束之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。</li>
+<li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
+<li>递归的最底部情形，是数列的大小是零或一，也就是永远都已经被排序好了。虽然一直递归下去，但是这个算法总会结束，因为在每次的迭代（iteration）中，它至少会把一个元素摆到它最后的位置去。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/c416b57d8b51b44072a3fa7d7b7aa740.png" alt=""></p>
+<pre><code>/**
+  * 快速排序
+  * 通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分关键字小，
+  * 则分别对这两部分继续进行排序，直到整个序列有序。
+  *
+ */
+public class QuickSort {
+private static void swap(int[] data, int i, int j) {
+int temp = data[i];
+data[i] = data[j];
+data[j] = temp;
+}
+private static void subSort(int[] data, int start, int end) {
+if (start &lt; end) {
+int base = data[start];
+int low = start;
+int high = end + 1;
+while (true) {
+while (low &lt; end &amp;&amp; data[++low] - base &lt;= 0)
+;
+while (high &gt; start &amp;&amp; data[--high] - base &gt;= 0)
+;
+if (low &lt; high) {
+swap(data, low, high);
+} else {
+break;
+}
+}
+swap(data, start, high);
+
+subSort(data, start, high - 1);//递归调用
+subSort(data, high + 1, end);
+}
+}
+public static void quickSort(int[] data){
+subSort(data,0,data.length-1);
+}
+
+public static void main(String[] args) {
+int[] data = { 9, -16, 30, 23, -30, -49, 25, 21, 30 };
+System.out.println("排序之前：\n" + java.util.Arrays.toString(data));
+quickSort(data);
+System.out.println("排序之后：\n" + java.util.Arrays.toString(data));
+}
+}</code></pre><h2 id="4-10排序算法性能对比"><a href="#4-10排序算法性能对比" class="headerlink" title="4.10排序算法性能对比"></a>4.10排序算法性能对比</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/9d43d5e3a110648c15f953275931755b.png" alt=""></p>
+<blockquote>
+<p><strong>各种内部排序方法性能比较</strong></p>
+</blockquote>
+<ol>
+<li>从平均时间而言：快速排序最佳。但在最坏情况下时间性能不如堆排序和归并排序。</li>
+<li>从算法简单性看：由于直接选择排序、直接插入排序和冒泡排序的算法比较简单，将其认为是简单算法。对于Shell排序、堆排序、快速排序和归并排序算法，其算法比较复杂，认为是复杂排序。</li>
+<li>从稳定性看：直接插入排序、冒泡排序和归并排序是稳定的；而直接选择排序、快速排序、Shell排序和堆排序是不稳定排序</li>
+<li>从待排序的记录数n的大小看，n较小时，宜采用简单排序；而n较大时宜采用改进排序。</li>
+</ol>
+<blockquote>
+<p><strong>排序算法的选择</strong></p>
+</blockquote>
+<p>(1) 若n较小(如n≤50)，可采用直接插入或直接选择排序。当记录规模较小时，直接插入排序较好；否则因为直接选择移动的记录数少于直接插入，应选直接选择排序为宜。<br>(2) 若文件初始状态基本有序(指正序)，则应选用直接插入、冒泡或随机的快速排序为宜；<br>(3) 若n较大，则应采用时间复杂度为O(nlgn)的排序方法：快速排序、堆排序或归并排序。</p>
+<h2 id="05、-Arrays-工具类的使用"><a href="#05、-Arrays-工具类的使用" class="headerlink" title="05、 Arrays 工具类的使用"></a>05、 Arrays 工具类的使用</h2><blockquote>
+<p>java.util.Arrays类即为操作数组的工具类，包含了用来操作数组（比如排序和搜索）的各种方法。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>boolean equals(int[] a,int[] b)</th>
+<th>判断两个数组是否相等。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>String toString(int[] a)</td>
+<td>输出数组信息。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>void fill(int[] a,int val)</td>
+<td>将指定值填充到数组之中。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>void sort(int[] a)</td>
+<td>对数组进行排序。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>int binarySearch(int[] a,int key)</td>
+<td>对排序后的数组进行二分法检索指定的值。</td>
+</tr>
+</tbody></table>
+<pre><code>import java.util.Arrays;
+/*
+ * java.util.Arrays:作数组的工具类，包含了用来操作数组（比如排序和搜索）的各种方法。
+ */
+public class ArrayTest4 {
+public static void main(String[] args) {
+
+//1.boolean equals(int[] a,int[] b)判断两个数组是否相等。
+int[] arr1 = new int[]{1,2,3,4};
+int[] arr2 = new int[]{1,2,9,3};
+boolean isEquals = Arrays.equals(arr1, arr2);
+System.out.println(isEquals);
+
+//2.String toString(int[] a)输出数组信息。
+System.out.println(Arrays.toString(arr1));
+
+//3.void fill(int[] a,int val)将指定值填充到数组之中。
+Arrays.fill(arr1, 10);
+System.out.println(Arrays.toString(arr1));
+
+//4.void sort(int[] a)对数组进行排序。
+Arrays.sort(arr2);
+System.out.println(Arrays.toString(arr2));
+
+//5.int binarySearch(int[] a,int key)对排序后的数组进行二分法检索指定的值。
+int[] arr3 = new int[]{43,32,76,92,-65,85,71,-42}; 
+int index = Arrays.binarySearch(arr3, 210);
+if(index &gt;= 0){
+System.out.println(index);
+}else{
+System.err.println("未找到。");
+}
+}
+}</code></pre><h2 id="06、-数组使用中的常见异常"><a href="#06、-数组使用中的常见异常" class="headerlink" title="06、 数组使用中的常见异常"></a>06、 数组使用中的常见异常</h2><pre><code>/*
+ * 数组中的常见异常：
+ * 1.数组角标越界的异常:ArrayIndexOutOfBoundsException
+ * 
+ * 2.空指针异常:NullPointerException
+ * 
+ */
+public class ArrayExceptionTest {
+public static void main(String[] args) {
+
+//1.数组角标越界的异常:ArrayIndexOutOfBoundsException
+int[] arr = new int[]{1,2,3,4,5,6};
+
+//错误1：
+//for(int i = 0;i &lt;= arr.length;i++){
+//System.out.println(arr[i]);
+//}
+
+//错误2：
+//System.out.println(arr[-2]);
+
+//错误3
+//System.out.println("hello");
+
+//2.空指针异常:NullPointerException
+//情况一:
+//int[] arr2= new int[]{1,2,3};
+//arr2 = null;
+//System.out.println(arr2[0]);
+//情况二:
+//int[][] arr2 = new int[4][];
+//System.out.println(arr2[0][0]);
+
+//情况三:
+//String[] arr3 = new String[]{"AA","QQ","YY","XX","TT","KK"};
+//arr3[0] = null;
+//System.out.println(arr3[0].toString());
+}
+}</code></pre><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.bmp" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.bmp" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://bit-1024.github.io" class="b-link-green">毛毛驿站</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2023/04/09/wu-shu-zu/" class="b-link-green">五:数组</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+    /* valine 评论框增加背景图片 */
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("") 100% 100% no-repeat;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    /* 修复评论第一行位置错位 */
+    .v .vlist .vcard {
+    padding-top: 2.5em !important ;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/libs//libs/jQuery-emoji/dist/css/jquery.emoji.css">
+<script src="/libs//libs/jQuery-emoji/dist/js/jquery.emoji.min.js"></script>
+<script src="/libs//libs/jQuery-emoji/dist/js/emoji.list.js"></script> -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'axQghygDBjenYDrn9N6oN2lR-gzGzoHsz',
+        appKey: 'SOXmB69gHsBndGef0LG54SxQ',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+
+//     function parse_emoji() {
+//     jQuery(".vcontent").emojiParse({
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists   // 注：详见 js/emoji.list.js
+//     });
+//   }
+  
+//   setTimeout(function() {
+//     // jQuery emoji 解析
+//     parse_emoji();
+//     // jquery emoji 初始化
+//     jQuery(".veditor").emoji({
+//       showTab: true,
+//       animation: 'slide',
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists  // 注：详见 js/emoji.list.js
+//     });
+//     jQuery(".vmore").on("click", function() {
+//       setTimeout(function() {
+//         parse_emoji();
+//       }, 500);
+//     });
+//   }, 800)
+
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/04/09/liu-mian-xiang-dui-xiang-shang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="六:面向对象（上)">
+                        
+                        <span class="card-title">六:面向对象（上)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、面向过程与面向对象何谓“面向对象”的编程思想？首先解释一下“思想”。先问你个问题：你想做个怎样的人？可能你会回答：我想做个好人，孝敬父母，尊重长辈，关爱亲朋…你看，这就是思想。这是你做人的思想，或者说，是你做人的原则。做人有做人的原则
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                        </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/09/si-cheng-xu-liu-cheng-kong-zhi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="四:程序流程控制">
+                        
+                        <span class="card-title">四:程序流程控制</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、 程序流程控概述流程控制语句是用来控制程序中各语句执行顺序的语句，可以把语句组合成能完成一定功能的小逻辑模块。
+其流程控制方式采用结构化程序设计中规定的三种基本流程结构，即：
+
+顺序结构
+分支结构
+循环结构
+
+
+1、顺序结构
+
+程序从
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 毛毛驿站<br />'
+            + '作者: 宏忠<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2023 宏忠. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+                    
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        总访问量: <span id="busuanzi_value_site_pv" class="white-color"></span>
+                    
+        
+                    
+                        <span id="busuanzi_container_site_uv" style='display:none'></span>
+                        人次&nbsp; | &nbsp;访客人数: <span id="busuanzi_value_site_uv" class="white-color"></span> 人
+                    
+    
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">146.4k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/bit-1024" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2440910763@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/yi-xie-zhi-qiu-15-3-38" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2440910763&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/6984339393" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        var t1 = Date.UTC(2023, 03, 07, 00, 00, 00); //北京时间2023-3-7 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已勉强运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+            <script src="/libs/others/clicklove.js"></script>
+        
+
+        
+            <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+
+        <!-- 洪卫 shw2018 add 2019.08.28 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "看不见我🙈~看不见我🙈~", clearTimeout(st)) : (document.title =
+                    "(๑•̀ㅂ•́) ✧被发现了～", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  洪卫 shw2018 add 2019.09.09 -->
+        
+            <canvas class="fireworks" style="position: fixed; left: 0; top: 0; z-index: 1; pointer-events: none;"></canvas>
+            <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+            <script type="text/javascript" src="/js/fireworks.js"></script>
+        
+
+        <!-- 背景雪花飘落特效洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效 洪卫 shw2018 add 2019.09.10-->
+        
+            <script src="/js/wenzi.js" type="text/javascript"></script>
+        
+
+        <!-- 背景雪花飘落特效 洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具  洪卫 shw2018 add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义  洪卫 shw2018 add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带 洪卫 shw 2018  add 2019.09.15-->
+        
+            <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 992) {
+                document.write('<script type="text/javascript" src="/libs/background/ribbon-dynamic.js"><\/script>');
+            }
+            </script>
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":false},"react":{"opacity":0.7}});</script><script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+</html>

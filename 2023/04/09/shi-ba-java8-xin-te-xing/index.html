@@ -1,0 +1,3337 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <!-- shw2018 洪卫  modify 2019.08.15-->
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="十八：Java8新特性, UESTC CV DeepLearning MachineLearning 宏忠 LHZ 计算机 软件">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
+    <meta name="description" content="01、Java8概述
+Java 8 (又称为jdk 1.8) 是Java 语言开发的一个主要版本。
+Java 8 是oracle公司于2014年3月发布，可以看成是自Java 5 以来最具革命性的版本。Java 8为Java语言、编译器、类">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>十八：Java8新特性 | 毛毛驿站</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+            
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">毛毛驿站</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">毛毛驿站</div>
+        <div class="logo-desc">
+            
+            南昌航空大学 | 通信工程 | 计算机
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<!-- <ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言板
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友情链接
+                    </a>
+              
+            </li>
+        
+
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul> -->
+
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bit-1024/bit-1024.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        十八：Java8新特性
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-09
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        宏忠
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        8.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        40 分
+                    </div>
+                    
+                
+                
+                
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv" ></span>
+    
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="01、Java8概述"><a href="#01、Java8概述" class="headerlink" title="01、Java8概述"></a>01、Java8概述</h2><ul>
+<li>Java 8 (又称为jdk 1.8) 是Java 语言开发的一个主要版本。</li>
+<li>Java 8 是oracle公司于2014年3月发布，可以看成是自Java 5 以来最具革命性的版本。Java 8为Java语言、编译器、类库、开发工具与JVM带来了大量新特性。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/873337fa3d817235541f830b76bfc87e.png" alt=""></p>
+<h2 id="02、Java8新特性的好处"><a href="#02、Java8新特性的好处" class="headerlink" title="02、Java8新特性的好处"></a>02、Java8新特性的好处</h2><ul>
+<li>速度更快</li>
+<li>代码更少(增加了新的语法：Lambda 表达式)</li>
+<li>强大的Stream API</li>
+<li>便于并行</li>
+<li>最大化减少空指针异常：Optional</li>
+<li>Nashorn引擎，允许在JVM上运行JS应用</li>
+</ul>
+<h2 id="03、并行流与串行流"><a href="#03、并行流与串行流" class="headerlink" title="03、并行流与串行流"></a>03、并行流与串行流</h2><p>并行流就是把一个内容分成多个数据块，并用不同的线程分别处理每个数据块的流。相比较串行的流，并行的流可以很大程度上提高程序的执行效率。</p>
+<p>Java 8 中将并行进行了优化，我们可以很容易的对数据进行并行操作。<a href="https://so.csdn.net/so/search?q=Stream&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">Stream</a> API 可以声明性地通过parallel() 与sequential() 在并行流与顺序流之间进行切换。</p>
+<h2 id="04、Lambda表达式"><a href="#04、Lambda表达式" class="headerlink" title="04、Lambda表达式"></a>04、<a href="https://so.csdn.net/so/search?q=Lambda&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">Lambda</a>表达式</h2><p>Lambda 是一个匿名函数，我们可以把Lambda <a href="https://so.csdn.net/so/search?q=%E8%A1%A8%E8%BE%BE%E5%BC%8F&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">表达式</a>理解为是一段可以传递的代码（将代码像数据一样进行传递）。使用它可以写出更简洁、更灵活的代码。作为一种更紧凑的代码风格，使Java的语言表达能力得到了提升。</p>
+<h2 id="4-1、Lambda表达式使用举例"><a href="#4-1、Lambda表达式使用举例" class="headerlink" title="4.1、Lambda表达式使用举例"></a>4.1、Lambda表达式使用举例</h2><pre><code>import org.junit.Test;
+
+import java.util.Comparator;
+
+/**
+ * Lambda表达式的使用举例
+ */
+public class LambdaTest {
+    @Test
+    public void test(){
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("长安欢迎您");
+            }
+        };
+        r1.run();
+
+        System.out.println("+++++++++++++++++++++++++|");
+
+        Runnable r2 = () -&gt; System.out.println("长安欢迎您");
+
+        r2.run();
+    }
+
+    @Test
+    public void test2(){
+        Comparator&lt;Integer&gt; c1 = new Comparator&lt;Integer&gt;() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return Integer.compare(o1,o2);
+            }
+        };
+        int compare1 = c1.compare(8,16);
+        System.out.println(compare1);
+
+        System.out.println("+++++++++++++++++++++++");
+
+        //Lambda表达式的写法
+        Comparator&lt;Integer&gt; c2 = (o1,o2) -&gt; Integer.compare(o1,o2);
+
+        int compare2 = c2.compare(28,35);
+        System.out.println(compare2);
+
+        System.out.println("+++++++++++++++++++++++++++");
+        //方法引用
+        Comparator&lt;Integer&gt; c3 = Integer :: compare;
+
+        int compare3 = c3.compare(28,35);
+        System.out.println(compare3);
+    }
+}</code></pre><h2 id="4-2、Lambda表达式语法的使用1"><a href="#4-2、Lambda表达式语法的使用1" class="headerlink" title="4.2、Lambda表达式语法的使用1"></a>4.2、Lambda表达式语法的使用1</h2><pre><code>import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
+
+/**
+ * Lambda表达式的使用
+ *
+ * 1.举例： (o1,o2) -&gt; Integer.compare(o1,o2);
+ * 2.格式：
+ *      -&gt; :lambda操作符 或 箭头操作符
+ *      -&gt;左边：lambda形参列表 （其实就是接口中的抽象方法的形参列表）
+ *      -&gt;右边：lambda体 （其实就是重写的抽象方法的方法体）
+ *
+ * 3.Lambda表达式的使用：（分为6种情况介绍）
+ */
+public class LambdaTest1 {
+
+    //语法格式一：无参，无返回值
+    @Test
+    public void test(){
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("长安欢迎您");
+            }
+        };
+        r1.run();
+
+        System.out.println("+++++++++++++++++++++++++|");
+
+        Runnable r2 = () -&gt; System.out.println("长安欢迎您");
+
+        r2.run();
+    }
+
+    //语法格式二：Lambda 需要一个参数，但是没有返回值。
+    @Test
+    public void test2(){
+        Consumer&lt;String&gt; con = new Consumer&lt;String&gt;() {
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+            }
+        };
+        con.accept("善与恶的区别是什么？");
+
+        System.out.println("+++++++++++++++++++");
+
+        Consumer&lt;String&gt; c1 = (String s) -&gt; {
+            System.out.println(s);
+        };
+        c1.accept("先天人性无善恶,后天人性有善恶。");
+    }
+
+    //语法格式三：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”
+    @Test
+    public void test3(){
+        Consumer&lt;String&gt; c1 = (String s) -&gt; {
+            System.out.println(s);
+        };
+        c1.accept("先天人性无善恶,后天人性有善恶。");
+
+        System.out.println("---------------------");
+
+        Consumer&lt;String&gt; c2 = (s) -&gt; {
+            System.out.println(s);
+        };
+        c2.accept("如果没有邪恶的话我们怎么会知道人世间的那些善良呢？");
+    }
+
+    @Test
+    public void test4(){
+        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();//类型推断
+
+        int[] arr = {1,2,3};//类型推断
+    }
+}</code></pre><h2 id="4-3、Lambda表达式语法的使用2"><a href="#4-3、Lambda表达式语法的使用2" class="headerlink" title="4.3、Lambda表达式语法的使用2"></a>4.3、Lambda表达式语法的使用2</h2><pre><code>import org.junit.Test;
+
+import java.util.Comparator;
+import java.util.function.Consumer;
+
+/**
+ * Lambda表达式的使用
+ *
+ * 1.举例： (o1,o2) -&gt; Integer.compare(o1,o2);
+ * 2.格式：
+ *      -&gt; :lambda操作符 或 箭头操作符
+ *      -&gt;左边：lambda形参列表 （其实就是接口中的抽象方法的形参列表）
+ *      -&gt;右边：lambda体 （其实就是重写的抽象方法的方法体）
+ *
+ * 3.Lambda表达式的使用：（分为6种情况介绍）
+ *
+ *    总结：
+ *    -&gt;左边：lambda形参列表的参数类型可以省略(类型推断)；如果lambda形参列表只有一个参数，其一对()也可以省略
+ *    -&gt;右边：lambda体应该使用一对{}包裹；如果lambda体只有一条执行语句（可能是return语句），省略这一对{}和return关键字
+ */
+public class LambdaTest1 {
+
+    //语法格式四：Lambda若只需要一个参数时，参数的小括号可以省略
+    @Test
+    public void test5(){
+        Consumer&lt;String&gt; c1 = (s) -&gt; {
+            System.out.println(s);
+        };
+        c1.accept("先天人性无善恶,后天人性有善恶。");
+
+        System.out.println("---------------------");
+
+        Consumer&lt;String&gt; c2 = s -&gt; {
+            System.out.println(s);
+        };
+        c2.accept("如果没有邪恶的话我们怎么会知道人世间的那些善良呢？");
+    }
+
+    //语法格式五：Lambda需要两个或以上的参数，多条执行语句，并且可以有返回值
+    @Test
+    public void test6(){
+        Comparator&lt;Integer&gt; c1 = new Comparator&lt;Integer&gt;() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                System.out.println(o1);
+                System.out.println(o2);
+                return o1.compareTo(o2);
+            }
+        };
+        System.out.println(c1.compare(15,23));
+
+        System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\");
+
+        Comparator&lt;Integer&gt; com2 = (o1,o2) -&gt; {
+            System.out.println(o1);
+            System.out.println(o2);
+            return o1.compareTo(o2);
+        };
+        System.out.println(com2.compare(16,8));
+    }
+
+    //语法格式六：当Lambda体只有一条语句时，return与大括号若有，都可以省略
+    @Test
+    public void test7(){
+        Comparator&lt;Integer&gt; c1 = (o1,o2) -&gt; {
+            return o1.compareTo(o2);
+        };
+
+        System.out.println(c1.compare(16,8));
+
+        System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\");
+
+        Comparator&lt;Integer&gt; c2 = (o1,o2) -&gt; o1.compareTo(o2);
+
+        System.out.println(c2.compare(17,24));
+    }
+
+    @Test
+    public void test8(){
+        Consumer&lt;String&gt; c1 = s -&gt; {
+            System.out.println(s);
+        };
+        c1.accept("先天人性无善恶,后天人性有善恶。");
+
+        System.out.println("---------------------");
+
+        Consumer&lt;String&gt; c2 = s -&gt; System.out.println(s);
+
+        c2.accept("如果没有邪恶的话我们怎么会知道人世间的那些善良呢？");
+    }
+}</code></pre><h2 id="05、函数式-Functional-接口"><a href="#05、函数式-Functional-接口" class="headerlink" title="05、函数式(Functional)接口"></a>05、函数式(Functional)接口</h2><h2 id="5-1、函数式接口的介绍"><a href="#5-1、函数式接口的介绍" class="headerlink" title="5.1、函数式接口的介绍"></a>5.1、<a href="https://so.csdn.net/so/search?q=%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">函数式接口</a>的介绍</h2><pre><code>/*
+ * 4.Lambda表达式的本质：作为函数式接口的实例
+ *
+ * 5. 如果一个接口中，只声明了一个抽象方法，则此接口就称为函数式接口。我们可以在一个接口上使用 @FunctionalInterface 注解，
+ *   这样做可以检查它是否是一个函数式接口。
+ *
+ */
+
+/**
+ * 自定义函数式接口
+ */
+public interface MyInterFace {
+
+    void method();
+
+//    void method2();
+
+}</code></pre><ul>
+<li>在<code>java.util.function</code>包下定义了Java 8 的丰富的函数式接口</li>
+<li>Java从诞生日起就是一直倡导“一切皆对象”，在Java里面面向对象(OOP)编程是一切。但是随着python、scala等语言的兴起和新技术的挑战，Java不得不做出调整以便支持更加广泛的技术要求，也即java不但可以支持OOP还可以支持OOF（面向函数编程）</li>
+<li>在函数式编程语言当中，函数被当做一等公民对待。在将函数作为一等公民的编程语言中，Lambda表达式的类型是函数。但是在Java8中，有所不同。在Java8中，Lambda表达式是对象，而不是函数，它们必须依附于一类特别的对象类型——函数式接口。</li>
+<li>简单的说，在Java8中，Lambda表达式就是一个函数式接口的实例。这就是Lambda表达式和函数式接口的关系。也就是说，<strong>只要一个对象是函数式接口的实例，那么该对象就可以用Lambda表达式来表示</strong>。</li>
+<li><strong>所以以前用匿名实现类表示的现在都可以用Lambda表达式来写。</strong></li>
+</ul>
+<h2 id="5-2、Java内置的函数式接口介绍及使用举例"><a href="#5-2、Java内置的函数式接口介绍及使用举例" class="headerlink" title="5.2、Java内置的函数式接口介绍及使用举例"></a>5.2、Java内置的函数式接口介绍及使用举例</h2><table>
+<thead>
+<tr>
+<th>函数式接口</th>
+<th>参数类型</th>
+<th>返回类型</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Consumer</code> 消费型接口</td>
+<td>T</td>
+<td>void</td>
+<td>对类型为T的对象应用操作，包含方法：<code>void accept(T t)</code></td>
+</tr>
+<tr>
+<td><code>Supplier</code> 供给型接口</td>
+<td>无</td>
+<td>T</td>
+<td>返回类型为T的对象，包含方法：<code>T get()</code></td>
+</tr>
+<tr>
+<td><code>Function&lt;T, R&gt;</code>函数型接口</td>
+<td>T</td>
+<td>R</td>
+<td>对类型为T的对象应用操作，并返回结果。结果是R类型的对象。包含方法：<code>R apply(T t)</code></td>
+</tr>
+<tr>
+<td><code>Predicate</code>断定型接口</td>
+<td>T</td>
+<td>boolean</td>
+<td>确定类型为T的对象是否满足某约束，并返回boolean 值。包含方法：<code>boolean test(T t)</code></td>
+</tr>
+<tr>
+<td><code>BiFunction&lt;T,U,R&gt;</code></td>
+<td>T, U</td>
+<td>R</td>
+<td>对类型为T,U参数应用操作，返回R类型的结果。包含方法为：<code>Rapply(T t,U u)</code>;</td>
+</tr>
+<tr>
+<td><code>UnaryOperator</code>(Function子接口)</td>
+<td>T</td>
+<td>T</td>
+<td>对类型为T的对象进行一元运算，并返回T类型的结果。包含方法为：<code>Tapply(T t)</code>;</td>
+</tr>
+<tr>
+<td><code>BinaryOperator</code>(BiFunction子接口)</td>
+<td>T,T</td>
+<td>T</td>
+<td>对类型为T的对象进行二元运算，并返回T类型的结果。包含方法为：<code>Tapply(T t1,T t2)</code>;</td>
+</tr>
+<tr>
+<td><code>BiConsumer&lt;T,U&gt;</code></td>
+<td>T,U</td>
+<td>void</td>
+<td>对类型为T,U参数应用操作。包含方法为：<code>voidaccept(Tt,Uu)</code></td>
+</tr>
+<tr>
+<td><code>BiPredicate&lt;T,U&gt;</code></td>
+<td>T,U</td>
+<td>boolean</td>
+<td>包含方法为：<code>booleantest(Tt,Uu)</code></td>
+</tr>
+<tr>
+<td><code>ToIntFunction</code></td>
+<td>T</td>
+<td>int</td>
+<td>计算<code>int</code>值的函数</td>
+</tr>
+<tr>
+<td><code>ToLongFunction</code></td>
+<td>T</td>
+<td>long</td>
+<td>计算<code>long</code>值的函数</td>
+</tr>
+<tr>
+<td><code>ToDoubleFunction</code></td>
+<td>T</td>
+<td>double</td>
+<td>计算<code>double</code>值的函数</td>
+</tr>
+<tr>
+<td><code>IntFunction</code></td>
+<td>int</td>
+<td>R</td>
+<td>参数为<code>int</code>类型的函数</td>
+</tr>
+<tr>
+<td><code>LongFunction</code></td>
+<td>long</td>
+<td>R</td>
+<td>参数为<code>long</code>类型的函数</td>
+</tr>
+<tr>
+<td><code>DoubleFunction</code></td>
+<td>double</td>
+<td>R</td>
+<td>参数为<code>double</code>类型的函数</td>
+</tr>
+</tbody></table>
+<pre><code>import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+/**
+ * java内置的4大核心函数式接口
+ *
+ * 消费型接口 Consumer&lt;T&gt;     void accept(T t)
+ * 供给型接口 Supplier&lt;T&gt;     T get()
+ * 函数型接口 Function&lt;T,R&gt;   R apply(T t)
+ * 断定型接口 Predicate&lt;T&gt;    boolean test(T t)
+ */
+public class LambdaTest2 {
+
+    public void happyTime(double money, Consumer&lt;Double&gt; con) {
+        con.accept(money);
+    }
+
+    @Test
+    public void test(){
+        happyTime(30, new Consumer&lt;Double&gt;() {
+            @Override
+            public void accept(Double aDouble) {
+                System.out.println("熬夜太累了，点个外卖，价格为：" + aDouble);
+            }
+        });
+        System.out.println("+++++++++++++++++++++++++");
+
+        //Lambda表达式写法
+        happyTime(20,money -&gt; System.out.println("熬夜太累了，吃口麻辣烫，价格为：" + money));
+    }
+
+    //根据给定的规则，过滤集合中的字符串。此规则由Predicate的方法决定
+    public List&lt;String&gt; filterString(List&lt;String&gt; list, Predicate&lt;String&gt; pre){
+
+        ArrayList&lt;String&gt; filterList = new ArrayList&lt;&gt;();
+        for(String s : list){
+            if(pre.test(s)){
+                filterList.add(s);
+            }
+        }
+        return filterList;
+
+    }
+
+    @Test
+    public void test2(){
+        List&lt;String&gt; list = Arrays.asList("长安","上京","江南","渝州","凉州","兖州");
+
+        List&lt;String&gt; filterStrs = filterString(list, new Predicate&lt;String&gt;() {
+            @Override
+            public boolean test(String s) {
+                return s.contains("州");
+            }
+        });
+
+        System.out.println(filterStrs);
+
+        List&lt;String&gt; filterStrs1 = filterString(list,s -&gt; s.contains("州"));
+        System.out.println(filterStrs1);
+    }
+}</code></pre><h2 id="06、方法引用与构造器引用"><a href="#06、方法引用与构造器引用" class="headerlink" title="06、方法引用与构造器引用"></a>06、方法引用与构造器引用</h2><ul>
+<li>当要传递给Lambda体的操作，已经有实现的方法了，可以使用方法引用！</li>
+<li>方法引用可以看做是Lambda表达式深层次的表达。换句话说，方法引用就是Lambda表达式，也就是函数式接口的一个实例，通过方法的名字来指向一个方法，可以认为是Lambda表达式的一个语法糖。</li>
+<li>要求：实现接口的抽象方法的参数列表和返回值类型，必须与方法引用的方法的参数列表和返回值类型保持一致！</li>
+<li>格式：使用操作符“::” 将类(或对象) 与方法名分隔开来。</li>
+<li>如下三种主要使用情况：<ul>
+<li><strong>对象::实例方法名</strong></li>
+<li><strong>类::静态方法名</strong></li>
+<li><strong>类::实例方法名</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="6-1、方法引用的使用情况1"><a href="#6-1、方法引用的使用情况1" class="headerlink" title="6.1、方法引用的使用情况1"></a>6.1、方法引用的使用情况1</h2><blockquote>
+<p>1、Employee类</p>
+</blockquote>
+<pre><code>public class Employee {
+
+private int id;
+private String name;
+private int age;
+private double salary;
+
+public int getId() {
+return id;
+}
+
+public void setId(int id) {
+this.id = id;
+}
+
+public String getName() {
+return name;
+}
+
+public void setName(String name) {
+this.name = name;
+}
+
+public int getAge() {
+return age;
+}
+
+public void setAge(int age) {
+this.age = age;
+}
+
+public double getSalary() {
+return salary;
+}
+
+public void setSalary(double salary) {
+this.salary = salary;
+}
+
+public Employee() {
+System.out.println("Employee().....");
+}
+
+public Employee(int id) {
+this.id = id;
+System.out.println("Employee(int id).....");
+}
+
+public Employee(int id, String name) {
+this.id = id;
+this.name = name;
+}
+
+public Employee(int id, String name, int age, double salary) {
+
+this.id = id;
+this.name = name;
+this.age = age;
+this.salary = salary;
+}
+
+@Override
+public String toString() {
+return "Employee{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + ", salary=" + salary + '}';
+}
+
+@Override
+public boolean equals(Object o) {
+if (this == o)
+return true;
+if (o == null || getClass() != o.getClass())
+return false;
+
+Employee employee = (Employee) o;
+
+if (id != employee.id)
+return false;
+if (age != employee.age)
+return false;
+if (Double.compare(employee.salary, salary) != 0)
+return false;
+return name != null ? name.equals(employee.name) : employee.name == null;
+}
+
+@Override
+public int hashCode() {
+int result;
+long temp;
+result = id;
+result = 31 * result + (name != null ? name.hashCode() : 0);
+result = 31 * result + age;
+temp = Double.doubleToLongBits(salary);
+result = 31 * result + (int) (temp ^ (temp &gt;&gt;&gt; 32));
+return result;
+}
+}</code></pre><blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>import org.junit.Test;
+
+import java.io.PrintStream;
+import java.util.Comparator;
+import java.util.function.BiPredicate;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+/**
+ * 方法引用的使用
+ *
+ * 1.使用情境：当要传递给Lambda体的操作，已经有实现的方法了，可以使用方法引用！
+ *
+ * 2.方法引用，本质上就是Lambda表达式，而Lambda表达式作为函数式接口的实例。所以
+ *   方法引用，也是函数式接口的实例。
+ *
+ * 3. 使用格式：  类(或对象) :: 方法名
+ *
+ * 4. 具体分为如下的三种情况：
+ *    情况1     对象 :: 非静态方法
+ *    情况2     类 :: 静态方法
+ *
+ *    情况3     类 :: 非静态方法
+ *
+ * 5. 方法引用使用的要求：要求接口中的抽象方法的形参列表和返回值类型与方法引用的方法的
+ *    形参列表和返回值类型相同！（针对于情况1和情况2）
+ */
+public class MethodRefTest {
+
+    // 情况一：对象 :: 实例方法
+    //Consumer中的void accept(T t)
+    //PrintStream中的void println(T t)
+    @Test
+    public void test() {
+        Consumer&lt;String&gt; c1 = str -&gt; System.out.println(str);
+        c1.accept("兖州");
+
+        System.out.println("+++++++++++++");
+        PrintStream ps = System.out;
+        Consumer&lt;String&gt; c2 = ps::println;
+        c2.accept("xian");
+    }
+
+    //Supplier中的T get()
+    //Employee中的String getName()
+    @Test
+    public void test2() {
+        Employee emp = new Employee(004,"Nice",19,4200);
+
+        Supplier&lt;String&gt; sk1 = () -&gt; emp.getName();
+        System.out.println(sk1.get());
+
+        System.out.println("*******************");
+        Supplier&lt;String&gt; sk2 = emp::getName;
+        System.out.println(sk2.get());
+    }
+}</code></pre><h2 id="6-2、方法引用的使用情况2"><a href="#6-2、方法引用的使用情况2" class="headerlink" title="6.2、方法引用的使用情况2"></a>6.2、方法引用的使用情况2</h2><blockquote>
+<p>1、Employee类——同上</p>
+</blockquote>
+<blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>import org.junit.Test;
+import java.util.Comparator;
+import java.util.function.Function;
+
+public class MethodRefTest {
+
+    // 情况二：类 :: 静态方法
+    //Comparator中的int compare(T t1,T t2)
+    //Integer中的int compare(T t1,T t2)
+    @Test
+    public void test3() {
+        Comparator&lt;Integer&gt; com1 = (t1, t2) -&gt; Integer.compare(t1,t2);
+        System.out.println(com1.compare(21,20));
+
+        System.out.println("+++++++++++++++");
+
+        Comparator&lt;Integer&gt; com2 = Integer::compare;
+        System.out.println(com2.compare(15,7));
+    }
+
+    //Function中的R apply(T t)
+    //Math中的Long round(Double d)
+    @Test
+    public void test4() {
+        Function&lt;Double,Long&gt; func = new Function&lt;Double, Long&gt;() {
+            @Override
+            public Long apply(Double d) {
+                return Math.round(d);
+            }
+        };
+
+        System.out.println("++++++++++++++++++");
+
+        Function&lt;Double,Long&gt; func1 = d -&gt; Math.round(d);
+        System.out.println(func1.apply(14.1));
+
+        System.out.println("++++++++++++++++++");
+
+        Function&lt;Double,Long&gt; func2 = Math::round;
+        System.out.println(func2.apply(17.4));
+    }
+}</code></pre><h2 id="6-2、方法引用的使用情况3"><a href="#6-2、方法引用的使用情况3" class="headerlink" title="6.2、方法引用的使用情况3"></a>6.2、方法引用的使用情况3</h2><blockquote>
+<p>1、Employee类——同上</p>
+</blockquote>
+<blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>import org.junit.Test;
+
+import java.util.Comparator;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+
+public class MethodRefTest {
+
+    // 情况三：类 :: 实例方法  (有难度)
+    // Comparator中的int comapre(T t1,T t2)
+    // String中的int t1.compareTo(t2)
+    @Test
+    public void test5() {
+        Comparator&lt;String&gt; com1 = (s1,s2) -&gt; s1.compareTo(s2);
+        System.out.println(com1.compare("abc","abd"));
+
+        System.out.println("++++++++++++++++");
+
+        Comparator&lt;String&gt; com2 = String :: compareTo;
+        System.out.println(com2.compare("abd","abm"));
+    }
+
+    //BiPredicate中的boolean test(T t1, T t2);
+    //String中的boolean t1.equals(t2)
+    @Test
+    public void test6() {
+        BiPredicate&lt;String,String&gt; pre1 = (s1, s2) -&gt; s1.equals(s2);
+        System.out.println(pre1.test("MON","MON"));
+
+        System.out.println("++++++++++++++++++++");
+
+        BiPredicate&lt;String,String&gt; pre2 = String :: equals;
+        System.out.println(pre2.test("MON","MON"));
+    }
+
+    // Function中的R apply(T t)
+    // Employee中的String getName();
+    @Test
+    public void test7() {
+        Employee employee = new Employee(007, "Ton", 21, 8000);
+
+        Function&lt;Employee,String&gt; func1 = e -&gt; e.getName();
+        System.out.println(func1.apply(employee));
+
+        System.out.println("++++++++++++++++++++++++");
+
+        Function&lt;Employee,String&gt; f2 = Employee::getName;
+        System.out.println(f2.apply(employee));
+    }
+}</code></pre><h2 id="6-4、构造器引用与数组引用的使用"><a href="#6-4、构造器引用与数组引用的使用" class="headerlink" title="6.4、构造器引用与数组引用的使用"></a>6.4、构造器引用与<a href="https://so.csdn.net/so/search?q=%E6%95%B0%E7%BB%84&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">数组</a>引用的使用</h2><blockquote>
+<p>格式：ClassName::new</p>
+</blockquote>
+<p>与函数式接口相结合，自动与函数式接口中方法兼容。</p>
+<p>可以把构造器引用赋值给定义的方法，要求构造器参数列表要与接口中抽象方法的参数列表一致！且方法的返回值即为构造器对应类的对象。</p>
+<blockquote>
+<p>1、Employee类——同上</p>
+</blockquote>
+<blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+/**
+ * 一、构造器引用
+ *      和方法引用类似，函数式接口的抽象方法的形参列表和构造器的形参列表一致。
+ *      抽象方法的返回值类型即为构造器所属的类的类型
+ *
+ * 二、数组引用
+ *     可以把数组看做是一个特殊的类，则写法与构造器引用一致。 
+ */
+public class MethodRefTest {
+
+    //构造器引用
+    //Supplier中的T get()
+    //Employee的空参构造器：Employee()
+    @Test
+    public void test() {
+        Supplier&lt;Employee&gt; sup = new Supplier&lt;Employee&gt;() {
+            @Override
+            public Employee get() {
+                return new Employee();
+            }
+        };
+        System.out.println("+++++++++++++++++++");
+
+        Supplier&lt;Employee&gt; sk1 = () -&gt; new Employee();
+        System.out.println(sk1.get());
+
+        System.out.println("+++++++++++++++++++");
+
+        Supplier&lt;Employee&gt; sk2 = Employee::new;
+        System.out.println(sk2.get());
+    }
+
+    //Function中的R apply(T t)
+    @Test
+    public void test2() {
+        Function&lt;Integer, Employee&gt; f1 = id -&gt; new Employee(id);
+        Employee employee = f1.apply(7793);
+        System.out.println(employee);
+
+        System.out.println("+++++++++++++++++++");
+
+        Function&lt;Integer, Employee&gt; f2 = Employee::new;
+        Employee employee1 = f2.apply(4545);
+        System.out.println(employee1);
+    }
+
+    //BiFunction中的R apply(T t,U u)
+    @Test
+    public void test3() {
+        BiFunction&lt;Integer, String, Employee&gt; f1 = (id, name) -&gt; new Employee(id, name);
+        System.out.println(f1.apply(2513, "Fruk"));
+
+        System.out.println("*******************");
+
+        BiFunction&lt;Integer, String, Employee&gt; f2 = Employee::new;
+        System.out.println(f2.apply(9526, "Bon"));
+    }
+
+    //数组引用
+    //Function中的R apply(T t)
+    @Test
+    public void test4() {
+        Function&lt;Integer, String[]&gt; f1 = length -&gt; new String[length];
+        String[] arr1 = f1.apply(7);
+        System.out.println(Arrays.toString(arr1));
+
+        System.out.println("+++++++++++++++++++");
+
+        Function&lt;Integer, String[]&gt; f2 = String[]::new;
+        String[] arr2 = f2.apply(9);
+        System.out.println(Arrays.toString(arr2));
+    }
+}</code></pre><h2 id="07、强大的Stream-API"><a href="#07、强大的Stream-API" class="headerlink" title="07、强大的Stream API"></a>07、强大的Stream <a href="https://so.csdn.net/so/search?q=API&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">API</a></h2><h2 id="7-1、Stream-API的概述"><a href="#7-1、Stream-API的概述" class="headerlink" title="7.1、Stream API的概述"></a>7.1、Stream API的概述</h2><ul>
+<li>Java8中有两大最为重要的改变。第一个是Lambda 表达式；另外一个则是Stream API。</li>
+<li>Stream API ( <code>java.util.stream</code>)把真正的函数式编程风格引入到Java中。这是目前为止对Java类库最好的补充，因为Stream API可以极大提供Java程序员的生产力，让程序员写出高效率、干净、简洁的代码。</li>
+<li>Stream 是Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用SQL 执行的数据库查询。也可以使用Stream API 来并行执行操作。简言之，Stream API 提供了一种高效且易于使用的处理数据的方式。</li>
+<li><strong>为什么要使用Stream API</strong><ul>
+<li><strong>实际开发中，项目中多数数据源都来自于Mysql，Oracle等。但现在数据源可以更多了，有MongDB，Radis等，而这些NoSQL的数据就需要Java层面去处理</strong>。</li>
+<li><strong>Stream 和Collection 集合的区别：Collection 是一种静态的内存数据结构，而Stream 是有关计算的。前者是主要面向内存，存储在内存中，后者主要是面向CPU，通过CPU 实现计算</strong>。</li>
+</ul>
+</li>
+</ul>
+<pre><code>/**
+ * 1.Stream关注的是对数据的运算，与CPU打交道
+ *   集合关注的是数据的存储，与内存打交道
+ *
+ * 2.
+ * ①Stream 自己不会存储元素。
+ * ②Stream 不会改变源对象。相反，他们会返回一个持有结果的新Stream。
+ * ③Stream 操作是延迟执行的。这意味着他们会等到需要结果的时候才执行
+ *
+ * 3.Stream 执行流程
+ * ① Stream的实例化
+ * ② 一系列的中间操作（过滤、映射、...)
+ * ③ 终止操作
+ *
+ * 4.说明：
+ * 4.1 一个中间操作链，对数据源的数据进行处理
+ * 4.2 一旦执行终止操作，就执行中间操作链，并产生结果。之后，不会再被使用
+ */</code></pre><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/c4f4c62e55b8182fa7c99cd15a0d7de0.png" alt=""></p>
+<h2 id="7-2、Stream的实例化"><a href="#7-2、Stream的实例化" class="headerlink" title="7.2、Stream的实例化"></a>7.2、Stream的实例化</h2><blockquote>
+<p>1、EmployeeData类</p>
+</blockquote>
+<pre><code>import java.util.ArrayList;
+import java.util.List;
+/**
+ * 提供用于测试的数据
+ */
+public class EmployeeData {
+
+public static List&lt;Employee&gt; getEmployees(){
+List&lt;Employee&gt; list = new ArrayList&lt;&gt;();
+
+list.add(new Employee(1001, "马化腾", 34, 6000.38));
+list.add(new Employee(1002, "马云", 12, 9876.12));
+list.add(new Employee(1003, "刘强东", 33, 3000.82));
+list.add(new Employee(1004, "雷军", 26, 7657.37));
+list.add(new Employee(1005, "李彦宏", 65, 5555.32));
+list.add(new Employee(1006, "比尔盖茨", 42, 9500.43));
+list.add(new Employee(1007, "任正非", 26, 4333.32));
+list.add(new Employee(1008, "扎克伯格", 35, 2500.32));
+
+return list;
+}
+}</code></pre><blockquote>
+<p>2、Employee类</p>
+</blockquote>
+<pre><code>public class Employee {
+
+private int id;
+private String name;
+private int age;
+private double salary;
+
+public int getId() {
+return id;
+}
+
+public void setId(int id) {
+this.id = id;
+}
+
+public String getName() {
+return name;
+}
+
+public void setName(String name) {
+this.name = name;
+}
+
+public int getAge() {
+return age;
+}
+
+public void setAge(int age) {
+this.age = age;
+}
+
+public double getSalary() {
+return salary;
+}
+
+public void setSalary(double salary) {
+this.salary = salary;
+}
+
+public Employee() {
+System.out.println("Employee().....");
+}
+
+public Employee(int id) {
+this.id = id;
+System.out.println("Employee(int id).....");
+}
+
+public Employee(int id, String name) {
+this.id = id;
+this.name = name;
+}
+
+public Employee(int id, String name, int age, double salary) {
+
+this.id = id;
+this.name = name;
+this.age = age;
+this.salary = salary;
+}
+
+@Override
+public String toString() {
+return "Employee{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + ", salary=" + salary + '}';
+}
+
+@Override
+public boolean equals(Object o) {
+if (this == o)
+return true;
+if (o == null || getClass() != o.getClass())
+return false;
+
+Employee employee = (Employee) o;
+
+if (id != employee.id)
+return false;
+if (age != employee.age)
+return false;
+if (Double.compare(employee.salary, salary) != 0)
+return false;
+return name != null ? name.equals(employee.name) : employee.name == null;
+}
+
+@Override
+public int hashCode() {
+int result;
+long temp;
+result = id;
+result = 31 * result + (name != null ? name.hashCode() : 0);
+result = 31 * result + age;
+temp = Double.doubleToLongBits(salary);
+result = 31 * result + (int) (temp ^ (temp &gt;&gt;&gt; 32));
+return result;
+}
+}</code></pre><blockquote>
+<p>3、测试类</p>
+</blockquote>
+<pre><code>import github2.Employee;
+import github2.EmployeeData;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+/**
+ * 测试Stream的实例化
+ */
+public class StreamAPITest {
+
+    //创建 Stream方式一：通过集合
+    @Test
+    public void test(){
+        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+
+//        default Stream&lt;E&gt; stream() : 返回一个顺序流
+        Stream&lt;Employee&gt; stream = employees.stream();
+
+//        default Stream&lt;E&gt; parallelStream() : 返回一个并行流
+        Stream&lt;Employee&gt; parallelStream = employees.parallelStream();
+    }
+
+    //创建 Stream方式二：通过数组
+    @Test
+    public void test2(){
+        int[] arr = new int[]{1,2,3,4,5,6};
+        //调用Arrays类的static &lt;T&gt; Stream&lt;T&gt; stream(T[] array): 返回一个流
+        IntStream stream = Arrays.stream(arr);
+
+        Employee e1 = new Employee(1001,"Hom");
+        Employee e2 = new Employee(1002,"Nut");
+        Employee[] arr1 = new Employee[]{e1,e2};
+
+        Stream&lt;Employee&gt; stream1 = Arrays.stream(arr1);
+    }
+    //创建 Stream方式三：通过Stream的of()
+    @Test
+    public void test3(){
+        Stream&lt;Integer&gt; stream = Stream.of(1, 2, 3, 4, 5, 6);
+    }
+
+    //创建 Stream方式四：创建无限流
+    @Test
+    public void test4(){
+//      迭代
+//      public static&lt;T&gt; Stream&lt;T&gt; iterate(final T seed, final UnaryOperator&lt;T&gt; f)
+        //遍历前10个偶数
+        Stream.iterate(0, t -&gt; t + 2).limit(10).forEach(System.out::println);
+
+//      生成
+//      public static&lt;T&gt; Stream&lt;T&gt; generate(Supplier&lt;T&gt; s)
+        Stream.generate(Math::random).limit(10).forEach(System.out::println);
+    }
+}</code></pre><h2 id="7-3、Stream的中间操作：筛选与切片"><a href="#7-3、Stream的中间操作：筛选与切片" class="headerlink" title="7.3、Stream的中间操作：筛选与切片"></a>7.3、Stream的中间操作：筛选与切片</h2><p>多个中间操作可以连接起来形成一个流水线，除非流水线上触发终止操作，否则中间操作不会执行任何的处理！而在终止操作时一次性全部处理，称为“惰性求值”。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>filter(Predicate p)</code></td>
+<td>接收Lambda ，从流中排除某些元素</td>
+</tr>
+<tr>
+<td><code>distinct()</code></td>
+<td>筛选，通过流所生成元素的hashCode() 和equals() 去除重复元素</td>
+</tr>
+<tr>
+<td><code>limit(long maxSize)</code></td>
+<td>截断流，使其元素不超过给定数量</td>
+</tr>
+<tr>
+<td><code>skip(long n)</code></td>
+<td>跳过元素，返回一个扔掉了前n 个元素的流。若流中元素不足n 个，则返回一个空流。与<code>limit(n)</code>互补</td>
+</tr>
+</tbody></table>
+<pre><code>import github2.Employee;
+import github2.EmployeeData;
+import org.junit.Test;
+
+import java.util.List;
+import java.util.stream.Stream;
+
+/**
+ * 测试Stream的中间操作
+ */
+public class StreamAPITest2 {
+
+    //1-筛选与切片
+    @Test
+    public void test(){
+        List&lt;Employee&gt; list = EmployeeData.getEmployees();
+//        filter(Predicate p)——接收 Lambda ， 从流中排除某些元素。
+        Stream&lt;Employee&gt; stream = list.stream();
+        //练习：查询员工表中薪资大于7000的员工信息
+        stream.filter(e -&gt; e.getSalary() &gt; 7000).forEach(System.out::println);
+
+        System.out.println("+++++++++++++++++++++++");
+//        limit(n)——截断流，使其元素不超过给定数量。
+        list.stream().limit(3).forEach(System.out::println);
+        System.out.println("+++++++++++++++++++++++");
+
+//        skip(n) —— 跳过元素，返回一个扔掉了前 n 个元素的流。若流中元素不足 n 个，则返回一个空流。与 limit(n) 互补
+        list.stream().skip(3).forEach(System.out::println);
+
+        System.out.println("+++++++++++++++++++++++");
+//        distinct()——筛选，通过流所生成元素的 hashCode() 和 equals() 去除重复元素
+
+        list.add(new Employee(1013,"李飞",42,8500));
+        list.add(new Employee(1013,"李飞",41,8200));
+        list.add(new Employee(1013,"李飞",28,6000));
+        list.add(new Employee(1013,"李飞",39,7800));
+        list.add(new Employee(1013,"李飞",40,8000));
+
+//        System.out.println(list);
+
+        list.stream().distinct().forEach(System.out::println);
+    }
+}</code></pre><h2 id="7-4、Stream的中间操作：映射"><a href="#7-4、Stream的中间操作：映射" class="headerlink" title="7.4、Stream的中间操作：映射"></a>7.4、Stream的中间操作：映射</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>map(Function f)</code></td>
+<td>接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。</td>
+</tr>
+<tr>
+<td><code>mapToDouble(ToDoubleFunction f)</code></td>
+<td>接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的DoubleStream。</td>
+</tr>
+<tr>
+<td><code>mapToInt(ToIntFunction f)</code></td>
+<td>接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的IntStream。</td>
+</tr>
+<tr>
+<td><code>mapToLong(ToLongFunction f)</code></td>
+<td>接收一个函数作为参数，该函数会被应用到每个元素上，产生一个新的LongStream。</td>
+</tr>
+<tr>
+<td><code>flatMap(Function f)</code></td>
+<td>接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流</td>
+</tr>
+</tbody></table>
+<pre><code>import github2.Employee;
+import github2.EmployeeData;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+/**
+ * 测试Stream的中间操作
+ */
+public class StreamAPITest2 {
+
+    //2-映射
+    @Test
+    public void test2(){
+//        map(Function f)——接收一个函数作为参数，将元素转换成其他形式或提取信息，该函数会被应用到每个元素上，并将其映射成一个新的元素。
+        List&lt;String&gt; list = Arrays.asList("aa", "bb", "cc", "dd");
+        list.stream().map(str -&gt; str.toUpperCase()).forEach(System.out::println);
+
+//        练习1：获取员工姓名长度大于3的员工的姓名。
+        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+        Stream&lt;String&gt; namesStream = employees.stream().map(Employee::getName);
+        namesStream.filter(name -&gt; name.length() &gt; 3).forEach(System.out::println);
+        System.out.println();
+
+        //练习2：
+        Stream&lt;Stream&lt;Character&gt;&gt; streamStream = list.stream().map(StreamAPITest2::fromStringToStream);
+
+        streamStream.forEach(s -&gt;{
+            s.forEach(System.out::println);
+        });
+        System.out.println("++++++++++++++++++++++");
+//        flatMap(Function f)——接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流。
+        Stream&lt;Character&gt; characterStream = list.stream().flatMap(StreamAPITest2::fromStringToStream);
+
+        characterStream.forEach(System.out::println);
+    }
+
+    //将字符串中的多个字符构成的集合转换为对应的Stream的实例
+    public static Stream&lt;Character&gt; fromStringToStream(String str){//aa
+        ArrayList&lt;Character&gt; list = new ArrayList&lt;&gt;();
+        for(Character c : str.toCharArray()){
+            list.add(c);
+        }
+        return list.stream();
+    }
+
+    @Test
+    public void test3(){
+        ArrayList list1 = new ArrayList();
+        list1.add(25);
+        list1.add(33);
+        list1.add(14);
+
+        ArrayList list2 = new ArrayList();
+        list2.add(51);
+        list2.add(23);
+        list2.add(61);
+
+//        list1.add(list2);
+        list1.addAll(list2);
+        System.out.println(list1);
+    }
+}</code></pre><h2 id="7-5、Stream的中间操作：排序"><a href="#7-5、Stream的中间操作：排序" class="headerlink" title="7.5、Stream的中间操作：排序"></a>7.5、Stream的中间操作：排序</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sorted()</code></td>
+<td>产生一个新流，其中按自然顺序排序</td>
+</tr>
+<tr>
+<td><code>sorted(Comparator com)</code></td>
+<td>产生一个新流，其中按比较器顺序排序</td>
+</tr>
+</tbody></table>
+<pre><code>import github2.Employee;
+import github2.EmployeeData;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+/**
+ * 测试Stream的中间操作
+ */
+public class StreamAPITest2 {
+
+    //3-排序
+    @Test
+    public void test4(){
+//        sorted()——自然排序
+        List&lt;Integer&gt; list = Arrays.asList(25,45,36,12,85,64,72,-95,4);
+        list.stream().sorted().forEach(System.out::println);
+        //抛异常，原因:Employee没有实现Comparable接口
+//        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+//        employees.stream().sorted().forEach(System.out::println);
+
+
+//        sorted(Comparator com)——定制排序
+
+        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+        employees.stream().sorted( (e1,e2) -&gt; {
+
+            int ageValue = Integer.compare(e1.getAge(),e2.getAge());
+            if(ageValue != 0){
+                return ageValue;
+            }else{
+                return -Double.compare(e1.getSalary(),e2.getSalary());
+            }
+
+        }).forEach(System.out::println);
+    }
+}</code></pre><h2 id="7-6、Stream的终止操作：匹配与查找"><a href="#7-6、Stream的终止操作：匹配与查找" class="headerlink" title="7.6、Stream的终止操作：匹配与查找"></a>7.6、Stream的终止操作：匹配与查找</h2><ul>
+<li>终端操作会从流的流水线生成结果。其结果可以是任何不是流的值，例如：List、Integer，甚至是void 。</li>
+<li>流进行了终止操作后，不能再次使用。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>allMatch(Predicate p)</code></td>
+<td>检查是否匹配所有元素</td>
+</tr>
+<tr>
+<td><code>anyMatch(Predicate p)</code></td>
+<td>检查是否至少匹配一个元素</td>
+</tr>
+<tr>
+<td><code>noneMatch(Predicate p)</code></td>
+<td>检查是否没有匹配所有元素</td>
+</tr>
+<tr>
+<td><code>findFirst()</code></td>
+<td>返回第一个元素</td>
+</tr>
+<tr>
+<td><code>findAny()</code></td>
+<td>返回当前流中的任意元素</td>
+</tr>
+<tr>
+<td><code>count()</code></td>
+<td>返回流中元素总数</td>
+</tr>
+<tr>
+<td><code>max(Comparator c)</code></td>
+<td>返回流中最大值</td>
+</tr>
+<tr>
+<td><code>min(Comparator c)</code></td>
+<td>返回流中最小值</td>
+</tr>
+<tr>
+<td><code>forEach(Consumer c)</code></td>
+<td>内部迭代(使用Collection 接口需要用户去做迭代，称为外部迭代。相反，Stream API 使用内部迭代——它帮你把迭代做了)</td>
+</tr>
+</tbody></table>
+<pre><code>import github2.Employee;
+import github2.EmployeeData;
+import org.junit.Test;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+public class StreamAPITest3 {
+    //1-匹配与查找
+    @Test
+    public void test(){
+        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+
+//        allMatch(Predicate p)——检查是否匹配所有元素。
+//          练习：是否所有的员工的年龄都大于18
+        boolean allMatch = employees.stream().allMatch(e -&gt; e.getAge() &gt; 23);
+        System.out.println(allMatch);
+
+//        anyMatch(Predicate p)——检查是否至少匹配一个元素。
+//         练习：是否存在员工的工资大于 10000
+        boolean anyMatch = employees.stream().anyMatch(e -&gt; e.getSalary() &gt; 9000);
+        System.out.println(anyMatch);
+
+//        noneMatch(Predicate p)——检查是否没有匹配的元素。
+//          练习：是否存在员工姓“马”
+        boolean noneMatch = employees.stream().noneMatch(e -&gt; e.getName().startsWith("马"));
+        System.out.println(noneMatch);
+
+//        findFirst——返回第一个元素
+        Optional&lt;Employee&gt; employee = employees.stream().findFirst();
+        System.out.println(employee);
+
+//        findAny——返回当前流中的任意元素
+        Optional&lt;Employee&gt; employee1 = employees.parallelStream().findAny();
+        System.out.println(employee1);
+    }
+
+    @Test
+    public void test2(){
+        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+
+        // count——返回流中元素的总个数
+        long count = employees.stream().filter(e -&gt; e.getSalary() &gt; 4500).count();
+        System.out.println(count);
+
+//        max(Comparator c)——返回流中最大值
+//        练习：返回最高的工资：
+        Stream&lt;Double&gt; salaryStream = employees.stream().map(e -&gt; e.getSalary());
+        Optional&lt;Double&gt; maxSalary = salaryStream.max(Double::compare);
+        System.out.println(maxSalary);
+
+//        min(Comparator c)——返回流中最小值
+//        练习：返回最低工资的员工
+        Optional&lt;Employee&gt; employee = employees.stream().min((e1, e2) -&gt; Double.compare(e1.getSalary(), e2.getSalary()));
+        System.out.println(employee);
+        System.out.println();
+
+//        forEach(Consumer c)——内部迭代
+        employees.stream().forEach(System.out::println);
+
+        //使用集合的遍历操作
+        employees.forEach(System.out::println);
+    }
+}</code></pre><h2 id="7-7、Stream的终止操作：归约"><a href="#7-7、Stream的终止操作：归约" class="headerlink" title="7.7、Stream的终止操作：归约"></a>7.7、Stream的终止操作：归约</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>reduce(T iden, BinaryOperator b)</code></td>
+<td>可以将流中元素反复结合起来，得到一个值。返回T</td>
+</tr>
+<tr>
+<td><code>reduce(BinaryOperator b)</code></td>
+<td>可以将流中元素反复结合起来，得到一个值。返回Optional</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>备注：map 和reduce 的连接通常称为map-reduce 模式，因Google 用它来进行网络搜索而出名。</p>
+</blockquote>
+<pre><code>import github2.Employee;
+import github2.EmployeeData;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+public class StreamAPITest3 {
+
+    //2-归约
+    @Test
+    public void test3(){
+//        reduce(T identity, BinaryOperator)——可以将流中元素反复结合起来，得到一个值。返回 T
+//        练习1：计算1-10的自然数的和
+        List&lt;Integer&gt; list = Arrays.asList(72,25,32,34,43,56,81,15,29,71);
+        Integer sum = list.stream().reduce(0, Integer::sum);
+        System.out.println(sum);
+
+//        reduce(BinaryOperator) ——可以将流中元素反复结合起来，得到一个值。返回 Optional&lt;T&gt;
+//        练习2：计算公司所有员工工资的总和
+        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+        Stream&lt;Double&gt; salaryStream = employees.stream().map(Employee::getSalary);
+//        Optional&lt;Double&gt; sumMoney = salaryStream.reduce(Double::sum);
+        Optional&lt;Double&gt; sumMoney = salaryStream.reduce((d1,d2) -&gt; d1 + d2);
+        System.out.println(sumMoney.get());
+    }
+}</code></pre><h2 id="7-8、Stream的终止操作：收集"><a href="#7-8、Stream的终止操作：收集" class="headerlink" title="7.8、Stream的终止操作：收集"></a>7.8、Stream的终止操作：收集</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>collect(Collector c)</code></td>
+<td>将流转换为其他形式。接收一个Collector接口的实现，用于给Stream中元素做汇总的方法</td>
+</tr>
+</tbody></table>
+<pre><code>import github2.Employee;
+import github2.EmployeeData;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class StreamAPITest3 {
+
+    //3-收集
+    @Test
+    public void test4() {
+//        collect(Collector c)——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
+//        练习1：查找工资大于6000的员工，结果返回为一个List或Set
+
+        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
+        List&lt;Employee&gt; employeeList = employees.stream().filter(e -&gt; e.getSalary() &gt; 6000).collect(Collectors.toList());
+
+        employeeList.forEach(System.out::println);
+
+        System.out.println("++++++++++++++++++");
+
+        Set&lt;Employee&gt; employeeSet = employees.stream().filter(e -&gt; e.getSalary() &gt; 6000).collect(Collectors.toSet());
+
+        employeeSet.forEach(System.out::println);
+    }
+}</code></pre><blockquote>
+<p><code>Collector</code> 接口中方法的实现决定了如何对流执行收集的操作(如收集到<code>List、Set、Map</code>)。</p>
+<p><code>Collectors</code>实用类提供了很多静态方法，可以方便地创建常见收集器实例，具体方法与实例如下表：</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/bd29b1fd138291421630d2d542675cf7.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/0d4c3b7ce571549e8940d8c9e8192df1.png" alt=""></p>
+<h2 id="08、Optional类"><a href="#08、Optional类" class="headerlink" title="08、Optional类"></a>08、Optional类</h2><h2 id="8-1、Optional类的介绍"><a href="#8-1、Optional类的介绍" class="headerlink" title="8.1、Optional类的介绍"></a>8.1、Optional类的介绍</h2><p>到目前为止，臭名昭著的空指针异常是导致Java应用程序失败的最常见原因。以前，为了解决空指针异常，Google公司著名的Guava项目引入了Optional类，Guava通过使用检查空值的方式来防止代码污染，它鼓励程序员写更干净的代码。受到Google Guava的启发，Optional类已经成为Java 8类库的一部分。</p>
+<ul>
+<li><code>Optional</code> 类(<code>java.util.Optional</code>) 是一个容器类，它可以保存类型T的值，代表这个值存在。或者仅仅保存<code>null</code>，表示这个值不存在。原来用<code>null</code> 表示一个值不存在，现<code>在Optional</code> 可以更好的表达这个概念。并且可以避免空指针异常。</li>
+<li>Optional类的Javadoc描述如下：这是一个可以为null的容器对象。如果值存在则<code>isPresent()</code>方法会返回<code>true</code>，调用<code>get()</code>方法会返回该对象。</li>
+<li>Optional提供很多有用的方法，这样我们就不用显式进行空值检测。</li>
+<li>创建Optional类对象的方法：<ul>
+<li><code>Optional.of(T t)</code>: 创建一个Optional 实例，t必须非空；</li>
+<li><code>Optional.empty()</code> : 创建一个空的Optional 实例</li>
+<li><code>Optional.ofNullable(T t</code>)：t可以为null</li>
+</ul>
+</li>
+<li>判断Optional容器中是否包含对象：<ul>
+<li><code>boolean isPresent()</code> : 判断是否包含对象</li>
+<li><code>void ifPresent(Consumer&lt;? super T&gt; consumer)</code> ：如果有值，就执行Consumer接口的实现代码，并且该值会作为参数传给它。</li>
+</ul>
+</li>
+<li>获取Optional容器的对象：<ul>
+<li><code>T get()</code>: 如果调用对象包含值，返回该值，否则抛异常</li>
+<li><code>T orElse(T other)</code> ：如果有值则将其返回，否则返回指定的other对象。</li>
+<li><code>T orElseGet(Supplier&lt;? extends T&gt; other)</code> ：如果有值则将其返回，否则返回由Supplier接口实现提供的对象。</li>
+<li><code>T orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</code> ：如果有值则将其返回，否则抛出由Supplier接口实现提供的异常。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>1、Boy类</p>
+</blockquote>
+<pre><code>public class Boy {
+    private Girl girl;
+
+    public Boy() {
+    }
+
+    public Boy(Girl girl) {
+        this.girl = girl;
+    }
+
+    public Girl getGirl() {
+        return girl;
+    }
+
+    public void setGirl(Girl girl) {
+        this.girl = girl;
+    }
+
+    @Override
+    public String toString() {
+        return "Boy{" +
+                "girl=" + girl +
+                '}';
+    }
+}</code></pre><blockquote>
+<p>2、Girl类</p>
+</blockquote>
+<pre><code>public class Girl {
+    private String name;
+
+    public Girl() {
+    }
+
+    public Girl(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Girl{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+}</code></pre><blockquote>
+<p>3、测试类</p>
+</blockquote>
+<pre><code>import org.junit.Test;
+import java.util.Optional;
+
+/**
+ * Optional类：为了在程序中避免出现空指针异常而创建的。
+ *
+ * 常用的方法：ofNullable(T t)
+ *           orElse(T t)
+ */
+public class OptionalTest {
+    /**
+     * Optional.of(T t) : 创建一个 Optional 实例，t必须非空；
+     * Optional.empty() : 创建一个空的 Optional 实例
+     * Optional.ofNullable(T t)：t可以为null
+     */
+    @Test
+    public void test(){
+        Girl girl = new Girl();
+//        girl = null;
+        //of(T t):保证t是非空的
+        Optional&lt;Girl&gt; optionalGirl = Optional.of(girl);
+    }
+
+    @Test
+    public void test2(){
+        Girl girl = new Girl();
+//        girl = null;
+        //ofNullable(T t)：t可以为null
+        Optional&lt;Girl&gt; optionalGirl = Optional.ofNullable(girl);
+        System.out.println(optionalGirl);
+        //orElse(T t1):如果单前的Optional内部封装的t是非空的，则返回内部的t.
+        //如果内部的t是空的，则返回orElse()方法中的参数t1.
+        Girl girl1 = optionalGirl.orElse(new Girl(""));
+        System.out.println(girl1);
+    }
+}</code></pre><h2 id="8-2、Optional类的使用举例"><a href="#8-2、Optional类的使用举例" class="headerlink" title="8.2、Optional类的使用举例"></a>8.2、Optional类的使用举例</h2><blockquote>
+<p>1、测试类</p>
+</blockquote>
+<pre><code>import org.junit.Test;
+import java.util.Optional;
+
+/**
+ * Optional类：为了在程序中避免出现空指针异常而创建的。
+ *
+ * 常用的方法：ofNullable(T t)
+ *           orElse(T t)
+ */
+public class OptionalTest {
+
+    @Test
+    public void test3(){
+        Boy boy = new Boy();
+        boy = null;
+        String girlName = getGirlName(boy);
+        System.out.println(girlName);
+    }
+
+    private String getGirlName(Boy boy) {
+        return boy.getGirl().getName();
+    }
+
+    //优化以后的getGirlName():
+    public String getGirlName1(Boy boy){
+        if(boy != null){
+            Girl girl = boy.getGirl();
+            if(girl != null){
+                return girl.getName();
+            }
+        }
+        return null;
+    }
+
+    @Test
+    public void test4(){
+        Boy boy = new Boy();
+        boy = null;
+        String girlName = getGirlName1(boy);
+        System.out.println(girlName);
+    }
+
+    //使用Optional类的getGirlName():
+    public String getGirlName2(Boy boy){
+
+        Optional&lt;Boy&gt; boyOptional = Optional.ofNullable(boy);
+        //此时的boy1一定非空
+        Boy boy1 = boyOptional.orElse(new Boy(new Girl("朱淑贞")));
+
+        Girl girl = boy1.getGirl();
+
+        Optional&lt;Girl&gt; girlOptional = Optional.ofNullable(girl);
+        //girl1一定非空
+        Girl girl1 = girlOptional.orElse(new Girl("阿青"));
+
+        return girl1.getName();
+    }
+
+    @Test
+    public void test5(){
+        Boy boy = null;
+        boy = new Boy();
+        boy = new Boy(new Girl("李清照"));
+        String girlName = getGirlName2(boy);
+        System.out.println(girlName);
+    }
+}</code></pre><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.bmp" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.bmp" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://bit-1024.github.io" class="b-link-green">毛毛驿站</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2023/04/09/shi-ba-java8-xin-te-xing/" class="b-link-green">十八：Java8新特性</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+    /* valine 评论框增加背景图片 */
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("") 100% 100% no-repeat;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    /* 修复评论第一行位置错位 */
+    .v .vlist .vcard {
+    padding-top: 2.5em !important ;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/libs//libs/jQuery-emoji/dist/css/jquery.emoji.css">
+<script src="/libs//libs/jQuery-emoji/dist/js/jquery.emoji.min.js"></script>
+<script src="/libs//libs/jQuery-emoji/dist/js/emoji.list.js"></script> -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'axQghygDBjenYDrn9N6oN2lR-gzGzoHsz',
+        appKey: 'SOXmB69gHsBndGef0LG54SxQ',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+
+//     function parse_emoji() {
+//     jQuery(".vcontent").emojiParse({
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists   // 注：详见 js/emoji.list.js
+//     });
+//   }
+  
+//   setTimeout(function() {
+//     // jQuery emoji 解析
+//     parse_emoji();
+//     // jquery emoji 初始化
+//     jQuery(".veditor").emoji({
+//       showTab: true,
+//       animation: 'slide',
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists  // 注：详见 js/emoji.list.js
+//     });
+//     jQuery(".vmore").on("click", function() {
+//       setTimeout(function() {
+//         parse_emoji();
+//       }, 500);
+//     });
+//   }, 800)
+
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/04/09/shi-ba-java8-xin-te-xing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="十八：Java8新特性">
+                        
+                        <span class="card-title">十八：Java8新特性</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、Java8概述
+Java 8 (又称为jdk 1.8) 是Java 语言开发的一个主要版本。
+Java 8 是oracle公司于2014年3月发布，可以看成是自Java 5 以来最具革命性的版本。Java 8为Java语言、编译器、类
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/09/shi-qi-fan-she-yu-dong-tai-dai-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="十七：反射与动态代理">
+                        
+                        <span class="card-title">十七：反射与动态代理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、Java反射机制概述Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
+加载完类之后，在堆内存的方法区中就产生了一
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 毛毛驿站<br />'
+            + '作者: 宏忠<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2023 宏忠. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+                    
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        总访问量: <span id="busuanzi_value_site_pv" class="white-color"></span>
+                    
+        
+                    
+                        <span id="busuanzi_container_site_uv" style='display:none'></span>
+                        人次&nbsp; | &nbsp;访客人数: <span id="busuanzi_value_site_uv" class="white-color"></span> 人
+                    
+    
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">146.4k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/bit-1024" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2440910763@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/yi-xie-zhi-qiu-15-3-38" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2440910763&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/6984339393" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        var t1 = Date.UTC(2023, 03, 07, 00, 00, 00); //北京时间2023-3-7 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已勉强运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+            <script src="/libs/others/clicklove.js"></script>
+        
+
+        
+            <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+
+        <!-- 洪卫 shw2018 add 2019.08.28 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "看不见我🙈~看不见我🙈~", clearTimeout(st)) : (document.title =
+                    "(๑•̀ㅂ•́) ✧被发现了～", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  洪卫 shw2018 add 2019.09.09 -->
+        
+            <canvas class="fireworks" style="position: fixed; left: 0; top: 0; z-index: 1; pointer-events: none;"></canvas>
+            <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+            <script type="text/javascript" src="/js/fireworks.js"></script>
+        
+
+        <!-- 背景雪花飘落特效洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效 洪卫 shw2018 add 2019.09.10-->
+        
+            <script src="/js/wenzi.js" type="text/javascript"></script>
+        
+
+        <!-- 背景雪花飘落特效 洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具  洪卫 shw2018 add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义  洪卫 shw2018 add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带 洪卫 shw 2018  add 2019.09.15-->
+        
+            <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 992) {
+                document.write('<script type="text/javascript" src="/libs/background/ribbon-dynamic.js"><\/script>');
+            }
+            </script>
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":false},"react":{"opacity":0.7}});</script><script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+</html>

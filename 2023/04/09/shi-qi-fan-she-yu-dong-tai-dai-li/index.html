@@ -1,0 +1,3179 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+    <!-- shw2018 洪卫  modify 2019.08.15-->
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="十七：反射与动态代理, UESTC CV DeepLearning MachineLearning 宏忠 LHZ 计算机 软件">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
+    <meta name="description" content="01、Java反射机制概述Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。
+加载完类之后，在堆内存的方法区中就产生了一">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>十七：反射与动态代理 | 毛毛驿站</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <style type="text/css">
+        
+            
+            code[class*="language-"],
+            pre[class*="language-"] {
+                white-space: pre !important;
+            }
+
+        
+    </style>
+
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+    <body>
+
+        <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">毛毛驿站</span>
+                </a>
+            </div>
+            
+
+
+<!-- <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/AV" class="waves-effect waves-light">
+            
+            <i class="fa fa-music"></i>
+            
+            <span>视听</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries" class="waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-envelope"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul> -->
+
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/" class="waves-effect waves-light">
+              
+                <i class="fa fa-home"></i>
+              
+              <span>首页</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/tags" class="waves-effect waves-light">
+              
+                <i class="fa fa-tags"></i>
+              
+              <span>标签</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/categories" class="waves-effect waves-light">
+              
+                <i class="fa fa-bookmark"></i>
+              
+              <span>分类</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/archives" class="waves-effect waves-light">
+              
+                <i class="fa fa-archive"></i>
+              
+              <span>归档</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/AV" class="waves-effect waves-light">
+              
+                <i class="fa fa-music"></i>
+              
+              <span>视听</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/galleries" class="waves-effect waves-light">
+              
+                <i class="fa fa-photo"></i>
+              
+              <span>相册</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/about" class="waves-effect waves-light">
+              
+                <i class="fa fa-user-circle-o"></i>
+              
+              <span>关于我</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/contact" class="waves-effect waves-light">
+              
+                <i class="fa fa-envelope"></i>
+              
+              <span>留言板</span>
+            </a>
+
+            
+      </li>
+    
+      <li class="hide-on-med-and-down nav-item" >
+
+        
+            <a href="/friends" class="waves-effect waves-light">
+              
+                <i class="fa fa-address-book"></i>
+              
+              <span>友情链接</span>
+            </a>
+
+            
+      </li>
+    
+
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">毛毛驿站</div>
+        <div class="logo-desc">
+            
+            南昌航空大学 | 通信工程 | 计算机
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/AV" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-music"></i>
+                
+                视听
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-envelope"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+   
+   
+<!-- 支持二级菜单特性 洪卫 shw2018 modify 2019.09.17  -->
+<!-- <ul class="menu-list mobile-menu-list">
+    
+        <li class="m-nav-item">
+                
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-home"></i>
+                        
+                        首页
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/tags" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-tags"></i>
+                        
+                        标签
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/categories" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-bookmark"></i>
+                        
+                        分类
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/archives" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-archive"></i>
+                        
+                        归档
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/AV" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-music"></i>
+                        
+                        视听
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/galleries" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-photo"></i>
+                        
+                        相册
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/about" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-user-circle-o"></i>
+                        
+                        关于我
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/contact" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-envelope"></i>
+                        
+                        留言板
+                    </a>
+              
+            </li>
+        
+        <li class="m-nav-item">
+                
+                    <a href="/friends" class="waves-effect waves-light">
+                        
+                        <i class="fa fa-fw fa-address-book"></i>
+                        
+                        友情链接
+                    </a>
+              
+            </li>
+        
+
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bit-1024/bit-1024.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul> -->
+
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bit-1024/bit-1024.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        十七：反射与动态代理
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-09
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        宏忠
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        7.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        34 分
+                    </div>
+                    
+                
+                
+                
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv" ></span>
+    
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="01、Java反射机制概述"><a href="#01、Java反射机制概述" class="headerlink" title="01、Java反射机制概述"></a>01、Java<a href="https://so.csdn.net/so/search?q=%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">反射机制</a>概述</h2><p>Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法。</p>
+<p>加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构。这个对象就像一面镜子，透过这个镜子看到类的结构，所以，我们形象的称之为：反射。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/55a0434a0a4bf6209c9daf4ba81a3808.png" alt=""></p>
+<blockquote>
+<p>1、动态语言</p>
+</blockquote>
+<p>是一类在运行时可以改变其结构的语言：例如新的函数、对象、甚至代码可以被引进，已有的函数可以被删除或是其他结构上的变化。通俗点说就是在运行时代码可以根据某些条件改变自身结构。主要动态语言：Object-C、C#、JavaScript、PHP、Python、Erlang。</p>
+<blockquote>
+<p>2、静态语言</p>
+</blockquote>
+<p>与动态语言相对应的，运行时结构不可变的语言就是静态语言。如Java、C、C++。</p>
+<ul>
+<li>Java不是动态语言，但Java可以称之为“准动态语言”。即Java有一定的动态性，我们可以利用反射机制、字节码操作获得类似动态语言的特性。Java的动态性让编程的时候更加灵活！</li>
+<li>Java反射机制提供的功能<ul>
+<li>在运行时判断任意一个对象所属的类</li>
+<li>在运行时构造任意一个类的对象</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法</li>
+<li>在运行时获取泛型信息</li>
+<li>在运行时调用任意一个对象的成员变量和方法</li>
+<li>在运行时处理注解</li>
+<li>生成动态代理</li>
+</ul>
+</li>
+<li>反射相关的主要API<ul>
+<li><code>java.lang.Class</code>:代表一个类</li>
+<li><code>java.lang.reflect.Method</code>:代表类的方法</li>
+<li><code>java.lang.reflect.Field</code>:代表类的成员变量</li>
+<li><code>java.lang.reflect.Constructor</code>:代表类的构造器</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>测试类</p>
+</blockquote>
+<pre><code>import org.junit.Test;
+
+public class ReflectionTest {
+
+    //反射之前，对于Person的操作
+    @Test
+    public void test(){
+
+        //1.创建类的对象
+        Person p1 = new Person("jay",21);
+
+        //2.调用对象,调用其内部的属性和方法
+        p1.age = 15;
+        System.out.println(p1.toString());
+
+        p1.show();
+
+        //在Person类的外部，不可以通过Person类的对象调用其内部私有的结构。
+        //比如：name、showNation以及私有的构造器。
+
+    }
+}</code></pre><blockquote>
+<p>Person类</p>
+</blockquote>
+<pre><code>package github;
+
+public class Person {
+    private String name;
+    public int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Person() {
+    }
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    private Person(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    public void show(){
+        System.out.println("你好，我是🔔");
+    }
+
+    private String showNation(String nation){
+        System.out.println("喷子实在太多了！！！" + nation);
+        return nation;
+    }
+}</code></pre><h2 id="1-1、使用反射，实现同上的操作"><a href="#1-1、使用反射，实现同上的操作" class="headerlink" title="1.1、使用反射，实现同上的操作"></a>1.1、使用反射，实现同上的操作</h2><pre><code>import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class ReflectionTest {
+
+    //反射之后 ，堆与Person的操作
+    @Test
+    public void test2() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
+        Class clazz = Person.class;
+        //1.通过反射，创建Person类的对象
+        Constructor cons = clazz.getConstructor(String.class,int.class);
+        Object obj = cons.newInstance("Jon",18);
+        Person p = (Person) obj;
+        System.out.println(p.toString());
+        //2.通过反射，调用对象指定的属性和方法
+        //调用属性
+        Field age = clazz.getDeclaredField("age");
+        age.set(p,10);
+        System.out.println(p.toString());
+
+        //调用方法
+        Method show = clazz.getDeclaredMethod("show");
+        show.invoke(p);
+
+    }
+}</code></pre><h2 id="1-2、反射的强大：调用类的私有结构"><a href="#1-2、反射的强大：调用类的私有结构" class="headerlink" title="1.2、反射的强大：调用类的私有结构"></a>1.2、反射的强大：调用类的私有结构</h2><pre><code>import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class ReflectionTest {
+     //反射之后 ，堆与Person的操作
+    @Test
+    public void test2() throws Exception{
+        Class clazz = Person.class;
+        //1.通过反射，创建Person类的对象
+        Constructor cons = clazz.getConstructor(String.class,int.class);
+        Object obj = cons.newInstance("Jon",18);
+        Person p = (Person) obj;
+        System.out.println(p.toString());
+        //2.通过反射，调用对象指定的属性和方法
+        //调用属性
+        Field age = clazz.getDeclaredField("age");
+        age.set(p,10);
+        System.out.println(p.toString());
+
+        //调用方法
+        Method show = clazz.getDeclaredMethod("show");
+        show.invoke(p);
+
+        System.out.println("+++++++++++++++++++++++++");
+
+        //通过反射，是可以调用Person类的私有结构的。比如：私有的构造器、方法、属性
+        //调用私有的构造器
+        Constructor cons2 = clazz.getDeclaredConstructor(String.class);
+        cons2.setAccessible(true);
+        Person p1 = (Person) cons2.newInstance("kalo");
+        System.out.println(p1);
+
+        //调用私有的属性
+        Field name = clazz.getDeclaredField("name");
+        name.setAccessible(true);
+        name.set(p1,"Taoyao");
+        System.out.println(p1);
+
+        //调用私有的方法
+        Method showNation = clazz.getDeclaredMethod("LiNin", String.class);
+        showNation.setAccessible(true);
+        String nation = (String) showNation.invoke(p1,"FaceBook");
+        //相当于String nation = p1.showNation("FaceBook")
+        System.out.println(nation);
+    }
+
+    /**
+     * 疑问1：通过直接new的方式或反射的方式都可以调用公共的结构，开发中到底用那个？
+     * 建议：直接new的方式。
+     * 什么时候会使用：反射的方式。 反射的特征：动态性
+     * 疑问2：反射机制与面向对象中的封装性是不是矛盾的？如何看待两个技术？
+     * 不矛盾。
+     */
+}</code></pre><h2 id="02、理解Class类并获取Class实例"><a href="#02、理解Class类并获取Class实例" class="headerlink" title="02、理解Class类并获取Class实例"></a>02、理解Class类并获取Class实例</h2><h2 id="2-3、Class类的理解"><a href="#2-3、Class类的理解" class="headerlink" title="2.3、Class类的理解"></a>2.3、Class类的理解</h2><pre><code>    /**
+     * 关于java.lang.Class类的理解
+     * 1.类的加载过程：
+     * 程序经过Javac.exe命令后，会生成一个或多个字节码文件(.class结尾)。
+     * 接着我们使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件
+     * 加载到内存中。此过程就称为类的加载。加载到内存中的类，我们就称为运行时类，此
+     * 运行时类，就作为Class的一个实例。
+     *
+     * 2.换句话说，Class的实例就对应着一个运行时类。
+     */</code></pre><blockquote>
+<p><strong>Class类的常用方法</strong></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/941872063b3bec2022dbd43330c8bf27.png" alt=""></p>
+<h2 id="2-4、获取Class实例的4种方式"><a href="#2-4、获取Class实例的4种方式" class="headerlink" title="2.4、获取Class实例的4种方式"></a>2.4、获取Class实例的4种方式</h2><pre><code>import org.junit.Test;
+
+import java.lang.annotation.ElementType;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class ReflectionTest {
+
+    /**
+     * 2.换句话说，Class的实例就对应着一个运行时类。
+     * 3.加载到内存中的运行时类，会缓存一定的时间。在此时间之内，我们可以通过不同的方式
+     * 来获取此运行时类。
+     */
+
+
+    @Test
+    public void test3() throws ClassNotFoundException {
+        //方式一：
+        Class c1 = Person.class;
+        System.out.println(c1);
+
+        //方式二：通过运行时类的对象,调用getClass()
+        Person p1 = new Person();
+        Class c2 = p1.getClass();
+        System.out.println(c2);
+
+        //方式三：调用Class的静态方法：forName(String classPath)
+        Class c3 = Class.forName("www.gh110.com");
+//        c3 = Class.forName("www.123.com");
+        System.out.println(c3);
+
+        System.out.println(c1 == c2);
+        System.out.println(c1 == c3);
+
+        //方式四：使用类的加载器：ClassLoader  (了解)
+        ClassLoader classLoader = ReflectionTest.class.getClassLoader();
+        Class c4 = classLoader.loadClass("www.gh110.com");
+        System.out.println(c4);
+
+        System.out.println(c1 == c4);
+    }
+}</code></pre><h2 id="2-5、Class实例对应的结构的说明"><a href="#2-5、Class实例对应的结构的说明" class="headerlink" title="2.5、Class实例对应的结构的说明"></a>2.5、Class实例对应的结构的说明</h2><blockquote>
+<p>1、哪些类型可以有Class对象？</p>
+</blockquote>
+<p>（1）<code>class</code>：外部类，成员(成员内部类，静态内部类)，局部内部类，匿名内部类<br>（2）<code>interface</code>：接口<br>（3）<code>[]</code>：数组<br>（4）<code>enum</code>：枚举<br>（5）<code>annotation</code>：注解<code>@interface</code><br>（6）<code>primitivetype</code>：基本数据类型<br>（7）<code>void</code></p>
+<pre><code>import org.junit.Test;
+import java.lang.annotation.ElementType;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class ReflectionTest {
+
+    //万事万物皆对象？对象.xxx,File,URL,反射,前端、数据库操作
+
+    /**
+     * Class实例可以是哪些结构的说明：
+     */
+    @Test
+    public void test4() {
+        Class s1 = Object.class;
+        Class s2 = Comparable.class;
+        Class s3 = String[].class;
+        Class s4 = int[][].class;
+        Class s5 = ElementType.class;
+        Class s6 = Override.class;
+        Class s7 = int.class;
+        Class s8 = void.class;
+        Class s9 = Class.class;
+
+        int[] a = new int[10];
+        int[] b = new int[100];
+        Class s10 = a.getClass();
+        Class s11 = b.getClass();
+        // 只要数组的元素类型与维度一样，就是同一个Class
+        System.out.println(s10 == s11);
+    }
+
+}</code></pre><h2 id="03、类的加载与ClassLoader的理解"><a href="#03、类的加载与ClassLoader的理解" class="headerlink" title="03、类的加载与ClassLoader的理解"></a>03、类的加载与<a href="https://so.csdn.net/so/search?q=ClassLoader&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener">ClassLoader</a>的理解</h2><h2 id="3-6、了解：类的加载过程"><a href="#3-6、了解：类的加载过程" class="headerlink" title="3.6、了解：类的加载过程"></a>3.6、了解：类的加载过程</h2><blockquote>
+<p>当程序主动使用某个类时，如果该类还未被加载到内存中，则系统会通过如下三个步骤来对该类进行初始化。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/0f45e6c982ae6c53515790215cfec860.png" alt=""></p>
+<blockquote>
+<p>说明</p>
+</blockquote>
+<ul>
+<li>加载：将class文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后生成一个代表这个类的java.lang.Class对象，作为方法区中类数据的访问入口（即引用地址）。所有需要访问和使用类数据只能通过这个Class对象。这个加载的过程需要类加载器参与。</li>
+<li>链接：将Java类的二进制代码合并到JVM的运行状态之中的过程。<ul>
+<li>验证：确保加载的类信息符合JVM规范，例如：以cafe开头，没有安全方面的问题</li>
+<li>准备：正式为类变量（static）分配内存并设置类变量默认初始值的阶段，这些内存都将在方法区中进行分配。</li>
+<li>解析：虚拟机常量池内的符号引用（常量名）替换为直接引用（地址）的过程。</li>
+</ul>
+</li>
+<li>初始化：<ul>
+<li>执行类构造器()方法的过程。类构造器()方法是由编译期自动收集类中所有类变量的赋值动作和静态代码块中的语句合并产生的。（类构造器是构造类信息的，不是构造该类对象的构造器）。</li>
+<li>当初始化一个类的时候，如果发现其父类还没有进行初始化，则需要先触发其父类的初始化。</li>
+<li>虚拟机会保证一个类的()方法在多线程环境中被正确加锁和同步。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/677c93ba3d381c6c4437bca902487651.png" alt=""></p>
+<h2 id="3-7、了解：什么时候会发生类初始化？"><a href="#3-7、了解：什么时候会发生类初始化？" class="headerlink" title="3.7、了解：什么时候会发生类初始化？"></a>3.7、了解：什么时候会发生类初始化？</h2><ul>
+<li>类的主动引用（一定会发生类的初始化）<ul>
+<li>当虚拟机启动，先初始化main方法所在的类</li>
+<li>new一个类的对象</li>
+<li>调用类的静态成员（除了final常量）和静态方法</li>
+<li>使用java.lang.reflect包的方法对类进行反射调用</li>
+<li>当初始化一个类，如果其父类没有被初始化，则先会初始化它的父类</li>
+</ul>
+</li>
+<li>类的被动引用（不会发生类的初始化）<ul>
+<li>当访问一个静态域时，只有真正声明这个域的类才会被初始化<ul>
+<li>当通过子类引用父类的静态变量，不会导致子类初始化</li>
+</ul>
+</li>
+<li>通过数组定义类引用，不会触发此类的初始化</li>
+<li>引用常量不会触发此类的初始化（常量在链接阶段就存入调用类的常量池中了）</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-8、ClassLoader的理解"><a href="#3-8、ClassLoader的理解" class="headerlink" title="3.8、ClassLoader的理解"></a>3.8、ClassLoader的理解</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/654a1a2058923c641257caeecb770801.png" alt=""></p>
+<ul>
+<li>类加载器的作用：<ul>
+<li>类加载的作用：将class文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后在堆中生成一个代表这个类的java.lang.Class对象，作为方法区中类数据的访问入口。</li>
+<li>类缓存：标准的JavaSE类加载器可以按要求查找类，但一旦某个类被加载到类加载器中，它将维持加载（缓存）一段时间。不过JVM垃圾回收机制可以回收这些Class对象。</li>
+</ul>
+</li>
+<li>类加载器作用是用来把类(class)装载进内存的。JVM 规范定义了如下类型的类的加载器。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/84f83993bd4897effb32bdd0435505e3.png" alt=""></p>
+<pre><code>import org.junit.Test;
+
+/**
+ * 了解类的加载器
+ *
+ */
+public class ClassLoaderTest {
+
+    @Test
+    public void test1(){
+        //对于自定义类，使用系统类加载器进行加载
+        ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
+        System.out.println(classLoader);
+        //调用系统类加载器的getParent()：获取扩展类加载器
+        ClassLoader classLoader1 = classLoader.getParent();
+        System.out.println(classLoader1);
+        //调用扩展类加载器的getParent()：无法获取引导类加载器
+        //引导类加载器主要负责加载java的核心类库，无法加载自定义类的。
+        ClassLoader classLoader2 = classLoader1.getParent();
+        System.out.println(classLoader2);
+
+        ClassLoader classLoader3 = String.class.getClassLoader();
+        System.out.println(classLoader3);
+    }
+}</code></pre><h2 id="3-9、使用ClassLoader加载配置文件"><a href="#3-9、使用ClassLoader加载配置文件" class="headerlink" title="3.9、使用ClassLoader加载配置文件"></a>3.9、使用ClassLoader加载配置文件</h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/5336c0084c21e5078a7f07abef5433a7.png" alt=""></p>
+<pre><code>import org.junit.Test;
+
+import java.io.InputStream;
+import java.util.Properties;
+
+/**
+ * 了解类的加载器
+ */
+public class ClassLoaderTest {
+
+    /**
+     * Properties：用来读取配置文件。
+     * @throws Exception
+     */
+    @Test
+    public void test2() throws Exception {
+        Properties pros = new Properties();
+        //此时的文件默认在当前的module下。
+        //读取配置文件的方式一：
+//        FileInputStream fis = new FileInputStream("jdbc.properties");
+//        pros.load(fis);
+
+        //读取配置文件的方式二：使用ClassLoader
+        //配置文件默认识别为：当前module的src下
+        ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
+        InputStream is = classLoader.getResourceAsStream("jdbc1.properties");
+        pros.load(is);
+
+        String user = pros.getProperty("user");
+        String password = pros.getProperty("password");
+        System.out.println("user = " + user + ",password = " + password);
+    }
+}</code></pre><h2 id="04、通过反射，创建运行时类的对象"><a href="#04、通过反射，创建运行时类的对象" class="headerlink" title="04、通过反射，创建运行时类的对象"></a>04、通过反射，创建运行时类的对象</h2><pre><code>import org.junit.Test;
+
+/**
+ * 通过发射创建对应的运行时类的对象
+ */
+public class NewInstanceTest {
+
+    @Test
+    public void test() throws Exception {
+        Class&lt;Person&gt; clazz = Person.class;
+        /**
+         * newInstance():调用此方法，创建对应的运行时类的对象。内部调用了运行时类的空参的构造器。
+         *
+         * 要想此方法正常的创建运行时类的对象，要求：
+         * 1.运行时类必须提供空参的构造器
+         * 2.空参的构造器的访问权限得够。通常，设置为public。
+         *
+         * 在javabean中要求提供一个public的空参构造器。原因：
+         * 1.便于通过反射，创建运行时类的对象
+         * 2.便于子类继承此运行时类时，默认调用super()时，保证父类有此构造器
+         */
+        Person obj = clazz.newInstance();
+        System.out.println(obj);
+    }
+}</code></pre><h2 id="4-1、举例体会反射的动态性"><a href="#4-1、举例体会反射的动态性" class="headerlink" title="4.1、举例体会反射的动态性"></a>4.1、举例体会反射的动态性</h2><pre><code>import org.junit.Test;
+import java.util.Random;
+
+/**
+ * 通过发射创建对应的运行时类的对象
+ */
+public class NewInstanceTest {
+
+    @Test
+    public void test2(){
+        for(int i = 0;i &lt; 100;i++){
+            int num = new Random().nextInt(3);//0,1,2
+            String classPath = "";
+            switch(num){
+                case 0:
+                    classPath = "java.util.Date";
+                    break;
+                case 1:
+                    classPath = "java.lang.Object";
+                    break;
+                case 2:
+                    classPath = "www.java.Person";
+                    break;
+            }
+            try {
+                Object obj = getInstance(classPath);
+                System.out.println(obj);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 创建一个指定类的对象。
+     * classPath:指定类的全类名
+     *
+     * @param classPath
+     * @return
+     * @throws Exception
+     */
+    public Object getInstance(String classPath) throws Exception {
+        Class clazz =  Class.forName(classPath);
+        return clazz.newInstance();
+    }
+}</code></pre><h2 id="05、获取运行时类的完整结构"><a href="#05、获取运行时类的完整结构" class="headerlink" title="05、获取运行时类的完整结构"></a>05、获取运行时类的完整结构</h2><h2 id="5-1、提供结构丰富Person类"><a href="#5-1、提供结构丰富Person类" class="headerlink" title="5.1、提供结构丰富Person类"></a>5.1、提供结构丰富Person类</h2><blockquote>
+<p>1、Person类</p>
+</blockquote>
+<pre><code>@MyAnnotation(value="java")
+public class Person extends Creature&lt;String&gt; implements Comparable&lt;String&gt;,MyInterface{
+
+    private String name;
+    int age;
+    public int id;
+
+    public Person() {
+    }
+
+    @MyAnnotation(value="C++")
+    Person(String name){
+        this.name = name;
+    }
+
+    private Person(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @MyAnnotation
+    private String show(String nation){
+        System.out.println("我来自" + nation + "星系");
+        return nation;
+    }
+
+    @Override
+    public void info() {
+        System.out.println("火星喷子");
+    }
+
+    public String display(String play){
+        return play;
+    }
+
+    @Override
+    public int compareTo(String o) {
+        return 0;
+    }
+}</code></pre><blockquote>
+<p>2、Creature类</p>
+</blockquote>
+<pre><code>import java.io.Serializable;
+
+public abstract class Creature &lt;T&gt; implements Serializable {
+    private char gender;
+    public double weight;
+
+    private void breath(){
+        System.out.println("太阳系");
+    }
+
+    public void eat(){
+        System.out.println("银河系");
+    }
+}</code></pre><blockquote>
+<p>3、MyInterface</p>
+</blockquote>
+<pre><code>public interface MyInterface {
+    void info();
+}</code></pre><blockquote>
+<p>4、MyAnnotation</p>
+</blockquote>
+<pre><code>import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.*;
+
+@Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyAnnotation {
+    String value() default "hello world";
+}</code></pre><h2 id="5-2、获取运行时类的属性结构及其内部结构"><a href="#5-2、获取运行时类的属性结构及其内部结构" class="headerlink" title="5.2、获取运行时类的属性结构及其内部结构"></a>5.2、获取运行时类的属性结构及其内部结构</h2><blockquote>
+<p>1、Person类</p>
+</blockquote>
+<pre><code>package github2;
+
+@MyAnnotation(value="java")
+public class Person extends Creature&lt;String&gt; implements Comparable&lt;String&gt;,MyInterface{
+
+    private String name;
+    int age;
+    public int id;
+
+    public Person() {
+    }
+
+    @MyAnnotation(value="C++")
+    Person(String name){
+        this.name = name;
+    }
+
+    private Person(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @MyAnnotation
+    private String show(String nation){
+        System.out.println("我来自" + nation + "星系");
+        return nation;
+    }
+
+    @Override
+    public void info() {
+        System.out.println("火星喷子");
+    }
+
+    public String display(String play){
+        return play;
+    }
+
+    @Override
+    public int compareTo(String o) {
+        return 0;
+    }
+}</code></pre><blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>import github2.Person;
+import org.junit.Test;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
+/**
+ * 获取当前运行时类的属性结构
+ */
+public class FieldTest {
+
+    @Test
+    public void test(){
+        Class clazz = Person.class;
+        //获取属性结构
+        //getFields():获取当前运行时类及其父类中声明为public访问权限的属性
+        Field[] fields = clazz.getFields();
+        for(Field f : fields){
+            System.out.println(f);
+        }
+        System.out.println("++++++++++++++++++");
+        //getDeclaredFields():获取当前运行时类中声明的所有属性。（不包含父类中声明的属性）
+        Field[] declaredFields = clazz.getDeclaredFields();
+        for(Field f : declaredFields){
+            System.out.println(f);
+        }
+    }
+
+    //权限修饰符  数据类型 变量名
+    @Test
+    public void test2(){
+        Class clazz = Person.class;
+        Field[] declaredFields = clazz.getDeclaredFields();
+        for(Field f : declaredFields){
+            //1.权限修饰符
+            int modifier = f.getModifiers();
+            System.out.print(Modifier.toString(modifier) + "\t");
+            System.out.println("+++++++++++++++++++++++++++");
+            //2.数据类型
+            Class type = f.getType();
+            System.out.print(type.getName() + "\t");
+            System.out.println("***************************");
+            //3.变量名
+            String fName = f.getName();
+            System.out.print(fName);
+        }
+    }
+}</code></pre><h2 id="5-3、获取运行时类的方法结构"><a href="#5-3、获取运行时类的方法结构" class="headerlink" title="5.3、获取运行时类的方法结构"></a>5.3、获取运行时类的方法结构</h2><blockquote>
+<p>1、Person类</p>
+</blockquote>
+<pre><code>package github2;
+
+@MyAnnotation(value="java")
+public class Person extends Creature&lt;String&gt; implements Comparable&lt;String&gt;,MyInterface{
+
+    private String name;
+    int age;
+    public int id;
+
+    public Person() {
+    }
+
+    @MyAnnotation(value="C++")
+    Person(String name){
+        this.name = name;
+    }
+
+    private Person(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @MyAnnotation
+    private String show(String nation){
+        System.out.println("我来自" + nation + "星系");
+        return nation;
+    }
+
+    @Override
+    public void info() {
+        System.out.println("火星喷子");
+    }
+
+    public String display(String play){
+        return play;
+    }
+
+    @Override
+    public int compareTo(String o) {
+        return 0;
+    }
+}</code></pre><blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>package github3;
+
+import github2.Person;
+import org.junit.Test;
+
+import java.lang.reflect.Method;
+
+/**
+ * 获取运行时类的方法结构
+ */
+public class MythodTest {
+    @Test
+    public void test(){
+        Class clazz = Person.class;
+        //getMethods():获取当前运行时类及其所有父类中声明为public权限的方法
+        Method[] methods = clazz.getMethods();
+        for(Method m : methods){
+            System.out.println(m + "****");
+        }
+        System.out.println("++++++++++++++++++++++++++++");
+        //getDeclaredMethods():获取当前运行时类中声明的所有方法。（不包含父类中声明的方法）
+        Method[] declaredMethods = clazz.getDeclaredMethods();
+        for(Method m : declaredMethods){
+            System.out.println(m);
+        }
+    }
+}</code></pre><h2 id="5-4、获取运行时类的方法的内部结构"><a href="#5-4、获取运行时类的方法的内部结构" class="headerlink" title="5.4、获取运行时类的方法的内部结构"></a>5.4、获取运行时类的方法的内部结构</h2><blockquote>
+<p>1、Person类</p>
+</blockquote>
+<pre><code>@MyAnnotation(value="java")
+public class Person extends Creature&lt;String&gt; implements Comparable&lt;String&gt;,MyInterface{
+
+    private String name;
+    int age;
+    public int id;
+
+    public Person() {
+    }
+
+    @MyAnnotation(value="C++")
+    Person(String name){
+        this.name = name;
+    }
+
+    private Person(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @MyAnnotation
+    private String show(String nation){
+        System.out.println("我来自" + nation + "星系");
+        return nation;
+    }
+
+    @Override
+    public void info() {
+        System.out.println("火星喷子");
+    }
+
+    public String display(String interests,int age) throws Exception{
+        return interests + age;
+    }
+
+    @Override
+    public int compareTo(String o) {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", id=" + id +
+                '}';
+    }
+}</code></pre><blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>package github3;
+
+import github2.Person;
+import org.junit.Test;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
+/**
+ * 获取运行时类的方法结构
+ */
+public class MythodTest {
+
+    /**
+     * @Xxxx
+     * 权限修饰符  返回值类型  方法名(参数类型1 形参名1,...) throws XxxException{}
+     */
+    @Test
+    public void test2() {
+        Class clazz = Person.class;
+        Method[] declaredMethods = clazz.getDeclaredMethods();
+        for (Method m : declaredMethods) {
+            //1.获取方法声明的注解
+            Annotation[] annos = m.getAnnotations();
+            for (Annotation a : annos) {
+                System.out.println(a + "KKKK");
+            }
+
+            //2.权限修饰符
+            System.out.print(Modifier.toString(m.getModifiers()) + "\t");
+
+            //3.返回值类型
+            System.out.print(m.getReturnType().getName() + "\t");
+
+            //4.方法名
+            System.out.print(m.getName());
+            System.out.print("(");
+            //5.形参列表
+            Class[] pTs = m.getParameterTypes();
+            if(!(pTs == null &amp;&amp; pTs.length == 0)){
+                for(int i = 0;i &lt; pTs.length;i++){
+                    if(i == pTs.length - 1){
+                        System.out.print(pTs[i].getName() + " args_" + i);
+                        break;
+                    }
+                    System.out.print(pTs[i].getName() + " args_" + i + ",");
+                }
+            }
+            System.out.print(")");
+
+            //6.抛出的异常
+            Class[] eTs = m.getExceptionTypes();
+            if(eTs.length &gt; 0){
+                System.out.print("throws ");
+                for(int i = 0;i &lt; eTs.length;i++){
+                    if(i == eTs.length - 1){
+                        System.out.print(eTs[i].getName());
+                        break;
+                    }
+                    System.out.print(eTs[i].getName() + ",");
+                }
+            }
+            System.out.println("TQA");
+        }
+    }
+
+}</code></pre><h2 id="5-5、获取运行时类的构造器结构"><a href="#5-5、获取运行时类的构造器结构" class="headerlink" title="5.5、获取运行时类的构造器结构"></a>5.5、获取运行时类的构造器结构</h2><pre><code>package github3;
+
+import github2.Person;
+import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+
+public class OtherTest {
+    /**
+     * 获取构造器的结构
+     */
+    @Test
+    public void test(){
+        Class clazz = Person.class;
+        //getConstructors():获取当前运行时类中声明为public的构造器
+        Constructor[] constructors = clazz.getConstructors();
+        for(Constructor c : constructors){
+            System.out.println(c);
+        }
+        System.out.println("************************");
+        //getDeclaredConstructors():获取当前运行时类中声明的所有的构造器
+        Constructor[] declaredConstructors = clazz.getDeclaredConstructors();
+        for(Constructor c : declaredConstructors){
+            System.out.println(c);
+        }
+    }
+}</code></pre><h2 id="5-6、获取运行时类的父类及父类的泛型"><a href="#5-6、获取运行时类的父类及父类的泛型" class="headerlink" title="5.6、获取运行时类的父类及父类的泛型"></a>5.6、获取运行时类的父类及父类的泛型</h2><pre><code>package github3;
+
+import github2.Person;
+import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
+public class OtherTest {
+    /**
+     * 获取运行时类的父类
+     */
+    @Test
+    public void test2(){
+        Class clazz = Person.class;
+        Class superclass = clazz.getSuperclass();
+        System.out.println(superclass);
+    }
+
+    /**
+     * 获取运行时类的带泛型的父类
+     */
+    @Test
+    public void test3(){
+        Class clazz = Person.class;
+        Type genericSuperclass = clazz.getGenericSuperclass();
+        System.out.println(genericSuperclass);
+    }
+
+    /**
+     * 获取运行时类的带泛型的父类的泛型
+     */
+    @Test
+    public void test4(){
+        Class clazz = Person.class;
+        Type genericSuperclass = clazz.getGenericSuperclass();
+        ParameterizedType paramType = (ParameterizedType) genericSuperclass;
+        //获取泛型类型
+        Type[] actualTypeArguments = paramType.getActualTypeArguments();
+//        System.out.println(actualTypeArguments[0].getTypeName());
+        System.out.println(((Class)actualTypeArguments[0]).getName());
+    }
+}</code></pre><h2 id="5-7、获取运行时类的接口、所在包、注解等"><a href="#5-7、获取运行时类的接口、所在包、注解等" class="headerlink" title="5.7、获取运行时类的接口、所在包、注解等"></a>5.7、获取运行时类的接口、所在包、注解等</h2><pre><code>package github3;
+
+import github2.Person;
+import org.junit.Test;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
+public class OtherTest {
+    /**
+     * 获取运行时类实现的接口
+     */
+    @Test
+    public void test5(){
+        Class clazz = Person.class;
+
+        Class[] interfaces = clazz.getInterfaces();
+        for(Class c : interfaces){
+            System.out.println(c);
+        }
+        System.out.println("++++++++++++++++++++++");
+
+        //获取运行时类的父类实现的接口
+        Class[] interfaces1 = clazz.getSuperclass().getInterfaces();
+        for(Class c : interfaces1){
+            System.out.println(c);
+        }
+    }
+
+    /**
+     * 获取运行时类所在的包
+     */
+    @Test
+    public void test6(){
+        Class clazz = Person.class;
+        Package pack = clazz.getPackage();
+        System.out.println(pack);
+    }
+
+    /**
+     * 获取运行时类声明的注解
+     */
+    @Test
+    public void test7(){
+        Class clazz = Person.class;
+        Annotation[] annotations = clazz.getAnnotations();
+        for(Annotation annos : annotations){
+            System.out.println(annos);
+        }
+    }
+}</code></pre><h2 id="06、调用运行时类的指定结构"><a href="#06、调用运行时类的指定结构" class="headerlink" title="06、调用运行时类的指定结构"></a>06、调用运行时类的指定结构</h2><h2 id="6-1、调用运行时类中的指定属性"><a href="#6-1、调用运行时类中的指定属性" class="headerlink" title="6.1、调用运行时类中的指定属性"></a>6.1、调用运行时类中的指定属性</h2><blockquote>
+<p>1、Person类</p>
+</blockquote>
+<pre><code>package github2;
+
+@MyAnnotation(value="java")
+public class Person extends Creature&lt;String&gt; implements Comparable&lt;String&gt;,MyInterface{
+
+    private String name;
+    int age;
+    public int id;
+
+    public Person() {
+    }
+
+    @MyAnnotation(value="C++")
+    Person(String name){
+        this.name = name;
+    }
+
+    private Person(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @MyAnnotation
+    private String show(String nation){
+        System.out.println("我来自" + nation + "星系");
+        return nation;
+    }
+
+    @Override
+    public void info() {
+        System.out.println("火星喷子");
+    }
+
+    public String display(String interests,int age) throws Exception{
+        return interests + age;
+    }
+
+    @Override
+    public int compareTo(String o) {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", id=" + id +
+                '}';
+    }
+}</code></pre><blockquote>
+<p>2、测试类</p>
+</blockquote>
+<pre><code>package github3;
+
+import github2.Person;
+import org.junit.Test;
+
+import java.lang.reflect.Field;
+
+/**
+ * 调用运行时类中指定的结构：属性、方法、构造器
+ */
+public class ReflectionTest {
+    /**
+     * 不需要掌握
+     */
+    @Test
+    public void testField() throws Exception {
+        Class clazz = Person.class;
+
+        //创建运行时类的对象
+        Person p = (Person) clazz.newInstance();
+
+        //获取指定的属性：要求运行时类中属性声明为public
+        //通常不采用此方法
+        Field id = clazz.getField("id");
+
+        //设置当前属性的值
+        //set():参数1：指明设置哪个对象的属性   参数2：将此属性值设置为多少
+        id.set(p,1001);
+
+        //获取当前属性的值
+        //get():参数1：获取哪个对象的当前属性值
+        int pId = (int) id.get(p);
+        System.out.println(pId);
+    }
+
+    /**
+     * 如何操作运行时类中的指定的属性 -- 需要掌握
+     */
+    @Test
+    public void testField1() throws Exception {
+        Class clazz = Person.class;
+
+        //创建运行时类的对象
+        Person p = (Person) clazz.newInstance();
+
+        //1. getDeclaredField(String fieldName):获取运行时类中指定变量名的属性
+        Field name = clazz.getDeclaredField("name");
+
+        //2.保证当前属性是可访问的
+        name.setAccessible(true);
+
+        //3.获取、设置指定对象的此属性值
+        name.set(p,"Jam");
+        System.out.println(name.get(p));
+    }
+}</code></pre><h2 id="6-2、调用运行时类中的指定方法"><a href="#6-2、调用运行时类中的指定方法" class="headerlink" title="6.2、调用运行时类中的指定方法"></a>6.2、调用运行时类中的指定方法</h2><pre><code>package github3;
+
+import github2.Person;
+import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * 调用运行时类中指定的结构：属性、方法、构造器
+ */
+public class ReflectionTest {
+    /**
+     * 如何操作运行时类中的指定的方法 -- 需要掌握
+     */
+    @Test
+    public void testMethod() throws Exception {
+        Class clazz = Person.class;
+        //创建运行时类的对象
+        Person p = (Person) clazz.newInstance();
+
+        //1.获取指定的某个方法
+        //getDeclaredMethod():参数1 ：指明获取的方法的名称  参数2：指明获取的方法的形参列表
+        Method show = clazz.getDeclaredMethod("show", String.class);
+
+        //2.保证当前方法是可访问的
+        show.setAccessible(true);
+
+        //3.调用方法的invoke():参数1：方法的调用者  参数2：给方法形参赋值的实参
+        //invoke()的返回值即为对应类中调用的方法的返回值。
+        Object returnValue = show.invoke(p,"CCA"); //String nation = p.show("CCA");
+        System.out.println(returnValue);
+
+        System.out.println("+++++++++如何调用静态方法+++++++++++");
+
+//    private static void showDesc()
+
+        Method showDesc = clazz.getDeclaredMethod("showDown");
+        showDesc.setAccessible(true);
+        //如果调用的运行时类中的方法没有返回值，则此invoke()返回null
+//    Object returnVal = showDesc.invoke(null);
+        Object returnVal = showDesc.invoke(Person.class);
+        System.out.println(returnVal);//null
+    }
+}</code></pre><h2 id="6-3、调用运行时类中的指定构造器"><a href="#6-3、调用运行时类中的指定构造器" class="headerlink" title="6.3、调用运行时类中的指定构造器"></a>6.3、调用运行时类中的指定构造器</h2><pre><code>import github2.Person;
+import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/**
+ * 调用运行时类中指定的结构：属性、方法、构造器
+ */
+public class ReflectionTest {
+
+    /**
+     * 如何调用运行时类中的指定的构造器
+     */
+    @Test
+    public void testConstructor() throws Exception {
+        Class clazz = Person.class;
+
+        //private Person(String name)
+        //1.获取指定的构造器
+        //getDeclaredConstructor():参数：指明构造器的参数列表
+        Constructor constructor = clazz.getDeclaredConstructor(String.class);
+
+        //2.保证此构造器是可访问的
+        constructor.setAccessible(true);
+
+        //3.调用此构造器创建运行时类的对象
+        Person per = (Person) constructor.newInstance("Tom");
+        System.out.println(per);
+    }
+}</code></pre><h2 id="07、反射的应用：动态代理"><a href="#07、反射的应用：动态代理" class="headerlink" title="07、反射的应用：动态代理"></a>07、反射的应用：动态代理</h2><h2 id="7-1、代理模式与动态代理"><a href="#7-1、代理模式与动态代理" class="headerlink" title="7.1、代理模式与动态代理"></a>7.1、代理模式与动态代理</h2><ul>
+<li><p>代理设计模式的原理:</p>
+<p>使用一个代理将对象包装起来, 然后用该代理对象取代原始对象。任何对原始对象的调用都要通过代理。代理对象决定是否以及何时将方法调用转到原始对象上。</p>
+</li>
+<li><p>之前为大家讲解过代理机制的操作，属于静态代理，特征是代理类和目标对象的类都是在编译期间确定下来，不利于程序的扩展。同时，每一个代理类只能为一个接口服务，这样一来程序开发中必然产生过多的代理。<strong>最好可以通过一个代理类完成全部的代理功能</strong>。</p>
+</li>
+<li><p>动态代理是指客户通过代理类来调用其它对象的方法，并且是在程序运行时根据需要动态创建目标类的代理对象。</p>
+</li>
+<li><p>动态代理使用场合:</p>
+<ul>
+<li>调试</li>
+<li>远程方法调用</li>
+</ul>
+</li>
+<li><p><strong>动态代理相比于静态代理的优点</strong>：</p>
+<p>抽象角色中（接口）声明的所有方法都被转移到调用处理器一个集中的方法中处理，这样，我们可以更加灵活和统一的处理众多的方法。</p>
+</li>
+</ul>
+<h2 id="7-2、静态代理举例"><a href="#7-2、静态代理举例" class="headerlink" title="7.2、静态代理举例"></a>7.2、静态代理举例</h2><pre><code>/**
+ * 静态代理举例
+ *
+ * 特点：代理类和被代理类在编译期间，就确定下来了。
+ */
+interface ClothFactory{
+    void produceCloth();
+}
+
+//代理类
+class PersonTest implements ClothFactory{
+    private ClothFactory factory;//用被代理类对象进行实例化
+
+    public PersonTest(ClothFactory factory){
+        this.factory = factory;
+    }
+
+    @Override
+    public void produceCloth() {
+        System.out.println("造纸厂开始做一些准备工作");
+
+        factory.produceCloth();
+
+        System.out.println("造纸厂做一些后续收尾工作");
+    }
+}
+
+//被代理类
+class NeckTest implements ClothFactory{
+
+    @Override
+    public void produceCloth() {
+        System.out.println("造纸厂计划生产一批卫生纸");
+    }
+}
+
+public class StaticProxyTest {
+    public static void main(String[] args) {
+        //创建被代理类的对象
+        ClothFactory word = new NeckTest();
+
+        //创建代理类的对象
+        ClothFactory proxyPaperFactory = new PersonTest(word);
+
+        proxyPaperFactory.produceCloth();
+    }
+}</code></pre><h2 id="7-3、动态代理举例"><a href="#7-3、动态代理举例" class="headerlink" title="7.3、动态代理举例"></a>7.3、动态代理举例</h2><pre><code>import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+/**
+ * 动态代理举例
+ */
+interface Moon{
+    String getBelief();
+
+    void Object(String Moon);
+}
+
+//被代理类
+class Venus implements Moon{
+
+
+    @Override
+    public String getBelief() {
+        return "The only planet in the solar system without a magnetic field.";
+    }
+
+    @Override
+    public void Object(String MinMoon) {
+        System.out.println("周围有很多" + MinMoon);
+    }
+}
+
+/**
+ * 要想实现动态代理，需要解决的问题？
+ * 问题一：如何根据加载到内存中的被代理类，动态的创建一个代理类及其对象。
+ * 问题二：当通过代理类的对象调用方法a时，如何动态的去调用被代理类中的同名方法a。
+ */
+class BookTest{
+
+    //调用此方法，返回一个代理类的对象。解决问题一
+    public static Object getProxyInstance(Object obj){//obj:被代理类的对象
+        DeskTest hander = new DeskTest();
+        hander.bind(obj);
+        return Proxy.newProxyInstance(obj.getClass().getClassLoader(),obj.getClass().getInterfaces(),hander);
+    }
+}
+
+class DeskTest implements InvocationHandler{
+
+    private Object obj;//需要使用被代理类的对象进行赋值
+
+    public void bind(Object obj){
+        this.obj = obj;
+    }
+
+    //当我们通过代理类的对象，调用方法a时，就会自动的调用如下的方法：invoke()
+    //将被代理类要执行的方法a的功能就声明在invoke()中
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+        //method:即为代理类对象调用的方法，此方法也就作为了被代理类对象要调用的方法
+        //obj:被代理类的对象
+        Object returnValue = method.invoke(obj,args);
+
+        //上述方法的返回值就作为当前类中的invoke()的返回值。
+        return returnValue;
+    }
+}
+
+public class ProductTest {
+    public static void main(String[] args) {
+        Venus superMan = new Venus();
+        //NumTest:代理类的对象
+        Moon NumTest = (Moon) BookTest.getProxyInstance(superMan);
+        //当通过代理类对象调用方法时，会自动的调用被代理类中同名的方法
+        String belief = NumTest.getBelief();
+        System.out.println(belief);
+        NumTest.Object("四川大巴山");
+
+        System.out.println("+++++++++++++++++++");
+
+        NeckTest fox = new NeckTest();
+        ClothFactory ween = (ClothFactory) BookTest.getProxyInstance(fox);
+
+        ween.produceCloth();
+    }
+}</code></pre><h3 id="7-4、AOP与动态代理的举例"><a href="#7-4、AOP与动态代理的举例" class="headerlink" title="7.4、AOP与动态代理的举例"></a>7.4、AOP与动态代理的举例</h3><blockquote>
+<p>前面介绍的Proxy和InvocationHandler，很难看出这种动态代理的优势，下面介绍一种更实用的动态代理机制</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/a930618a732073ac70b4310cec4ce67c.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/350951efa715010e9f67c825a8c2644c.png" alt=""></p>
+<ul>
+<li>改进后的说明：代码段1、代码段2、代码段3和深色代码段分离开了，但代码段1、2、3又和一个特定的方法A耦合了！最理想的效果是：代码块1、2、3既可以执行方法A，又无须在程序中以硬编码的方式直接调用深色代码的方法。</li>
+<li>使用Proxy生成一个动态代理时，往往并不会凭空产生一个动态代理，这样没有太大的意义。通常都是为指定的目标对象生成动态代理</li>
+<li>这种动态代理在AOP中被称为AOP代理，AOP代理可代替目标对象，AOP代理包含了目标对象的全部方法。但AOP代理中的方法与目标对象的方法存在差异：<strong>AOP代理里的方法可以在执行目标方法之前、之后插入一些通用处理</strong>。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://img-blog.csdnimg.cn/img_convert/416543ffb785658f84566304c824bf80.png" alt=""></p>
+<blockquote>
+<p>举例</p>
+</blockquote>
+<pre><code>/**
+ * 静态代理举例
+ *
+ * 特点：代理类和被代理类在编译期间，就确定下来了。
+ */
+interface ClothFactory{
+    void produceCloth();
+}
+
+//代理类
+class PersonTest implements ClothFactory{
+    private ClothFactory factory;//用被代理类对象进行实例化
+
+    public PersonTest(ClothFactory factory){
+        this.factory = factory;
+    }
+
+    @Override
+    public void produceCloth() {
+        System.out.println("造纸厂开始做一些准备工作");
+
+        factory.produceCloth();
+
+        System.out.println("造纸厂做一些后续收尾工作");
+    }
+}
+
+//被代理类
+class NeckTest implements ClothFactory{
+
+    @Override
+    public void produceCloth() {
+        System.out.println("造纸厂计划生产一批卫生纸");
+    }
+}
+
+public class StaticProxyTest {
+    public static void main(String[] args) {
+        //创建被代理类的对象
+        ClothFactory word = new NeckTest();
+
+        //创建代理类的对象
+        ClothFactory proxyPaperFactory = new PersonTest(word);
+
+        proxyPaperFactory.produceCloth();
+    }
+}</code></pre><blockquote>
+<p>测试类</p>
+</blockquote>
+<pre><code>package github4;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+/**
+ * 动态代理举例
+ */
+interface Moon{
+    String getBelief();
+
+    void Object(String Moon);
+}
+
+//被代理类
+class Venus implements Moon{
+
+
+    @Override
+    public String getBelief() {
+        return "The only planet in the solar system without a magnetic field.";
+    }
+
+    @Override
+    public void Object(String MinMoon) {
+        System.out.println("周围有很多" + MinMoon);
+    }
+}
+
+/**
+ * 要想实现动态代理，需要解决的问题？
+ * 问题一：如何根据加载到内存中的被代理类，动态的创建一个代理类及其对象。
+ * 问题二：当通过代理类的对象调用方法a时，如何动态的去调用被代理类中的同名方法a。
+ */
+class BookTest{
+
+    //调用此方法，返回一个代理类的对象。解决问题一
+    public static Object getProxyInstance(Object obj){//obj:被代理类的对象
+        DeskTest hander = new DeskTest();
+        hander.bind(obj);
+        return Proxy.newProxyInstance(obj.getClass().getClassLoader(),obj.getClass().getInterfaces(),hander);
+    }
+}
+
+class DeskTest implements InvocationHandler{
+
+    private Object obj;//需要使用被代理类的对象进行赋值
+
+    public void bind(Object obj){
+        this.obj = obj;
+    }
+
+    //当我们通过代理类的对象，调用方法a时，就会自动的调用如下的方法：invoke()
+    //将被代理类要执行的方法a的功能就声明在invoke()中
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        SunTest util = new SunTest();
+        util.Star();
+
+        //method:即为代理类对象调用的方法，此方法也就作为了被代理类对象要调用的方法
+        //obj:被代理类的对象
+        Object returnValue = method.invoke(obj,args);
+
+        util.Star2();
+
+        //上述方法的返回值就作为当前类中的invoke()的返回值。
+        return returnValue;
+    }
+}
+
+class SunTest{
+
+    public void Star(){
+        System.out.println("====================通用方法一====================");
+
+    }
+
+    public void Star2(){
+        System.out.println("====================通用方法二====================");
+    }
+
+}
+
+public class ProductTest {
+    public static void main(String[] args) {
+        Venus superMan = new Venus();
+        //NumTest:代理类的对象
+        Moon NumTest = (Moon) BookTest.getProxyInstance(superMan);
+        //当通过代理类对象调用方法时，会自动的调用被代理类中同名的方法
+        String belief = NumTest.getBelief();
+        System.out.println(belief);
+        NumTest.Object("四川大巴山");
+
+        System.out.println("+++++++++++++++++++");
+
+        NeckTest fox = new NeckTest();
+        ClothFactory ween = (ClothFactory) BookTest.getProxyInstance(fox);
+
+        ween.produceCloth();
+    }
+}</code></pre><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.bmp" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.bmp" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="https://bit-1024.github.io" class="b-link-green">毛毛驿站</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2023/04/09/shi-qi-fan-she-yu-dong-tai-dai-li/" class="b-link-green">十七：反射与动态代理</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+    /* valine 评论框增加背景图片 */
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("") 100% 100% no-repeat;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    /* 修复评论第一行位置错位 */
+    .v .vlist .vcard {
+    padding-top: 2.5em !important ;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/libs//libs/jQuery-emoji/dist/css/jquery.emoji.css">
+<script src="/libs//libs/jQuery-emoji/dist/js/jquery.emoji.min.js"></script>
+<script src="/libs//libs/jQuery-emoji/dist/js/emoji.list.js"></script> -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'axQghygDBjenYDrn9N6oN2lR-gzGzoHsz',
+        appKey: 'SOXmB69gHsBndGef0LG54SxQ',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go',
+
+    });
+
+//     function parse_emoji() {
+//     jQuery(".vcontent").emojiParse({
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists   // 注：详见 js/emoji.list.js
+//     });
+//   }
+  
+//   setTimeout(function() {
+//     // jQuery emoji 解析
+//     parse_emoji();
+//     // jquery emoji 初始化
+//     jQuery(".veditor").emoji({
+//       showTab: true,
+//       animation: 'slide',
+//       basePath: '/libs/jQuery-emoji/images/emoji',
+//       icons: emojiLists  // 注：详见 js/emoji.list.js
+//     });
+//     jQuery(".vmore").on("click", function() {
+//       setTimeout(function() {
+//         parse_emoji();
+//       }, 500);
+//     });
+//   }, 800)
+
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/04/09/shi-ba-java8-xin-te-xing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="十八：Java8新特性">
+                        
+                        <span class="card-title">十八：Java8新特性</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、Java8概述
+Java 8 (又称为jdk 1.8) 是Java 语言开发的一个主要版本。
+Java 8 是oracle公司于2014年3月发布，可以看成是自Java 5 以来最具革命性的版本。Java 8为Java语言、编译器、类
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                        </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/09/shi-liu-wang-luo-bian-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="十六：网络编程">
+                        
+                        <span class="card-title">十六：网络编程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            01、网络编程概述
+Java是Internet 上的语言，它从语言级上提供了对网络应用程序的支持，程序员能够很容易开发常见的网络应用程序。
+
+Java提供的网络类库，可以实现无痛的网络连接，联网的底层细节被隐藏在Java 的本机安装系统里，
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-04-09
+                            </span>
+                        <span class="publish-author">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 毛毛驿站<br />'
+            + '作者: 宏忠<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+        <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&copy; 2023 宏忠. 
+
+            <br>
+            <span id="sitetime"></span><span class="my-face">ღゝ◡╹)ノ♡</span>
+            <br>
+
+            
+
+            
+                    
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        总访问量: <span id="busuanzi_value_site_pv" class="white-color"></span>
+                    
+        
+                    
+                        <span id="busuanzi_container_site_uv" style='display:none'></span>
+                        人次&nbsp; | &nbsp;访客人数: <span id="busuanzi_value_site_uv" class="white-color"></span> 人
+                    
+    
+            
+
+            
+                &nbsp; | &nbsp;字数统计:&nbsp;
+                <span class="white-color">146.4k</span> 字
+            
+
+            
+            <br>
+
+        </div>
+
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/bit-1024" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+ 
+    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2440910763@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+    <a href="https://zhihu.com/people/yi-xie-zhi-qiu-15-3-38" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2440910763&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的QQ空间" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/6984339393" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+
+        var t1 = Date.UTC(2023, 03, 07, 00, 00, 00); //北京时间2023-3-7 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已勉强运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours +
+            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒" ;
+    } /*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+
+
+
+        <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+        <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+        <script src="https://cdn.bootcss.com/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdn.bootcss.com/masonry/4.2.2/masonry.pkgd.min.js"></script>
+        <script src="https://cdn.bootcss.com/aos/3.0.0-beta.6/aos.js"></script>
+        <script src="https://cdn.bootcss.com/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+        <script src="https://cdn.bootcss.com/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+        <script src="/js/matery.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+        
+            <script src="/libs/others/clicklove.js"></script>
+        
+
+        
+            <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+
+        <!-- 洪卫 shw2018 add 2019.08.28 -->
+        <script type="text/javascript">
+            var OriginTitile = document.title,
+                st;
+            document.addEventListener("visibilitychange", function () {
+                document.hidden ? (document.title = "看不见我🙈~看不见我🙈~", clearTimeout(st)) : (document.title =
+                    "(๑•̀ㅂ•́) ✧被发现了～", st = setTimeout(function () {
+                        document.title = OriginTitile
+                    }, 3e3))
+            })
+        </script>
+
+        <!-- 鼠标点击烟花爆炸效果  洪卫 shw2018 add 2019.09.09 -->
+        
+            <canvas class="fireworks" style="position: fixed; left: 0; top: 0; z-index: 1; pointer-events: none;"></canvas>
+            <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+            <script type="text/javascript" src="/js/fireworks.js"></script>
+        
+
+        <!-- 背景雪花飘落特效洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 鼠标点击文字特效 洪卫 shw2018 add 2019.09.10-->
+        
+            <script src="/js/wenzi.js" type="text/javascript"></script>
+        
+
+        <!-- 背景雪花飘落特效 洪卫 shw2018 add 2019.09.10 -->
+        
+
+        <!-- 在线聊天工具  洪卫 shw2018 add 2019.09.11 -->
+        
+            <script src="//code.tidio.co/xxxxxxxxxxxxxxxxxxxxxxxxxxx.js"></script>
+            <!--  在线聊天位置自定义  洪卫 shw2018 add 2019.09.13  -->
+            <script> 
+                $(document).ready(function () {
+
+                    setInterval(change_Tidio, 50);  
+                    function change_Tidio() { 
+
+                        var tidio=$("#tidio-chat iframe");
+                        if(tidio.css("display")=="block"&& $(window).width()>977 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" &&$(window).width()>977)>0? "-40px" : ($("div.toc-title").length&&$(window).width()>977)>0?"80px":"20px";   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px";   
+                            document.getElementById("tidio-chat-iframe").style.height=parseInt(tidio.css("height"))>=520?"520px":tidio.css("height");
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        } 
+                        else if(tidio.css("display")=="block"&&$(window).width()>601 &&$(window).width()<992 ){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && 601< $(window).width()<992)>0? "-40px":"20px" ;   
+                            document.getElementById("tidio-chat-iframe").style.right="-15px"; 
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+                        else if(tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))<230){
+                            document.getElementById("tidio-chat-iframe").style.bottom= ($("div#backTop.top-scroll").css("display")=="none" && $(window).width()<601)>0? "-10px":"45px" ;   
+                            document.getElementById("tidio-chat-iframe").style.zIndex="997";
+                        }
+
+                        if( tidio.css("display")=="block"&&$(window).width()<601 && parseInt(tidio.css("height"))>=230){
+                            document.getElementById("tidio-chat-iframe").style.zIndex="998";
+                        }
+                    } 
+                }); 
+            </script>
+        
+
+        <!-- 背景 canvas-nest  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景静止彩带  洪卫 shw 2018  add 2019.09.15-->
+        
+
+        <!-- 背景动态彩带 洪卫 shw 2018  add 2019.09.15-->
+        
+            <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 992) {
+                document.write('<script type="text/javascript" src="/libs/background/ribbon-dynamic.js"><\/script>');
+            }
+            </script>
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":200},"mobile":{"show":false},"react":{"opacity":0.7}});</script><script>!function(e){var r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function t(){for(var c=0;c<r.length;c++)t=r[c],void 0,0<=(n=t.getBoundingClientRect()).top&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=r[c];t=o,n=function(){r=r.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}t(),e.addEventListener("scroll",function(){!function(t,n){clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)}(t,e)})}(this);</script></body>
+</html>

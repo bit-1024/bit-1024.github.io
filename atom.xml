@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://bit-1024.github.io/"/>
-  <updated>2023-04-09T08:37:27.811Z</updated>
+  <updated>2023-04-09T09:43:50.423Z</updated>
   <id>https://bit-1024.github.io/</id>
   
   <author>
@@ -15,6 +15,385 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>十八：Java8新特性</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-ba-java8-xin-te-xing/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-ba-java8-xin-te-xing/</id>
+    <published>2023-04-09T09:43:00.000Z</published>
+    <updated>2023-04-09T09:43:50.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、Java8概述&quot;&gt;&lt;a href=&quot;#01、Java8概述&quot; class=&quot;headerlink&quot; title=&quot;01、Java8概述&quot;&gt;&lt;/a&gt;01、Java8概述&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Java 8 (又称为jdk 1.8) 是Java
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十七：反射与动态代理</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-qi-fan-she-yu-dong-tai-dai-li/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-qi-fan-she-yu-dong-tai-dai-li/</id>
+    <published>2023-04-09T09:40:58.000Z</published>
+    <updated>2023-04-09T09:41:36.135Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、Java反射机制概述&quot;&gt;&lt;a href=&quot;#01、Java反射机制概述&quot; class=&quot;headerlink&quot; title=&quot;01、Java反射机制概述&quot;&gt;&lt;/a&gt;01、Java&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十六：网络编程</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-liu-wang-luo-bian-cheng/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-liu-wang-luo-bian-cheng/</id>
+    <published>2023-04-09T09:39:28.000Z</published>
+    <updated>2023-04-09T09:39:52.421Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、网络编程概述&quot;&gt;&lt;a href=&quot;#01、网络编程概述&quot; class=&quot;headerlink&quot; title=&quot;01、网络编程概述&quot;&gt;&lt;/a&gt;01、&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十五：IO流</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-wu-io-liu/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-wu-io-liu/</id>
+    <published>2023-04-09T09:33:56.000Z</published>
+    <updated>2023-04-09T09:36:00.985Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、File类的使用&quot;&gt;&lt;a href=&quot;#01、File类的使用&quot; class=&quot;headerlink&quot; title=&quot;01、File类的使用&quot;&gt;&lt;/a&gt;01、File类的使用&lt;/h2&gt;&lt;h2 id=&quot;1-1、File类的实例化&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十四：泛型</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-si-fan-xing/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-si-fan-xing/</id>
+    <published>2023-04-09T09:30:01.000Z</published>
+    <updated>2023-04-09T09:32:23.209Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、为什么要有泛型&quot;&gt;&lt;a href=&quot;#01、为什么要有泛型&quot; class=&quot;headerlink&quot; title=&quot;01、为什么要有泛型&quot;&gt;&lt;/a&gt;01、为什么要有泛型&lt;/h2&gt;&lt;p&gt;泛型：标签&lt;/p&gt;
+&lt;h2 id=&quot;1-1、举例&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十三：集合</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-san-ji-he/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-san-ji-he/</id>
+    <published>2023-04-09T09:28:05.000Z</published>
+    <updated>2023-04-09T09:29:01.857Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、Java-集合框架概述&quot;&gt;&lt;a href=&quot;#01、Java-集合框架概述&quot; class=&quot;headerlink&quot; title=&quot;01、Java 集合框架概述&quot;&gt;&lt;/a&gt;01、Java 集合框架概述&lt;/h2&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十二：枚举与注解</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-er-mei-ju-yu-zhu-jie/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-er-mei-ju-yu-zhu-jie/</id>
+    <published>2023-04-09T09:26:14.000Z</published>
+    <updated>2023-04-09T09:27:02.704Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、枚举类的使用&quot;&gt;&lt;a href=&quot;#01、枚举类的使用&quot; class=&quot;headerlink&quot; title=&quot;01、枚举类的使用&quot;&gt;&lt;/a&gt;01、&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十一：常用类</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-yi-chang-yong-lei/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-yi-chang-yong-lei/</id>
+    <published>2023-04-09T09:24:09.000Z</published>
+    <updated>2023-04-09T09:24:45.700Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、字符串相关的类&quot;&gt;&lt;a href=&quot;#01、字符串相关的类&quot; class=&quot;headerlink&quot; title=&quot;01、字符串相关的类&quot;&gt;&lt;/a&gt;01、字符串相关的类&lt;/h2&gt;&lt;h2 id=&quot;1-1、String类的概述&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>十：多线程</title>
+    <link href="https://bit-1024.github.io/2023/04/09/shi-duo-xian-cheng/"/>
+    <id>https://bit-1024.github.io/2023/04/09/shi-duo-xian-cheng/</id>
+    <published>2023-04-09T09:22:17.000Z</published>
+    <updated>2023-04-09T09:23:00.687Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、基本概念：程序、进程、线程&quot;&gt;&lt;a href=&quot;#01、基本概念：程序、进程、线程&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>九:异常</title>
+    <link href="https://bit-1024.github.io/2023/04/09/jiu-yi-chang/"/>
+    <id>https://bit-1024.github.io/2023/04/09/jiu-yi-chang/</id>
+    <published>2023-04-09T09:20:09.000Z</published>
+    <updated>2023-04-09T09:20:37.110Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、异常概述与异常体系结构&quot;&gt;&lt;a href=&quot;#01、异常概述与异常体系结构&quot; class=&quot;headerlink&quot; title=&quot;01、异常概述与异常体系结构&quot;&gt;&lt;/a&gt;01、异常概述与异常&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>八：面向对象（下）</title>
+    <link href="https://bit-1024.github.io/2023/04/09/ba-mian-xiang-dui-xiang-xia/"/>
+    <id>https://bit-1024.github.io/2023/04/09/ba-mian-xiang-dui-xiang-xia/</id>
+    <published>2023-04-09T09:18:13.000Z</published>
+    <updated>2023-04-09T09:18:55.129Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、关键字：static&quot;&gt;&lt;a href=&quot;#01、关键字：static&quot; class=&quot;headerlink&quot; title=&quot;01、关键字：static&quot;&gt;&lt;/a&gt;01、关键字：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象（中）</title>
+    <link href="https://bit-1024.github.io/2023/04/09/mian-xiang-dui-xiang-zhong/"/>
+    <id>https://bit-1024.github.io/2023/04/09/mian-xiang-dui-xiang-zhong/</id>
+    <published>2023-04-09T09:16:08.000Z</published>
+    <updated>2023-04-09T09:17:11.702Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、继承性的使用与理解&quot;&gt;&lt;a href=&quot;#01、继承性的使用与理解&quot; class=&quot;headerlink&quot; title=&quot;01、继承性的使用与理解&quot;&gt;&lt;/a&gt;01、继承性的使用与理解&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;1、Person
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>六:面向对象（上)</title>
+    <link href="https://bit-1024.github.io/2023/04/09/liu-mian-xiang-dui-xiang-shang/"/>
+    <id>https://bit-1024.github.io/2023/04/09/liu-mian-xiang-dui-xiang-shang/</id>
+    <published>2023-04-09T09:14:08.000Z</published>
+    <updated>2023-04-09T09:14:50.067Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、面向过程与面向对象&quot;&gt;&lt;a href=&quot;#01、面向过程与面向对象&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>五:数组</title>
+    <link href="https://bit-1024.github.io/2023/04/09/wu-shu-zu/"/>
+    <id>https://bit-1024.github.io/2023/04/09/wu-shu-zu/</id>
+    <published>2023-04-09T09:11:08.000Z</published>
+    <updated>2023-04-09T09:12:06.546Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、-数组的概述&quot;&gt;&lt;a href=&quot;#01、-数组的概述&quot; class=&quot;headerlink&quot; title=&quot;01、 数组的概述&quot;&gt;&lt;/a&gt;01、 数组的概述&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;/*
+ * 一、数组的概述
+ *
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>四:程序流程控制</title>
+    <link href="https://bit-1024.github.io/2023/04/09/si-cheng-xu-liu-cheng-kong-zhi/"/>
+    <id>https://bit-1024.github.io/2023/04/09/si-cheng-xu-liu-cheng-kong-zhi/</id>
+    <published>2023-04-09T09:08:05.000Z</published>
+    <updated>2023-04-09T09:09:03.295Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、-程序流程控概述&quot;&gt;&lt;a href=&quot;#01、-程序流程控概述&quot; class=&quot;headerlink&quot; title=&quot;01、 程序流程控概述&quot;&gt;&lt;/a&gt;01、
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>三:运算符</title>
+    <link href="https://bit-1024.github.io/2023/04/09/san-yun-suan-fu/"/>
+    <id>https://bit-1024.github.io/2023/04/09/san-yun-suan-fu/</id>
+    <published>2023-04-09T09:02:12.000Z</published>
+    <updated>2023-04-09T09:03:58.907Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、运算符&quot;&gt;&lt;a href=&quot;#01、运算符&quot; class=&quot;headerlink&quot; title=&quot;01、运算符&quot;&gt;&lt;/a&gt;01、&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二:变量、标识符、保留字、变量</title>
+    <link href="https://bit-1024.github.io/2023/04/09/er-bian-liang-biao-shi-fu-bao-liu-zi-bian-liang/"/>
+    <id>https://bit-1024.github.io/2023/04/09/er-bian-liang-biao-shi-fu-bao-liu-zi-bian-liang/</id>
+    <published>2023-04-09T08:45:47.000Z</published>
+    <updated>2023-04-09T08:48:58.260Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;01、关键字与保留字&quot;&gt;&lt;a href=&quot;#01、关键字与保留字&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>一:Java语言概述</title>
